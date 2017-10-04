@@ -1,0 +1,86 @@
+swagger: '2.0'
+info:
+  description: Flatgame
+  version: 1.0.0
+  title: Flatgame
+host: google.de
+basePath: /
+paths:
+  /pet:
+    get:
+      responses:
+        200:
+          description: "Everything is fine"
+definitions:
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      email:
+        type: "string"
+      id:
+        type: "string"
+      profile_image:
+        type: "string"
+      flat:
+        type: "integer"
+      points:
+        type: "integer"
+  Flat:
+    type: "object"
+    properties:
+      name: 
+        type: "string"
+      id:
+        type: "string"
+      members:
+        type: "array"
+        items:
+          properties:
+            id:
+              type: "string"
+            admin: 
+              type: "boolean"
+      tasks:
+        type: "array"
+        items:
+          properties:
+            id:
+              type: "string"
+      image:
+        type: "string"
+      description:
+        type: "string"
+  Task:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      description: 
+        type: "string"
+      points:
+        type: "integer"
+      lastdone:
+        type: "string"
+        format: "date-time"
+      duedate:
+        type: "string"
+        format: "date-time"
+      frequency:
+        type: "integer"
+      grace:
+        type: "integer"
+      flat:
+        type: "string"
+  TaskInfo:
+    type: "object"
+    properties:
+      done:
+        type: "string"
+        format: "date-time"
+      user:
+        type: "string"
+      task:
+        type: "string"
+  

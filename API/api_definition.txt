@@ -1,0 +1,33 @@
+##
+
+task
+   - POST /info new task including settings
+   - GET /info all tasks including settings
+   - GET /{id}/info task with id name including settings
+   - GET /current next n items that must be done
+		- offset ?lastShown={dateTime} 
+   - POST /{id}/{dateTime}
+   
+   
+user
+	- GET /info detail info of current user
+	- PUT /info change detail info of current user
+	- DELETE delete current user
+	- (creation of user via oAuth in backend
+	- DELETE /
+	- GET /info/{userid} detail info of other user
+	
+group (one flat)
+	- POST /user/{userid} add other user to the flat of current user
+		- ?isAdmin=true|false
+	- DELETE /user/{userid} delete other user from flat of current user
+	- PUT /user/{userid}
+		- ?isAdmin=true|false
+	- GET /info gets all group info
+		- name
+		- users
+		- stats
+		
+	
+
+

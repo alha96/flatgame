@@ -6,11 +6,230 @@ info:
 host: google.de
 basePath: /
 paths:
-  /pet:
+  /user:
     get:
+      description: "Search for a user by username"
+      parameters:
+      - in: "query"
+        name: "username"
+        type: "string"
+        required: true
+        description: "The username"
       responses:
         200:
-          description: "Everything is fine"
+          description: "List of users"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/User'
+    post:
+      description: "Add a new user"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Data of the user"
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200: 
+          description: "User created"
+          schema:
+            $ref: '#/definitions/User'
+        409:
+          description: "User already exists"
+  /user/{userid}:
+    get:
+      description: "Search for a user by ID"
+      parameters:
+      - in: "path"
+        name: "userid"
+        type: "string"
+        required: true
+        description: "The user ID"
+      responses:
+        200:
+          description: "User found"
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: "User not found"
+    post:
+      description: "Update a user by ID"
+      parameters:
+      - in: "path"
+        name: "userid"
+        type: "string"
+        required: true
+        description: "The user ID"
+      - in: "body"
+        name: "body"
+        description: "Contains all attributes to update"
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200: 
+          description: "User updated"
+        401:
+          description: "Unauthorized"
+    delete:
+      description: "Delete a user by ID"
+      parameters:
+      - in: "path"
+        name: "userid"
+        type: "string"
+        required: true
+        description: "The user ID"
+      responses:
+        200:
+          description: "User deleted"
+        401:
+          description: "Unauthorized"
+  /flat:
+    post:
+      description: "Create a new flat"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Contains all attributes of the flat"
+        schema:
+          $ref: '#/definitions/Flat'
+      responses:
+        200:
+          description: "Flat created"
+          schema:
+            $ref: '#/definitions/Flat'
+  /flat/{flatid}:
+    get:
+      description: "Search for a flat by ID"
+      parameters:
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      responses:
+        200:
+          description: "Flat found"
+          schema:
+            $ref: '#/definitions/Flat'
+        404:
+          description: "Flat not found"
+    post:
+      description: "Update an existing flat by ID"
+      parameters:
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      - in: "body"
+        name: "body"
+        required: true
+        description: "Contains all attributes of the flat to update"
+        schema:
+          $ref: '#/definitions/Flat'
+      responses:
+        200:
+          description: "Flat updated"
+        401:
+          description: "Unauthorized"
+    delete:
+      description: "Delete a flat by ID"
+      parameters:
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      responses:
+        200:
+          description: "Flat deleted"
+        401:
+          description: "Unauthorized"
+  /flat/{flatid}/tasks:
+    get:
+      description: "Get all tasks of a flat"
+      parameters:
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      responses:
+        200:
+          description: "Tasks found"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Task'
+        401:
+          description: "Unauthorized"
+    post:
+      description: "Create a task for this flat"
+      parameters:
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      - in: "body"
+        name: "body"
+        description: "Contains all attributes of the task"
+        schema:
+          $ref: '#/definitions/Task'
+      responses:
+        200:
+          description: "Task created"
+        401:
+          description: "Unauthorized"
+  /flat/{flatid}/task/{taskid}:
+    get:
+      description: "Get the previous users, which completed this task"
+      parameters:
+      - in: "path"
+        name: "taskid"
+        type: "string"
+        required: true
+        description: "The ID of the task"
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      - in: "query"
+        name: "from"
+        type: "integer"
+        required: false
+        description: "Is used to skip users"
+      - in: "query"
+        name: "amount"
+        type: "integer"
+        required: false
+        description: "The amount of users to return"
+      responses:
+        200:
+          description: "Found the task"
+          schema:
+            type: "array"
+            items: 
+              $ref: '#/definitions/TaskInfo'
+        401:
+          description: "Unauthorized"
+  /task/{taskid}:
+    delete:
+      description: "Deletes a task of this flat"
+      parameters:
+      - in: "path"
+        name: "taskid"
+        type: "string"
+        required: true
+        description: "The ID of the task"
+      responses:
+        200:
+          description: "Task deleted"
+        401:
+          description: "Unauthorized"
 definitions:
   User:
     type: "object"

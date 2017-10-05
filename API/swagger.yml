@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: A web app to better organize a shared flat!
-  version: 1.0.0
+  version: 0.2.0
   title: Flatgame
 host: uberspace.de
 basePath: /
@@ -26,6 +26,7 @@ paths:
           description: "No user found"
     post:
       description: "Add a new user"
+      #id, profile_image, flat and points is not supplied in the body by the client
       parameters:
       - in: "body"
         name: "body"
@@ -56,7 +57,8 @@ paths:
             $ref: '#/definitions/User'
         404:
           description: "User not found"
-    post:
+    put:
+      #war POST, ist put passender?
       description: "Update a user by ID"
       parameters:
       - in: "path"
@@ -89,6 +91,9 @@ paths:
           description: "Unauthorized"
   /flat:
     post:
+      # does this mean that angular could send multiple requests with different snippets and the backend would put all of them together? (1st: send name, 2nd: send members, 3rd: send tasks, 4th: send more tasks)
+      #is this endpoint used to e.g. add one task?
+      #what is the flat description?
       description: "Create a new flat"
       parameters:
       - in: "body"
@@ -117,7 +122,9 @@ paths:
             $ref: '#/definitions/Flat'
         404:
           description: "Flat not found"
-    post:
+    put:
+      #changed post to put because update
+      #see comment above (POST /flat/, how is this endpoint used
       description: "Update an existing flat by ID"
       parameters:
       - in: "path"
@@ -138,6 +145,7 @@ paths:
           description: "Unauthorized"
     delete:
       description: "Delete a flat by ID"
+      #important: also delete flat reference from all users in given flat
       parameters:
       - in: "path"
         name: "flatid"
@@ -187,6 +195,7 @@ paths:
           description: "Unauthorized"
   /flat/{flatid}/task/{taskid}:
     get:
+      #maybe: if no taskId given give all completed tasks with the user and date when completed
       description: "Get the previous users, which completed this task."
       parameters:
       - in: "path"
@@ -205,7 +214,7 @@ paths:
         required: false
         description: "With this parameter you can specify how many users you want to skip beginning with the newest."
       - in: "query"
-        name: "amount"
+        name: "to"
         type: "integer"
         required: false
         description: "With this parameter you can specify how many users you want to get from the one in 'from'"
@@ -290,7 +299,12 @@ definitions:
         format: "date-time"
       frequency:
         type: "integer"
-      grace:
+      frequencyType:
+        type: "integer"
+        # 0 = days
+        # 1 = weeks
+        # 2 = months
+      graceDays:
         type: "integer"
       flat:
         type: "string"
@@ -304,4 +318,6 @@ definitions:
         type: "string"
       task:
         type: "string"
+        
+  #TODO reference icon images everywhere
   

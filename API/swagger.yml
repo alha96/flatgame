@@ -3,8 +3,8 @@ info:
   description: A web app to better organize a shared flat!
   version: 0.2.0
   title: Flatgame
-host: uberspace.de
-basePath: /
+host: arkas.alnima.uberspace.de
+basePath: /nodejs/
 paths:
   /user:
     get:
@@ -58,7 +58,6 @@ paths:
         404:
           description: "User not found"
     put:
-      #war POST, ist put passender?
       description: "Update a user by ID"
       parameters:
       - in: "path"
@@ -123,8 +122,6 @@ paths:
         404:
           description: "Flat not found"
     put:
-      #changed post to put because update
-      #see comment above (POST /flat/, how is this endpoint used
       description: "Update an existing flat by ID"
       parameters:
       - in: "path"
@@ -157,7 +154,7 @@ paths:
           description: "Flat deleted"
         401:
           description: "Unauthorized"
-  /flat/{flatid}/tasks:
+  /flat/{flatid}/task:
     get:
       description: "Get all tasks of a flat"
       parameters:
@@ -193,6 +190,67 @@ paths:
           description: "Task created"
         401:
           description: "Unauthorized"
+  /flat/{flatid}/user:
+    get:
+      description: "Get all users of flat"
+      parameters:
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      responses:
+        200:
+          description: "Found all users of flat"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Flat does not exist"
+  /flat/{flatid}/user/{userid}:
+    put:
+      description: "Add or change user in flat"
+      parameters: 
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      - in: "path"
+        name: "userid"
+        type: "string"
+        required: true
+        description: "The ID of the user"
+      - in: "body"
+        name: "isAdmin"
+        description: "Data of the user"
+        required: false
+        schema:
+          $ref: "#/definitions/UserInFlat"
+      responses:
+        200:
+          description: "Added/Changed user successfully"
+        401:
+          description: "Unauthorized"
+    delete:
+      description: "Delete user in flat"
+      parameters: 
+      - in: "path"
+        name: "flatid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      - in: "path"
+        name: "userid"
+        type: "string"
+        required: true
+        description: "The ID of the user"
+      responses:
+        200: 
+          description: "Deleted user"
+        401:
+          description: "Unauthorized"
+        
+        
   /flat/{flatid}/task/{taskid}:
     get:
       #maybe: if no taskId given give all completed tasks with the user and date when completed
@@ -228,6 +286,21 @@ paths:
         401:
           description: "Unauthorized"
   /task/{taskid}:
+    get:
+      description: "Get a task"
+      parameters:
+      - in: "path"
+        name: "taskid"
+        type: "string"
+        required: true
+        description: "The ID of the flat"
+      responses:
+        200:
+          description: "Found task"
+          schema:
+            $ref: '#/definitions/Task'
+        401:
+          description: "Unauthorized"
     delete:
       description: "Deletes a task of this flat"
       parameters:
@@ -254,7 +327,7 @@ definitions:
       profile_image:
         type: "string"
       flat:
-        type: "integer"
+        type: "string"
       points:
         type: "integer"
   Flat:
@@ -270,7 +343,7 @@ definitions:
           properties:
             id:
               type: "string"
-            admin: 
+            isAdmin: 
               type: "boolean"
       tasks:
         type: "array"
@@ -318,6 +391,11 @@ definitions:
         type: "string"
       task:
         type: "string"
+  UserInFlat:
+    type: "object"
+    properties:
+      isAdmin:
+        type: "boolean"
         
-  #TODO reference icon images everywhere
+  #reference icon images
   

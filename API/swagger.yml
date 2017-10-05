@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
-  description: Flatgame
+  description: A web app to better organize a shared flat!
   version: 1.0.0
   title: Flatgame
-host: google.de
+host: uberspace.de
 basePath: /
 paths:
   /user:
@@ -17,11 +17,13 @@ paths:
         description: "The username"
       responses:
         200:
-          description: "List of users"
+          description: "Found following users"
           schema:
             type: "array"
             items:
               $ref: '#/definitions/User'
+        404:
+          description: "No user found"
     post:
       description: "Add a new user"
       parameters:
@@ -46,7 +48,7 @@ paths:
         name: "userid"
         type: "string"
         required: true
-        description: "The user ID"
+        description: "The ID of the user"
       responses:
         200:
           description: "User found"
@@ -64,7 +66,7 @@ paths:
         description: "The user ID"
       - in: "body"
         name: "body"
-        description: "Contains all attributes to update"
+        description: "Contains all attributes to update. If an attribute is missing, it will not be changed."
         schema:
           $ref: '#/definitions/User'
       responses:
@@ -91,7 +93,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Contains all attributes of the flat"
+        description: "Contains all attributes of the flat. If an attribute is missing, it will not be changed."
         schema:
           $ref: '#/definitions/Flat'
       responses:
@@ -126,7 +128,7 @@ paths:
       - in: "body"
         name: "body"
         required: true
-        description: "Contains all attributes of the flat to update"
+        description: "Contains all attributes of the flat to update. If an attribute is missing, it will not be changed."
         schema:
           $ref: '#/definitions/Flat'
       responses:
@@ -175,7 +177,7 @@ paths:
         description: "The ID of the flat"
       - in: "body"
         name: "body"
-        description: "Contains all attributes of the task"
+        description: "Contains all attributes of the task. If an attribute is missing, it will not be changed."
         schema:
           $ref: '#/definitions/Task'
       responses:
@@ -185,7 +187,7 @@ paths:
           description: "Unauthorized"
   /flat/{flatid}/task/{taskid}:
     get:
-      description: "Get the previous users, which completed this task"
+      description: "Get the previous users, which completed this task."
       parameters:
       - in: "path"
         name: "taskid"
@@ -201,15 +203,15 @@ paths:
         name: "from"
         type: "integer"
         required: false
-        description: "Is used to skip users"
+        description: "With this parameter you can specify how many users you want to skip beginning with the newest."
       - in: "query"
         name: "amount"
         type: "integer"
         required: false
-        description: "The amount of users to return"
+        description: "With this parameter you can specify how many users you want to get from the one in 'from'"
       responses:
         200:
-          description: "Found the task"
+          description: "Found the following tasks"
           schema:
             type: "array"
             items: 

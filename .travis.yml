@@ -1,5 +1,5 @@
 addons:
-    ssh_known_hosts: $HOST
+    ssh_known_hosts: 185.26.156.50
 
 language: node_js
 

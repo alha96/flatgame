@@ -1,1 +1,3 @@
-
+before_install:
+- openssl aes-256-cbc -K $encrypted_af70c45caba8_key -iv $encrypted_af70c45caba8_iv
+  -in priv_rsa.enc -out priv_rsa -d

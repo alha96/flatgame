@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/alha96/flatgame/issues"
   },
-  "homepage": "https://github.com/alha96/flatgame#readme"
+  "homepage": "https://github.com/alha96/flatgame#readme",
+  "dependencies": {
+    "config": "^1.26.2",
+    "express": "^4.16.1",
+    "mongoose": "^4.12.0",
+    "tinylog": "^0.1.1"
+  }
 }

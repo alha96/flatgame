@@ -12,6 +12,6 @@ script: cd backend && npm install && npm test
 deploy:
     provider: script
     skip_cleanup: true
-    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v
+    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config
     on:
         branch: master

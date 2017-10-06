@@ -7,7 +7,6 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     username: {type: String, required: true},
     email: {type: String, required: true},
-    id: String,
     profile_image: String,
     flat: {type: mongoose.Schema.Types.ObjectId, ref: 'Flat'},
     points: Number

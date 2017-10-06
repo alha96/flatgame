@@ -7,9 +7,14 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var morgan = require('morgan');
+var bodyParser = require('body-parser');
 
 var port = 61111;
-app.use(morgan('combined'))
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+
+var routes = require('./routes/routes'); //importing route
+routes(app); //register the route
 
 console.log('Starting server...');
 app.listen(port);

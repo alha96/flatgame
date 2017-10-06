@@ -6,9 +6,8 @@ var Schema = mongoose.Schema;
 //TODO: arrays correct?
 var flatSchema = new Schema({
     name: {type: String, required: true},
-    id: String,
     members: [{
-        id: String,
+        user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         isAdmin: Boolean
     }],
     tasks: [{

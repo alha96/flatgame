@@ -1,0 +1,5 @@
+{
+  "connection":{
+    "connectionString": "mongodb://username:password@host:port"
+  }
+}

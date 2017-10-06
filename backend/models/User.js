@@ -9,7 +9,7 @@ var userSchema = new Schema({
     email: {type: String, required: true},
     id: String,
     profile_image: String,
-    flat: String,
+    flat: {type: mongoose.Schema.Types.ObjectId, ref: 'Flat'},
     points: Number
 });
 

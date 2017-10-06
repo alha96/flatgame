@@ -7,6 +7,8 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_af70c45caba8_key -iv $encrypted_af70c45caba8_iv -in priv_rsa.enc -out /tmp/priv_rsa -d
 - chmod 600 /tmp/priv_rsa
 
+script: cd backend && npm install && npm test
+
 deploy:
     provider: script
     skip_cleanup: true

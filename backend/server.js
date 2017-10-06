@@ -6,12 +6,11 @@ var config = require('config');
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var morgan = require('morgan');
 
 var port = 61111;
+app.use(morgan('combined'))
 
-app.use('/', function (req, res) {
-    res.send('HELLO WORLD2');
-});
 console.log('Starting server...');
 app.listen(port);
 console.log('Server started on port ' + port);

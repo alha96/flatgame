@@ -20,7 +20,7 @@ console.log('Starting server...');
 app.listen(port);
 console.log('Server started on port ' + port);
 
-console.log('Connecting to database...');
+console.log('Connecting to database.............');
 
 var connectionString = config.get('connection.connectionString');
 mongoose.connect(connectionString, {

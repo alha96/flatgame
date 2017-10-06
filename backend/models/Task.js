@@ -13,7 +13,7 @@ var taskSchema = new Schema({
     frequency: Number,
     frequencyType: Number,
     graceDays: Number,
-    flat: String
+    flat: {type: mongoose.Schema.Types.ObjectId, ref: 'Flat'}
 });
 
 var Task = mongoose.model('Task', taskSchema);

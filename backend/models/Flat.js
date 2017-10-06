@@ -12,7 +12,7 @@ var flatSchema = new Schema({
         isAdmin: Boolean
     }],
     tasks: [{
-        id: String
+        type: mongoose.Schema.Types.ObjectId, ref: 'Task'
     }],
     image: String,
     description: String

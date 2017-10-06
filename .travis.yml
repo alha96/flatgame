@@ -1,3 +1,13 @@
+addons:
+    ssh_known_hosts: $HOST
+
 before_install:
-- openssl aes-256-cbc -K $encrypted_af70c45caba8_key -iv $encrypted_af70c45caba8_iv
-  -in priv_rsa.enc -out priv_rsa -d
+- openssl aes-256-cbc -K $encrypted_af70c45caba8_key -iv $encrypted_af70c45caba8_iv -in priv_rsa.enc -out /tmp/priv_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/priv_rsa
+- ssh-add /tmp/priv_rsa
+
+deploy:
+    provider: script
+    skip_cleanup: true
+    script: rsync -r --dry-run --delete-after $TRAVIS_BUILD_DIR/backend $USER@$HOST:/node/

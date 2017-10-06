@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var port = 61111;
 
 app.use('/', function (req, res) {
-    res.send('HELLO WORLD');
+    res.send('HELLO WORLD2');
 });
 console.log('Starting server...');
 app.listen(port);

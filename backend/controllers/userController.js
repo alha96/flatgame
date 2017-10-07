@@ -3,8 +3,8 @@ var User = require('../models/User');
 
 
 exports.get_a_user_by_username = function (req, res) {
-    User.findById(req.params.user_id, function (err, user) {
-        if(err)
+    User.findById(req.params.username, function (err, user) {
+        if (err)
             res.send(err);
         res.json(user);
         console.log("User found:", JSON.stringify())
@@ -14,10 +14,12 @@ exports.get_a_user_by_username = function (req, res) {
 exports.create_a_user = function (req, res) {
     var user = new User(req.body);
     user.save(function (err, result) {
-        if (err)
+        if (err) {
             res.send(err);
-        res.json(result);
-        console.log("User created: ", JSON.stringify(result));
+        } else {
+            res.json(result);
+            console.log("User created: ", JSON.stringify(result));
+        }
     });
 };
 

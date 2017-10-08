@@ -60,6 +60,8 @@ paths:
           description: "User found"
           schema:
             $ref: '#/definitions/User'
+        400:
+          description: "No username given"
         404:
           description: "User not found"
     put:
@@ -78,6 +80,8 @@ paths:
       responses:
         200: 
           description: "User updated"
+        400:
+          description: "Bad request"
         401:
           description: "Unauthorized"
     delete:
@@ -91,6 +95,8 @@ paths:
       responses:
         200:
           description: "User deleted"
+        400:
+          description: "Bad request"
         401:
           description: "Unauthorized"
   /flat:

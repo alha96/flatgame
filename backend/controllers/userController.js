@@ -21,7 +21,7 @@ exports.get_user_by_username = function (req, res) {
                     userMap[user._id] = user;
                 });
                 console.log(isObjectEmpty(userMap));
-                if (isObjectEmpty(userMap)) {
+                if (!isObjectEmpty(userMap)) {
                     res.status(200).json(userMap);
                     console.log('Following users found:', JSON.stringify(userMap));
                 } else {
@@ -52,20 +52,19 @@ exports.get_user = function (req, res) {
     var userId = req.params.userId;
     if (typeof params !== 'undefined' && params !== null) {
         console.log('No userId given!');
-        //TODO wie antwortet man richtig?
-        res.send('Please provide a userId!');
+        res.status(400).send({error: 'No userId given!'});
     } else {
         User.findOne({_id: userId}, function (err, result) {
             if (err) {
                 //TODO cast error kommt, wenn id zu kurz ist - ändern?
-                res.send(err);
+                res.status(400).send(err);
                 console.log('User not found: ' + err);
             } else {
                 if (result) {
-                    res.json(result);
+                    res.status(200).json(result);
                     console.log('User found:', JSON.stringify(result));
                 } else {
-                    res.send('User not found');
+                    res.status(404).send('User not found');
                     console.log('User not found');
                 }
             }
@@ -78,21 +77,20 @@ exports.update_user = function (req, res) {
     var userId = req.params.userId;
     if (typeof params !== 'undefined' && params !== null) {
         console.log('No userId given!');
-        //TODO wie antwortet man richtig?
-        res.send('Please provide a userId!');
+        res.status(400).send({error: 'No userId given!'});
     } else {
         //TODO username und email kann hier null sein - beheben!
         User.findOneAndUpdate({_id: userId}, req.body, function(err, result){
             if (err) {
                 //TODO cast error kommt, wenn id zu kurz ist - ändern?
-                res.send(err);
+                res.status(400).send(err);
                 console.log('User not updated: ' + err);
             } else {
                 if (result) {
-                    res.json(result);
+                    res.status(200).json(result);
                     console.log('User updated');
                 } else {
-                    res.send('User not updated');
+                    res.status(401).send('User not updated');
                     console.log('User not updated');
                 }
             }
@@ -106,21 +104,19 @@ exports.delete_user = function (req, res) {
     var userId = req.params.userId;
     if (typeof params !== 'undefined' && params !== null) {
         console.log('No userId given!');
-        //TODO wie antwortet man richtig?
-        res.send('Please provide a userId!');
+        res.status(400).send({error: 'No userId given!'});
     } else {
-        //TODO username und email kann hier null sein - beheben!
         User.remove({_id: userId}, function(err, result){
             if (err) {
                 //TODO cast error kommt, wenn id zu kurz ist - ändern?
-                res.send(err);
+                res.status(401).send(err);
                 console.log('User not deleted: ' + err);
             } else {
                 if (result) {
-                    res.json(result);
+                    res.status(200).json(result);
                     console.log('User deleted: ' + JSON.stringify(result));
                 } else {
-                    res.send('User not deleted');
+                    res.status(401).send('User not deleted');
                     console.log('User not deleted');
                 }
             }

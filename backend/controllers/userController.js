@@ -21,18 +21,18 @@ exports.get_user_by_username = function (req, res) {
     if (isNull(username)) {
         console.log('No username given!');
         //TODO wie antwortet man richtig?
-        res.status(400).send('Please provide a username!');
+        res.status(400).send({error: 'Please provide a username!'});
     } else {
         User.findOne({username: username}, function (err, result) {
             if (err) {
-                res.status(404).send(err);
+                res.status(404).send({error: err});
                 console.log('No user found: ' + err);
             } else {
                 if (result) {
                     res.status(200).json(result);
                     console.log('User found:', JSON.stringify(result));
                 } else {
-                    res.status(404).send('No user found');
+                    res.status(404).send({error: 'No user found'});
                     console.log('No user found');
                 }
             }

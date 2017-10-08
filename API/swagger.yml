@@ -167,6 +167,8 @@ paths:
       responses:
         200:
           description: "Flat deleted"
+        400:
+          description: "Bad request"
         401:
           description: "Unauthorized"
   /flat/{flatid}/task:
@@ -264,8 +266,6 @@ paths:
           description: "Deleted user"
         401:
           description: "Unauthorized"
-        
-        
   /flat/{flatid}/task/{taskid}:
     get:
       #maybe: if no taskId given give all completed tasks with the user and date when completed
@@ -302,7 +302,7 @@ paths:
           description: "Unauthorized"
   /task/{taskid}:
     get:
-      description: "Get a task"
+      description: "Get a task by id"
       parameters:
       - in: "path"
         name: "taskid"
@@ -314,6 +314,8 @@ paths:
           description: "Found task"
           schema:
             $ref: '#/definitions/Task'
+        400:
+          description: "Bad request"
         401:
           description: "Unauthorized"
     delete:

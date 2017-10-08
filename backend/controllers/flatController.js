@@ -64,7 +64,7 @@ exports.update_flat = function (req, res) {
                     res.status(200).json(result);
                     console.log('Flat updated');
                 } else {
-                    res.status(401).send('Flat not updated');
+                    res.status(401).send('Unauthroized');
                     console.log('Flat not updated');
                 }
             }
@@ -89,7 +89,7 @@ exports.delete_flat = function (req, res) {
                     res.status(200).json(result);
                     console.log('Flat deleted: ' + JSON.stringify(result));
                 } else {
-                    res.status(401).send('Flat not deleted');
+                    res.status(401).send('Unauthorized');
                     console.log('Flat not deleted');
                 }
             }

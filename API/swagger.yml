@@ -116,6 +116,8 @@ paths:
           description: "Flat created"
           schema:
             $ref: '#/definitions/Flat'
+        400:
+          description: "Bad request"
   /flat/{flatid}:
     get:
       description: "Search for a flat by ID"
@@ -149,6 +151,8 @@ paths:
       responses:
         200:
           description: "Flat updated"
+        400:
+          description: "Bad request"
         401:
           description: "Unauthorized"
     delete:

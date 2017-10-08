@@ -96,7 +96,6 @@ exports.update_user = function (req, res) {
             }
         })
     }
-
 };
 
 exports.delete_user = function (req, res) {

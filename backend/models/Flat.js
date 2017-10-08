@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-//TODO: arrays correct?
+
 var flatSchema = new Schema({
     name: {type: String, required: true},
     members: [{

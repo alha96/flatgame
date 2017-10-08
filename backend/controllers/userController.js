@@ -11,24 +11,24 @@ function isNull(string) {
 
 
 exports.get_a_user_by_username = function (req, res) {
-    console.log("Getting a user by username...");
+    console.log('Getting a user by username...');
     var username = req.query.username;
     if (isNull(username)) {
-        console.log("No username given!");
+        console.log('No username given!');
         //TODO wie antwortet man richtig?
         res.send('Please provide a username!');
     } else {
         User.findOne({username: username}, function (err, result) {
             if (err) {
                 res.send(err);
-                console.log("User not found: " + err);
+                console.log('User not found: ' + err);
             } else {
                 if (result) {
                     res.json(result);
-                    console.log("User found:", JSON.stringify(result))
+                    console.log('User found:', JSON.stringify(result));
                 } else {
-                    res.send(null);
-                    console.log("User not found");
+                    res.send('User not found');
+                    console.log('User not found');
                 }
             }
         })
@@ -40,33 +40,34 @@ exports.create_a_user = function (req, res) {
     user.save(function (err, result) {
         if (err) {
             res.send(err);
-            console.log("User not created");
+            console.log('User not created');
         } else {
             res.json(result);
-            console.log("User created: ", JSON.stringify(result));
+            console.log('User created: ', JSON.stringify(result));
         }
     });
 };
 
 exports.get_a_user = function (req, res) {
-    console.log("Getting a user by id...");
+    console.log('Getting a user by id...');
     var userId = req.params.id;
+    console.log("id:" + userId);
     if (typeof query !== 'undefined' && query !== null) {
-        console.log("No userid given!");
+        console.log('No userid given!');
         //TODO wie antwortet man richtig?
         res.send('Please provide a username!');
     } else {
         User.findById(userId, function (err, result) {
             if (err) {
                 res.send(err);
-                console.log("User not found: " + err);
+                console.log('User not found: ' + err);
             } else {
                 if (result) {
                     res.json(result);
-                    console.log("User found:", JSON.stringify(result))
+                    console.log('User found:', JSON.stringify(result))
                 } else {
-                    res.send(null);
-                    console.log("User not found");
+                    res.send('User not found');
+                    console.log('User not found');
                 }
             }
         })

@@ -20,7 +20,27 @@ exports.get_user_by_username = function (req, res) {
         console.log('No username given!');
         res.status(400).send({error: 'Please provide a username!'});
     } else {
-        User.findOne({username: username}, function (err, result) {
+        User.find({username: username}, function(err, users) {
+            if (err) {
+                res.status(404).send({error: err});
+                console.log('No user found: ' + err);
+            } else {
+                var userMap = {};
+                users.forEach(function(user) {
+                    userMap[user._id] = user;
+                });
+                if (userMap) {
+                    res.status(200).json(userMap);
+                    console.log('Following users found:', JSON.stringify(userMap));
+                } else {
+                    res.status(404).send({error: 'No user found'});
+                    console.log('No user found');
+                }
+            }
+
+
+        });
+        /*User.findOne({username: username}, function (err, result) {
             if (err) {
                 res.status(404).send({error: err});
                 console.log('No user found: ' + err);
@@ -33,7 +53,7 @@ exports.get_user_by_username = function (req, res) {
                     console.log('No user found');
                 }
             }
-        })
+        })*/
     }
 };
 

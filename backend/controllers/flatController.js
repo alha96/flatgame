@@ -19,6 +19,10 @@ exports.create_flat = function (req, res) {
     });
 };
 
+exports.get_flat = function (req, res) {
+
+};
+
 exports.update_flat = function (req, res) {
 
 };

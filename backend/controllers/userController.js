@@ -20,6 +20,9 @@ exports.get_user_by_username = function (req, res) {
                 result.forEach(function(user) {
                     userMap[user._id] = user;
                 });
+                console.log(JSON.stringify(userMap));
+                console.log('userMap: ' + userMap);
+                console.log('length: ' + userMap.length);
                 if (userMap && userMap.length > 0) {
                     res.status(200).json(userMap);
                     console.log('Following users found:', JSON.stringify(userMap));
@@ -37,7 +40,7 @@ exports.create_user = function (req, res) {
     var user = new User(req.body);
     user.save(function (err, result) {
         if (err) {
-            res.send(err);
+            res.status(400).send({error: err});
             console.log('User not created');
         } else {
             res.status(200).json(result);

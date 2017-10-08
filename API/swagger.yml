@@ -41,6 +41,8 @@ paths:
           description: "User created"
           schema:
             $ref: '#/definitions/User'
+        400:
+          description: "No username given"
         409:
           description: "User already exists"
   /user/{userid}:

@@ -14,8 +14,12 @@ exports.get_a_user_by_username = function (req, res) {
                 res.send(err);
                 console.log("User not found: " + err);
             } else {
-                res.json(result);
-                console.log("User found:", JSON.stringify(result))
+                if (result) {
+                    res.json(result);
+                    console.log("User found:", JSON.stringify(result))
+                } else {
+                    console.log("User not found");
+                }
             }
         })
     }

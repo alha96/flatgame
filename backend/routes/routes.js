@@ -21,13 +21,13 @@ module.exports = function(app) {
         .post(flatController.create_flat);
 
     app.route('/flat/:flatId')
-        .get(flatController.update_flat)
+        .get(flatController.get_flat)
         .put(flatController.update_flat)
         .delete(flatController.delete_flat);
 
     app.route('/flat/:flatId/task')
         .get(flatController.get_all_tasks_of_flat)
-        .post(flatController.create_task);
+        .post(flatController.create_task_in_flat);
 
     app.route('/flat/:flatId/user')
         .get(flatController.get_all_users_of_flat);

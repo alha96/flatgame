@@ -3,3 +3,11 @@
  */
 var mongoose = require('mongoose');
 var Task = require('../models/Task');
+
+exports.get_task = function (req, res) {
+
+};
+
+exports.delete_task = function (req, res) {
+
+};

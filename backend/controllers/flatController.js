@@ -18,3 +18,39 @@ exports.create_flat = function (req, res) {
         }
     });
 };
+
+exports.update_flat = function (req, res) {
+
+};
+
+exports.delete_flat = function (req, res) {
+
+};
+
+exports.get_all_tasks_of_flat = function (req, res) {
+
+};
+
+exports.create_task_in_flat = function (req, res) {
+
+};
+
+exports.get_all_users_of_flat = function (req, res) {
+
+};
+
+exports.modify_user_in_flat = function (req, res) {
+
+};
+
+exports.delete_user_from_flat = function (req, res) {
+
+};
+
+exports.get_users_of_task = function (req, res) {
+
+};
+
+
+
+

@@ -50,12 +50,12 @@ exports.create_a_user = function (req, res) {
 
 exports.get_a_user = function (req, res) {
     console.log('Getting a user by id...');
-    var userId = req.params.userId;
+    var userId = req.params.user_id;
     console.log("id:" + userId);
-    if (typeof query !== 'undefined' && query !== null) {
-        console.log('No userid given!');
+    if (typeof params !== 'undefined' && params !== null) {
+        console.log('No userId given!');
         //TODO wie antwortet man richtig?
-        res.send('Please provide a username!');
+        res.send('Please provide a userId!');
     } else {
         User.findById(userId, function (err, result) {
             if (err) {

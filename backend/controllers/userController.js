@@ -3,10 +3,10 @@ var User = require('../models/User');
 
 function isNull(string) {
     return string === null ||
-        string === "null" ||
+        string === 'null' ||
         string.length < 1 ||
         string === undefined ||
-        string === "undefined";
+        string === 'undefined';
 }
 
 
@@ -50,13 +50,13 @@ exports.create_a_user = function (req, res) {
 
 exports.get_a_user = function (req, res) {
     console.log("Getting a user by id...");
-    var userid = req.params.id;
-    if (isNull(userid)) {
+    var userId = req.params.id;
+    if (typeof query !== 'undefined' && query !== null) {
         console.log("No userid given!");
         //TODO wie antwortet man richtig?
         res.send('Please provide a username!');
     } else {
-        User.findOne({_id: userid}, function (err, result) {
+        User.findOne({_id: userId}, function (err, result) {
             if (err) {
                 console.log("User not found: " + err);
                 res.send(err);

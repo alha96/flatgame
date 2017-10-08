@@ -20,9 +20,7 @@ exports.get_user_by_username = function (req, res) {
                 result.forEach(function(user) {
                     userMap[user._id] = user;
                 });
-                console.log(JSON.stringify(userMap));
-                console.log('userMap: ' + userMap);
-                console.log('length: ' + userMap.length);
+                console.log(isObjectEmpty(userMap));
                 if (isObjectEmpty(userMap)) {
                     res.status(200).json(userMap);
                     console.log('Following users found:', JSON.stringify(userMap));

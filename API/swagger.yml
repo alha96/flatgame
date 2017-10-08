@@ -45,6 +45,7 @@ paths:
           description: "No username given"
         409:
           description: "User already exists"
+          #if username is not unique, the user cannot exist
   /user/{userid}:
     get:
       description: "Search for a user by ID"

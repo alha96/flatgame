@@ -4,12 +4,13 @@ var User = require('../models/User');
 
 exports.get_a_user_by_username = function (req, res) {
     var username = req.query.username;
-    console.log("Username:" +username);
-    if(username === null){
+    console.log("Username: " +username);
+    if(username === null || username === undefined){
         console.log("Please provide a username!");
         res.send({user: fuckit});
     } else {
         User.findById(username, function (err, result) {
+            console.log("result: " + result, "err: "+ err);
             if (err) {
                 res.send(err);
                 console.log("User not found");

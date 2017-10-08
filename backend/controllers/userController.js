@@ -3,6 +3,7 @@ var User = require('../models/User');
 
 
 exports.get_a_user_by_username = function (req, res) {
+    console.log("Test");
     var username = req.query.username;
     if(username === null){
         console.log("Please provide a username!");
@@ -18,7 +19,6 @@ exports.get_a_user_by_username = function (req, res) {
             }
         })
     }
-
 };
 
 exports.create_a_user = function (req, res) {

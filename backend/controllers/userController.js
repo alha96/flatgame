@@ -12,15 +12,12 @@ function isNull(string) {
         string === 'undefined';
 }
 
-//TODO statuscodes einbauen
-
 //TODO auf liste erweitern
 exports.get_user_by_username = function (req, res) {
     console.log('Getting a user by username...');
     var username = req.query.username;
     if (isNull(username)) {
         console.log('No username given!');
-        //TODO wie antwortet man richtig?
         res.status(400).send({error: 'Please provide a username!'});
     } else {
         User.findOne({username: username}, function (err, result) {

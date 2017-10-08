@@ -9,7 +9,9 @@ function isNull(string) {
         string === 'undefined';
 }
 
+//TODO statuscodes einbauen
 
+//TODO auf liste erweitern
 exports.get_a_user_by_username = function (req, res) {
     console.log('Getting a user by username...');
     var username = req.query.username;
@@ -36,6 +38,7 @@ exports.get_a_user_by_username = function (req, res) {
 };
 
 exports.create_a_user = function (req, res) {
+    console.log('Creating a user...');
     var user = new User(req.body);
     user.save(function (err, result) {
         if (err) {
@@ -51,7 +54,6 @@ exports.create_a_user = function (req, res) {
 exports.get_a_user = function (req, res) {
     console.log('Getting a user by id...');
     var userId = req.params.userId;
-    console.log("id:" + userId);
     if (typeof params !== 'undefined' && params !== null) {
         console.log('No userId given!');
         //TODO wie antwortet man richtig?
@@ -59,6 +61,7 @@ exports.get_a_user = function (req, res) {
     } else {
         User.findOne({_id: userId}, function (err, result) {
             if (err) {
+                //TODO cast error kommt, wenn id nicht gefunden wurde - ändern?
                 res.send(err);
                 console.log('User not found: ' + err);
             } else {
@@ -75,6 +78,29 @@ exports.get_a_user = function (req, res) {
 };
 
 exports.update_a_user = function (req, res) {
+    console.log('Updating a user...');
+    var userId = req.params.userId;
+    if (typeof params !== 'undefined' && params !== null) {
+        console.log('No userId given!');
+        //TODO wie antwortet man richtig?
+        res.send('Please provide a userId!');
+    } else {
+        User.findOneAndUpdate({_id: userId}, req.body, function(err, result){
+            if (err) {
+                //TODO ????????cast error kommt, wenn id nicht gefunden wurde - ändern?
+                res.send(err);
+                console.log('User not updated: ' + err);
+            } else {
+                if (result) {
+                    res.json(result);
+                    console.log('User updated:', JSON.stringify(result))
+                } else {
+                    res.send('User not updated');
+                    console.log('User not updated');
+                }
+            }
+        })
+    }
 
 };
 

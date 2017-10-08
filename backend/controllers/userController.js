@@ -1,11 +1,22 @@
 var mongoose = require('mongoose');
 var User = require('../models/User');
 
+function isNull(string) {
+    if (string === null ||
+        string === "null" ||
+        string.length < 1 ||
+        string === undefined ||
+        string === "undefined") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 exports.get_a_user_by_username = function (req, res) {
     var username = req.query.username;
-    console.log("Username: " +username);
-    if(username === null || username === undefined){
+    if (isNull(username)) {
         console.log("No username given!");
         res.send('Please provide a username!');
     } else {
@@ -18,6 +29,7 @@ exports.get_a_user_by_username = function (req, res) {
                     res.json(result);
                     console.log("User found:", JSON.stringify(result))
                 } else {
+                    res.send(null);
                     console.log("User not found");
                 }
             }

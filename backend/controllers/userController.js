@@ -20,15 +20,15 @@ exports.get_a_user_by_username = function (req, res) {
     } else {
         User.findOne({username: username}, function (err, result) {
             if (err) {
-                console.log("User not found: " + err);
                 res.send(err);
+                console.log("User not found: " + err);
             } else {
                 if (result) {
-                    console.log("User found:", JSON.stringify(result))
                     res.json(result);
+                    console.log("User found:", JSON.stringify(result))
                 } else {
-                    console.log("User not found");
                     res.send(null);
+                    console.log("User not found");
                 }
             }
         })
@@ -56,17 +56,17 @@ exports.get_a_user = function (req, res) {
         //TODO wie antwortet man richtig?
         res.send('Please provide a username!');
     } else {
-        User.findOne({_id: userId}, function (err, result) {
+        User.findById(userId, function (err, result) {
             if (err) {
-                console.log("User not found: " + err);
                 res.send(err);
+                console.log("User not found: " + err);
             } else {
                 if (result) {
-                    console.log("User found:", JSON.stringify(result))
                     res.json(result);
+                    console.log("User found:", JSON.stringify(result))
                 } else {
-                    console.log("User not found");
                     res.send(null);
+                    console.log("User not found");
                 }
             }
         })

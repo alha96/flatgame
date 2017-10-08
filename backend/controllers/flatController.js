@@ -8,6 +8,7 @@ var Task = require('../models/Task');
 exports.create_flat = function (req, res) {
         console.log('Creating a flat...');
         var flat = new Flat(req.body);
+        console.log(JSON.string(flat));
         flat.save(function (err, result) {
             if (err) {
                 res.status(400).send({error: err});

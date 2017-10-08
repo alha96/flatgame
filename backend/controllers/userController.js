@@ -1,3 +1,6 @@
+/**
+ * Created by ahatzold on 06.10.2017.
+ */
 var mongoose = require('mongoose');
 var User = require('../models/User');
 
@@ -12,32 +15,32 @@ function isNull(string) {
 //TODO statuscodes einbauen
 
 //TODO auf liste erweitern
-exports.get_a_user_by_username = function (req, res) {
+exports.get_user_by_username = function (req, res) {
     console.log('Getting a user by username...');
     var username = req.query.username;
     if (isNull(username)) {
         console.log('No username given!');
         //TODO wie antwortet man richtig?
-        res.send('Please provide a username!');
+        res.status(400).send('Please provide a username!');
     } else {
         User.findOne({username: username}, function (err, result) {
             if (err) {
-                res.send(err);
-                console.log('User not found: ' + err);
+                res.status(404).send(err);
+                console.log('No user found: ' + err);
             } else {
                 if (result) {
-                    res.json(result);
+                    res.status(200).json(result);
                     console.log('User found:', JSON.stringify(result));
                 } else {
-                    res.send('User not found');
-                    console.log('User not found');
+                    res.status(404).send('No user found');
+                    console.log('No user found');
                 }
             }
         })
     }
 };
 
-exports.create_a_user = function (req, res) {
+exports.create_user = function (req, res) {
     console.log('Creating a user...');
     var user = new User(req.body);
     user.save(function (err, result) {
@@ -51,7 +54,7 @@ exports.create_a_user = function (req, res) {
     });
 };
 
-exports.get_a_user = function (req, res) {
+exports.get_user = function (req, res) {
     console.log('Getting a user by id...');
     var userId = req.params.userId;
     if (typeof params !== 'undefined' && params !== null) {
@@ -77,7 +80,7 @@ exports.get_a_user = function (req, res) {
     }
 };
 
-exports.update_a_user = function (req, res) {
+exports.update_user = function (req, res) {
     console.log('Updating a user...');
     var userId = req.params.userId;
     if (typeof params !== 'undefined' && params !== null) {
@@ -105,7 +108,7 @@ exports.update_a_user = function (req, res) {
 
 };
 
-exports.delete_a_user = function (req, res) {
+exports.delete_user = function (req, res) {
     console.log('Deleting a user...');
     var userId = req.params.userId;
     if (typeof params !== 'undefined' && params !== null) {

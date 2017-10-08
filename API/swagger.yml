@@ -4,7 +4,7 @@ info:
   version: 0.2.0
   title: Flatgame
 host: arkas.alnima.uberspace.de
-basePath: /nodejs/
+basePath: /api/
 paths:
   /user:
     get:
@@ -22,6 +22,8 @@ paths:
             type: "array"
             items:
               $ref: '#/definitions/User'
+        400:
+          description: "No username given"
         404:
           description: "No user found"
     post:

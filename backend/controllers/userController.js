@@ -4,15 +4,6 @@
 var mongoose = require('mongoose');
 var User = require('../models/User');
 
-function isNull(string) {
-    return string === null ||
-        string === 'null' ||
-        string.length < 1 ||
-        string === undefined ||
-        string === 'undefined';
-}
-
-//TODO auf liste erweitern
 exports.get_user_by_username = function (req, res) {
     console.log('Getting a user by username...');
     var username = req.query.username;
@@ -29,7 +20,7 @@ exports.get_user_by_username = function (req, res) {
                 result.forEach(function(user) {
                     userMap[user._id] = user;
                 });
-                if (userMap.length > 0) {
+                if (userMap && userMap.length > 0) {
                     res.status(200).json(userMap);
                     console.log('Following users found:', JSON.stringify(userMap));
                 } else {
@@ -38,20 +29,6 @@ exports.get_user_by_username = function (req, res) {
                 }
             }
         });
-        /*User.findOne({username: username}, function (err, result) {
-            if (err) {
-                res.status(404).send({error: err});
-                console.log('No user found: ' + err);
-            } else {
-                if (result) {
-                    res.status(200).json(result);
-                    console.log('User found:', JSON.stringify(result));
-                } else {
-                    res.status(404).send({error: 'No user found'});
-                    console.log('No user found');
-                }
-            }
-        })*/
     }
 };
 
@@ -63,7 +40,7 @@ exports.create_user = function (req, res) {
             res.send(err);
             console.log('User not created');
         } else {
-            res.json(result);
+            res.status(200).json(result);
             console.log('User created: ', JSON.stringify(result));
         }
     });
@@ -149,3 +126,11 @@ exports.delete_user = function (req, res) {
         })
     }
 };
+
+function isNull(string) {
+    return string === null ||
+        string === 'null' ||
+        string.length < 1 ||
+        string === undefined ||
+        string === 'undefined';
+}

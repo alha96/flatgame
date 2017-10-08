@@ -50,7 +50,7 @@ exports.create_a_user = function (req, res) {
 
 exports.get_a_user = function (req, res) {
     console.log('Getting a user by id...');
-    var userId = req.params.id;
+    var userId = req.params.userId;
     console.log("id:" + userId);
     if (typeof query !== 'undefined' && query !== null) {
         console.log('No userid given!');

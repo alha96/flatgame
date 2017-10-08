@@ -10,7 +10,7 @@ module.exports = function(app) {
         .get(userController.get_a_user_by_username)
         .post(userController.create_a_user);
 
-    app.route('/user/:userid')
+    app.route('/user/:userId')
         .get(userController.get_a_user)
         .put(userController.update_a_user)
         .delete(userController.delete_a_user);

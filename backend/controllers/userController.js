@@ -7,7 +7,7 @@ var User = require('../models/User');
 exports.get_user_by_username = function (req, res) {
     console.log('Getting a user by username...');
     var username = req.query.username;
-    if (isNull(username)) {
+    if (isStringNull(username)) {
         console.log('No username given!');
         res.status(400).send({error: 'Please provide a username!'});
     } else {
@@ -23,7 +23,7 @@ exports.get_user_by_username = function (req, res) {
                 console.log(JSON.stringify(userMap));
                 console.log('userMap: ' + userMap);
                 console.log('length: ' + userMap.length);
-                if (userMap && userMap.length > 0) {
+                if (isObjectEmpty(userMap)) {
                     res.status(200).json(userMap);
                     console.log('Following users found:', JSON.stringify(userMap));
                 } else {
@@ -130,10 +130,14 @@ exports.delete_user = function (req, res) {
     }
 };
 
-function isNull(string) {
+function isStringNull(string) {
     return string === null ||
         string === 'null' ||
         string.length < 1 ||
         string === undefined ||
         string === 'undefined';
+}
+
+function isObjectEmpty(obj) {
+    return Object.keys(obj).length === 0;
 }

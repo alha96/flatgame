@@ -60,6 +60,7 @@ exports.update_flat = function (req, res) {
                 console.log('Flat not updated: ' + err);
             } else {
                 if (result) {
+                    //TODO response ist immer die ungeänderte Instanz
                     res.status(200).json(result);
                     console.log('Flat updated');
                 } else {

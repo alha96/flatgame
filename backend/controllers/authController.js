@@ -34,7 +34,7 @@ exports.oAuth2_getToken = function (req, res) {
         console.log("It works: ", token);
         //Generate access and refresh token and respnd with it
         res.send("Success");
-    }).catch((error) => {
+    }).catch(function (error) {
         console.log('Access Token Error', error);
         res.status(400).send(error.context);
     });

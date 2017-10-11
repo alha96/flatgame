@@ -2,9 +2,10 @@
  * Created by ahatzold on 06.10.2017.
  */
 module.exports = function(app) {
-    var userController = require('../controllers/userController');
-    var flatController = require('../controllers/flatController');
-    var taskController = require('../controllers/taskController');
+    const userController = require('../controllers/userController');
+    const flatController = require('../controllers/flatController');
+    const taskController = require('../controllers/taskController');
+    const authController = require('../controllers/authController');
 
     //if the method is not expicitly named 'by_username"
     //then it uses the id
@@ -43,4 +44,6 @@ module.exports = function(app) {
         .get(taskController.get_task)
         .delete(taskController.delete_task);
 
+    app.route('/token/oauth2')
+        .post(authController.oAuth2_getToken);
 };

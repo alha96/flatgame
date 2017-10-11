@@ -29,7 +29,7 @@ exports.oAuth2_getToken = function (req, res) {
     };
 
     oauth2.authorizationCode.getToken(tokenConfig)
-        .then((result) => {
+        .then(function (result){
         const token = oauth2.accessToken.create(result);
         console.log("It works: ", token);
         //Generate access and refresh token and respnd with it

@@ -331,6 +331,21 @@ paths:
           description: "Task deleted"
         401:
           description: "Unauthorized"
+  /token:
+    post:
+      description: "Request an access token by providing an authorization grant for a supported oauth provider (NOT WORKING YET)"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "provider = Supported oauth2 provder [google]\ngrant = Authorization grant\nredirect = Redirect uri used to get the grant"
+        schema:
+          $ref: '#/definitions/oAuthTokenRequest'
+      responses:
+        400:
+          description: "An error occured (See the error message)"
+        200:
+          description: "Success"
+
 definitions:
   User:
     type: "object"
@@ -413,6 +428,14 @@ definitions:
     properties:
       isAdmin:
         type: "boolean"
-        
+  oAuthTokenRequest:
+    type: "object"
+    properties:
+      provider:
+        type: "string"
+      grant:
+        type: "string"
+      redirect:
+        type: "string"
   #reference icon images
   

@@ -1,0 +1,22 @@
+.task-action {
+  float:right;
+  vertical-align: middle;
+  display: inline;
+}
+
+mat-checkbox {
+  padding: 10px;
+}
+.task-points {
+  font-weight: bold;
+}
+
+mat-icon {
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+span {
+  font-size:12pt;
+}

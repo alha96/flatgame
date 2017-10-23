@@ -1,25 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule,
+MatToolbarModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatListModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatSelectModule
+} from '@angular/material';
 
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { OverviewComponent } from './overview/overview.component';
+import { TasksComponent } from './overview/tasks/tasks.component';
+import { TaskItemDetailComponent } from './overview/tasks/task-item-detail/task-item-detail.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    OverviewComponent,
+    TasksComponent,
+    TaskItemDetailComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

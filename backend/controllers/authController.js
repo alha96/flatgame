@@ -52,7 +52,7 @@ exports.oAuth2_handle_google = function (req, res) {
         //Seems like this is a valid user
         //Let's get some details from google :)
         const accessToken = result.access_token;
-        return fetch('https://www.googleapis.com/oauth2/v1/userinfos?alt=json', {headers: {Authorization: 'Bearer ' + accessToken}});
+        return fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {headers: {Authorization: 'Bearer ' + accessToken}});
     }).then(function (res) {
         if(res.status !== 200){
             throw('Access token seems to be invalid');
@@ -62,7 +62,7 @@ exports.oAuth2_handle_google = function (req, res) {
         User.findOne().where('googleid').equals(data.id).exec().then(function (doc) {
             if (doc) {
                 req.session.userid = doc._id;
-                res.redirect(req.session.return);
+                res.redirect(303, req.session.return);
             } else {
                 //TODO Maybe we should also import the email?
                 let user = new User({
@@ -75,7 +75,7 @@ exports.oAuth2_handle_google = function (req, res) {
                     //User created
                     console.log('User created: ', doc);
                     req.session.userid = doc._id;
-                    res.redirect(req.session.return);
+                    res.redirect(303, req.session.return);
                 })
             }
         });

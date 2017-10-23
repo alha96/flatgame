@@ -84,3 +84,21 @@ exports.oAuth2_handle_google = function (req, res) {
         res.status(500).send('Something broke!')
     });
 };
+
+exports.get_current_user = function (req, res) {
+    if(!req.session.userid) {
+        return res.status(404).send('Not Found');
+    }
+    
+    User.findById(req.session.userid, function (err, doc) {
+        if(err){
+            return res.status(500).send('Error');
+        }
+        if(!doc) {
+            return res.status(404).send('Not Found');
+        }
+
+        doc.googleid = undefined;
+        res.status(200).json(doc);
+    })
+};

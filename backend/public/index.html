@@ -5,12 +5,24 @@
     <title>Test</title>
 </head>
 <body>
-    Test
+    <div id="status">Loading</div>
     <button onclick="redirect()">Teste mich</button>
     <script>
+        window.onload = function () {
+            var status = document.getElementById('status');
+            fetch('../auth/status', {credentials: "include"}).then(function (result) {
+                if(result.ok)
+                    return result.json();
+                throw new Error('Not logged in');
+            }).then(function (json) {
+                status.innerHTML = JSON.stringify(json);
+            }).catch(function (err) {
+                status.innerHTML = 'Not logged in';
+            });
+        };
         function redirect() {
             var redirect = encodeURI(window.location.href);
-            window.location = 'http://localhost:61111/auth/oauth2/google?return=' + redirect;
+            window.location.href = '../auth/oauth2/google?return=' + redirect;
         }
     </script>
 </body>

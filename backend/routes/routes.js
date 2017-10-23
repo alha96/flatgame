@@ -49,5 +49,7 @@ router.route('/auth/oauth2/:provider')
     .get(authController.oAuth2_redirect);
 router.route('/auth/oauth2/google/callback')
     .get(authController.oAuth2_handle_google);
+router.route('/auth/status')
+    .get(authController.get_current_user);
 
 module.exports = router;

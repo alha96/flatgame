@@ -8,6 +8,7 @@ import {TaskItem} from '../../../modules/task-item.module';
 })
 export class TaskItemDetailComponent implements OnInit {
   @Input() taskItemInfo: TaskItem;
+  isChecked: boolean;
   constructor() { }
 
   ngOnInit() {

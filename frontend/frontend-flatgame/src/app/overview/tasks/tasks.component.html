@@ -1,11 +1,11 @@
-<mat-card>
+<mat-card >
   <mat-card-title>Zu erledigen</mat-card-title>
   <app-task-item-detail
     *ngFor="let taskItem of taskTodoItems"
     [taskItemInfo]="taskItem">
   </app-task-item-detail>
 
-  <br/><br/>
+  <br/>
   <div>
     <mat-form-field>
       <mat-select placeholder="Planunabhängige Aufgabe"  [(ngModel)]="taskIrregularSelected">

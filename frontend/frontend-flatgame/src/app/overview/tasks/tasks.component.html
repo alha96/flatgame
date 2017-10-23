@@ -1,15 +1,26 @@
 <mat-card>
   <mat-card-title>Zu erledigen</mat-card-title>
-  <app-task-item-detail *ngFor="let taskItem of taskTodoItems" [taskItemInfo]="taskItem"></app-task-item-detail>
+  <app-task-item-detail
+    *ngFor="let taskItem of taskTodoItems"
+    [taskItemInfo]="taskItem">
+  </app-task-item-detail>
 
-<br/><br/>
+  <br/><br/>
   <div>
     <mat-form-field>
-      <mat-select placeholder="Favorite food">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
+      <mat-select placeholder="Planunabhängige Aufgabe"  [(ngModel)]="taskIrregularSelected">
+        <mat-option *ngFor="let taskItem of taskIrregularItems" [value]="taskItem.id">
+          {{ taskItem.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <button
+      mat-raised-button color="primary"
+      [disabled]="taskIrregularSelected == null"
+      (click)="onIrregularTaskDone()">
+      Erledigt
+    </button>
   </div>
+
 </mat-card>

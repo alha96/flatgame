@@ -11,6 +11,7 @@ MatToolbarModule,
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     MatButtonModule,
     MatToolbarModule,
     MatCheckboxModule,

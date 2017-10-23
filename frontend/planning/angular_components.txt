@@ -1,0 +1,29 @@
+Components:
+-root/container
+	- header
+	- footer
+	- settings-wg
+		- selection
+		- users-detail
+			- $ref: users-detail-item (detail)
+		- tasks-detail
+			-tasks-detail-item
+		- settings-detail
+	- settings-user
+		- tasks (shared, just from this user)
+		- abscenses
+			- abscenses-item
+			- abscenses-new
+	- overview
+		- users-detail (maybe also share)
+			-$ref: users-detail-item (short)
+		- tasks (2x: one todo, one done)
+			- tasks-item-detail
+				(slightly different done and todo)
+	-history
+		- tasks (shared from above)
+		- §future§: graphs of points and users
+	- shared
+		- users-detail-item
+			- (mode: detail or short)
+	

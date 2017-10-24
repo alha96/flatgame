@@ -1,0 +1,9 @@
+<div (click)="taskItemInfo.done = !taskItemInfo.done" >
+  <mat-icon>home</mat-icon>
+  <span >{{taskItemInfo.name}}</span>
+  <div class="task-action">
+      <span class="task-points">{{taskItemInfo.points}}P</span>
+      <mat-checkbox [(ngModel)]="taskItemInfo.done" value></mat-checkbox>
+  </div>
+
+</div>

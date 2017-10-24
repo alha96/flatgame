@@ -390,13 +390,18 @@ definitions:
   Task:
     type: "object"
     properties:
+      id:
+        type: "string"
       name:
         type: "string"
       description: 
         type: "string"
       points:
         type: "integer"
-      lastdone:
+      lastdoneDate:
+        type: "string"
+        format: "date-time"
+      lastdoneUser:
         type: "string"
         format: "date-time"
       duedate:
@@ -404,6 +409,7 @@ definitions:
         format: "date-time"
       frequency:
         type: "integer"
+        # -1 = irregular task
       frequencyType:
         type: "integer"
         # 0 = days
@@ -412,6 +418,8 @@ definitions:
       graceDays:
         type: "integer"
       flat:
+        type: "string"
+      icon:
         type: "string"
   TaskInfo:
     type: "object"

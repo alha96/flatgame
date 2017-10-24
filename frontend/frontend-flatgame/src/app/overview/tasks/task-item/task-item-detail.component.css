@@ -1,7 +1,8 @@
 .task-action {
-  float:right;
   vertical-align: middle;
+  float:right;
   display: inline;
+
 }
 
 mat-checkbox {
@@ -17,6 +18,7 @@ mat-icon {
   padding-bottom: 5px;
 }
 
+/* how to I set this on a higher level */
 span {
   font-size:12pt;
 }

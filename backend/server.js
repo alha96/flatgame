@@ -15,6 +15,8 @@ const port = 61111;
 
 const app = express();
 
+app.set('trust proxy', true);
+
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 //Maybe we should sign csrf cookies?

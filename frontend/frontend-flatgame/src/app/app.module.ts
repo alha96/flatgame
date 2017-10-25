@@ -12,13 +12,16 @@ MatToolbarModule,
 
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './overview/tasks/tasks.component';
-import { TaskItemDetailComponent } from './overview/tasks/task-item-detail/task-item-detail.component';
+import { TaskItemDetailComponent } from './overview/tasks/task-item/task-item-detail.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UsersComponent } from './overview/users/users.component';
+import { UserItemComponent } from './overview/users/user-item/user-item.component';
 
 
 @NgModule({
@@ -27,11 +30,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HeaderComponent,
     OverviewComponent,
     TasksComponent,
-    TaskItemDetailComponent
+    TaskItemDetailComponent,
+    UsersComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ChartsModule,
     FlexLayoutModule,
     FormsModule,
     MatButtonModule,

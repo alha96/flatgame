@@ -8,8 +8,8 @@ import {TaskItem} from '../../modules/task-item.module';
 })
 export class TasksComponent implements OnInit {
 
-
   taskTodoItems: TaskItem[] = [
+    new TaskItem(null, 'Terasse fegen', 3, false, 'fegen', 7),
     new TaskItem(null, 'Terasse fegen', 3, false, 'fegen', 7),
     new TaskItem(null, 'Terasse pegen', 4, false, 'fegen', 7)
 
@@ -17,6 +17,7 @@ export class TasksComponent implements OnInit {
   taskIrregularItems: TaskItem[] = [
     new TaskItem('id_132', 'Restmüll rausbringen', 1, false, 'img', -1),
     new TaskItem('id_124', 'Gelber Sack rausbringen', 1, false, 'img', -1),
+    new TaskItem('id_34', 'Bio Müll rausbringen', 1, false, 'img', -1),
   ];
 
   taskIrregularSelected: string;
@@ -25,7 +26,10 @@ export class TasksComponent implements OnInit {
     this.taskIrregularSelected = null;
   }
 
-
+  onTaskCompleted(taskInfo: TaskItem) {
+    console.log('Clicked ' + taskInfo.name + ', state: ' + taskInfo.done);
+    //this.taskTodoItems.push(taskInfo);
+  }
 
   constructor() {
   }

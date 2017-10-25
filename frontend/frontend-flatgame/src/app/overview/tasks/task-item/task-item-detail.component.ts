@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TaskItem} from '../../../modules/task-item.module';
 
 @Component({
@@ -8,7 +8,12 @@ import {TaskItem} from '../../../modules/task-item.module';
 })
 export class TaskItemDetailComponent implements OnInit {
   @Input() taskItemInfo: TaskItem;
-  isChecked: boolean;
+  @Output() taskCompleted = new EventEmitter<TaskItem>();
+
+  onTaskClicked() {
+    this.taskItemInfo.done = !this.taskItemInfo.done;
+    this.taskCompleted.emit(this.taskItemInfo);
+  }
   constructor() { }
 
   ngOnInit() {

@@ -1,0 +1,12 @@
+.container{
+  background-color:#2E4272;
+  display:flex;
+}
+.fixed{
+  background-color:#dddddd;
+  flex-grow: 1;
+}
+.flex-item{
+  background-color:#7887AB;
+  flex-grow: 1;
+}

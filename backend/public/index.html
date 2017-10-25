@@ -6,23 +6,47 @@
 </head>
 <body>
     <div id="status">Loading</div>
-    <button onclick="redirect()">Teste mich</button>
+    <button id="button" onclick="handleClick()">Log in</button>
     <script>
         window.onload = function () {
             var status = document.getElementById('status');
+            var button = document.getElementById('button');
             fetch('../auth/session', {credentials: "include"}).then(function (result) {
                 if(result.ok)
                     return result.json();
                 throw new Error('Not logged in');
             }).then(function (json) {
                 status.innerHTML = JSON.stringify(json);
+                button.innerHTML = 'Log out';
+                button.dataset.loggedIn = true;
             }).catch(function (err) {
                 status.innerHTML = 'Not logged in';
             });
         };
-        function redirect() {
+        function handleClick() {
+            var button = document.getElementById('button');
+            if(button.dataset.loggedIn == 'true') {
+                console.log(button.dataset.loggedIn, 'Logging out');
+                logout();
+            }else{
+                login();
+            }
+        }
+        function login() {
             var redirect = encodeURI(window.location.href);
             window.location.href = '../auth/oauth2/google?return=' + redirect;
+        }
+        function logout() {
+            var status = document.getElementById('status');
+            var button = document.getElementById('button');
+            fetch('../auth/session', {
+                method: "DELETE",
+                credentials: "include"
+            }).then(function () {
+                button.innerHTML = 'Log in';
+                status.innerHTML = 'Not logged in'
+                button.dataset.loggedIn = false;
+            })
         }
     </script>
 </body>

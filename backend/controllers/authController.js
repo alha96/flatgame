@@ -86,19 +86,14 @@ exports.oAuth2_handle_google = function (req, res) {
 };
 
 exports.get_current_user = function (req, res) {
-    if(!req.session.userid) {
-        return res.status(404).send('Not Found');
-    }
-    
-    User.findById(req.session.userid, function (err, doc) {
-        if(err){
-            return res.status(500).send('Error');
-        }
-        if(!doc) {
-            return res.status(404).send('Not Found');
-        }
+        res.status(200).json(res.locals.user);
+};
 
-        doc.googleid = undefined;
-        res.status(200).json(doc);
-    })
+exports.destroy_session = function (req, res) {
+    req.session.destroy(function (err) {
+        if(err){
+            return res.status(500).json({error: 'Unable to destroy the session'});
+        }
+    });
+    res.status(200).send();
 };

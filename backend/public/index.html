@@ -10,7 +10,7 @@
     <script>
         window.onload = function () {
             var status = document.getElementById('status');
-            fetch('../auth/status', {credentials: "include"}).then(function (result) {
+            fetch('../auth/session', {credentials: "include"}).then(function (result) {
                 if(result.ok)
                     return result.json();
                 throw new Error('Not logged in');

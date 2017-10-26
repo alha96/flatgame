@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var taskInfoSchema = new Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
-    done: {type: Date, required: true},
+    done: {type: Date, default: Date.now()},
     task: {type: mongoose.Schema.Types.ObjectId, ref: 'Task', required: true}
 });
 

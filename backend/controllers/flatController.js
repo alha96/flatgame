@@ -16,13 +16,20 @@ exports.create_flat = function (req, res) {
 
         console.log(JSON.stringify(flat));
         flat.save(function (err, result) {
-            if (err) {
-                res.status(400).send({error: err});
+            if (err || !result) {
+                return res.status(400).send({error: err});
                 console.log('Flat not created');
-            } else {
+            }
+            //Set the users flat id to the new flat
+            res.locals.user.flat = result._id;
+            res.locals.user.save(function (error, user) {
+                if (error || !user) {
+                    return res.status(400).send({error: error});
+                    console.log('Flat not created');
+                }
                 res.status(200).json(result);
                 console.log('Flat created: ', JSON.stringify(result));
-            }
+            })
         });
 };
 

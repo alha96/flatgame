@@ -354,7 +354,7 @@ definitions:
         type: "string"
       email:
         type: "string"
-      id:
+      _id:
         type: "string"
       profile_image:
         type: "string"

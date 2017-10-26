@@ -7,7 +7,7 @@ MatToolbarModule,
   MatListModule,
   MatCardModule,
   MatExpansionModule,
-  MatSelectModule
+  MatSelectModule,
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';

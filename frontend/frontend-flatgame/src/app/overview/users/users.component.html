@@ -1,4 +1,8 @@
-<app-user-item
+<mat-card>
+  <mat-card-title>Mitbewohner</mat-card-title>
+
+  <app-user-item
   *ngFor="let userItem of userInfos"
   [userInfo]="userItem"
 ></app-user-item>
+</mat-card>

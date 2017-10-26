@@ -1,7 +1,6 @@
 .img-circle {
   border-radius: 50%;
   float:left;
-  padding: 5px;
 }
 
 .points {
@@ -21,4 +20,9 @@
 
 .user-name {
   font-size: 14pt;
+}
+
+.rowItem {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }

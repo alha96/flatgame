@@ -1,4 +1,4 @@
-<mat-card >
+<mat-card class="card">
   <mat-card-title>Zu erledigen</mat-card-title>
   <app-task-item-detail
     *ngFor="let taskItem of taskTodoItems"
@@ -15,8 +15,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-
     <button
       mat-raised-button color="primary"
       [disabled]="taskIrregularSelected == null"
@@ -24,5 +22,11 @@
       Erledigt
     </button>
   </div>
+
+  <button mat-icon-button class="expandButton">
+    <mat-icon aria-label="Expand tasks button">expand_more</mat-icon>
+  </button>
+
+
 
 </mat-card>

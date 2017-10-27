@@ -30,8 +30,6 @@ exports.oAuth2_redirect = function (req, res) {
         state: req.query.state ? req.query.state : null
     });
 
-    //Maybe we should add this to the state variable instead?
-    res.cookie('returnURI', req.query.return, { maxAge: 900000, httpOnly: true });
     res.redirect(authorizationUri);
 };
 

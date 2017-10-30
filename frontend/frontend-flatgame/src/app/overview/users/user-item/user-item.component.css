@@ -1,8 +1,3 @@
-.img-circle {
-  border-radius: 50%;
-  float:left;
-}
-
 .points {
   float: right;
   display: inline;
@@ -23,6 +18,11 @@
 }
 
 .rowItem {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+canvas.rankingBar {
+  width: 100%;
+  height: 5px;
 }

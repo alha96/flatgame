@@ -5,6 +5,9 @@ export class UserItem {
   public profile_image: string;
   public points: number;
   public flat: string;
+  public wgRang: number;
+  public wgNumMembers: number;
+  public wgMaxPoints: number;
 
 
   constructor(id: string, username: string, profile_image: string, points: number) {

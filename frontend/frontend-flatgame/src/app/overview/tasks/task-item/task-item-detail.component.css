@@ -1,8 +1,6 @@
 .task-action {
-  vertical-align: middle;
   float:right;
   display: inline;
-
 }
 
 mat-checkbox {

@@ -13,3 +13,8 @@ mat-card-title {
 body {
   background-color: #F5F5F5
 }
+
+.img-circle {
+  border-radius: 50%;
+  float:left;
+}

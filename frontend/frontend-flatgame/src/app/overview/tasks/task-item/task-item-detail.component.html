@@ -1,9 +1,26 @@
 <div (click)="onTaskClicked()" class="test" >
-  <mat-icon [style.color]="iconColor">{{taskItemInfo.icon}}</mat-icon>
-  <span >{{taskItemInfo.name}}</span>
-  <div class="task-action">
+  <img class="img-circle"
+       [style.display]="taskItemInfo.lastDoneUserId != null && taskItemInfo.done? 'block' : 'none'"
+       src="https://randomuser.me/api/portraits/women/15.jpg"
+       alt="Smiley face"
+       height="30px"
+       width="auto"
+       style="margin-right: 10px">
+
+  <mat-icon [style.color]="getIconColor()">
+    {{taskItemInfo.icon}}
+  </mat-icon>
+  <span >
+    {{taskItemInfo.name}}</span>
+  <span
+    [style.display]="taskItemInfo.done? 'block' : 'none'">
+    am {{getLastDoneDateString()}} von Pat
+  </span>
+  <div class="task-action"
+       [style.display]="!taskItemInfo.done? 'block' : 'none'">
       <span class="task-points">{{taskItemInfo.points}}P</span>
       <mat-checkbox [(ngModel)]="taskItemInfo.done" value></mat-checkbox>
   </div>
+
 
 </div>

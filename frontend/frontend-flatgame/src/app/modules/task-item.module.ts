@@ -25,8 +25,6 @@ export class TaskItem {
     this.frequencyType = frequencyType;
     this.graceDays = graceDays;
     this.dueDate = new Date(dueDate);
-    console.log(dueDate);
-    console.log(this.dueDate);
     this.lastDoneDate = new Date(lastDoneDate);
     this.lastDoneUserName = lastDoneUserName;
     this.lastDoneUserId = lastDoneUserId;

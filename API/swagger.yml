@@ -401,11 +401,14 @@ definitions:
       lastdoneDate:
         type: "string"
         format: "date-time"
+        # null if never done
       lastdoneUserName:
         type: "string"
+        # null if never done
       lastDoneUserId:
         type: "string"
-      duedate:
+        # null if never done
+      dueDate:
         type: "string"
         format: "date-time"
       frequency:

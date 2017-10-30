@@ -401,9 +401,10 @@ definitions:
       lastdoneDate:
         type: "string"
         format: "date-time"
-      lastdoneUser:
+      lastdoneUserName:
         type: "string"
-        format: "date-time"
+      lastDoneUserId:
+        type: "string"
       duedate:
         type: "string"
         format: "date-time"

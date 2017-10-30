@@ -52,4 +52,5 @@ import { UserItemComponent } from './overview/users/user-item/user-item.componen
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

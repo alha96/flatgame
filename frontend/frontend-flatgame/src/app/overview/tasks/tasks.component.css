@@ -7,3 +7,9 @@ button {
   float: right;
   display: inline;
 }
+
+.test {
+  border-style: solid;
+  border-color: red;
+  border-width: 5px 2px 2px 2px;
+}

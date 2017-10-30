@@ -7,7 +7,7 @@
   </app-task-item-detail>
 
   <br/>
-  <div>
+  <div [style.display]="taskIrregularItems.length > 0 ? 'block' : 'none'" >
     <mat-form-field>
       <mat-select placeholder="Planunabhängige Aufgabe"  [(ngModel)]="taskIrregularSelected">
         <mat-option *ngFor="let taskItem of taskIrregularItems" [value]="taskItem.id">

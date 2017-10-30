@@ -6,7 +6,6 @@
     (taskCompleted)="onTaskCompleted($event)">
   </app-task-item-detail>
 
-  <br/>
   <div [style.display]="taskIrregularItems.length > 0 ? 'block' : 'none'" >
     <mat-form-field>
       <mat-select placeholder="Planunabhängige Aufgabe"  [(ngModel)]="taskIrregularSelected">
@@ -25,7 +24,7 @@
     </button>
   </div>
 
-  <button mat-icon-button class="expandButton">
+  <button mat-icon-button class="expandButton" (click)="onExpandClicked()">
     <mat-icon aria-label="Expand tasks button">expand_more</mat-icon>
   </button>
 

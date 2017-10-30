@@ -1,12 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TaskItem} from '../../../modules/task-item.module';
+import {ConstColors} from "../../../constants/colors.const";
 
 @Component({
   selector: 'app-task-item-detail',
-  templateUrl: './task-item-detail.component.html',
-  styleUrls: ['./task-item-detail.component.css']
+  templateUrl: './task-item.component.html',
+  styleUrls: ['./task-item.component.css']
 })
-export class TaskItemDetailComponent implements OnInit {
+export class TaskItemComponent implements OnInit {
   @Input() taskItemInfo: TaskItem;
   @Output() taskCompleted = new EventEmitter<TaskItem>();
 
@@ -16,13 +17,13 @@ export class TaskItemDetailComponent implements OnInit {
 
    if (daysUntilDue > 0) {
      //before due
-     return 'green';
+     return ConstColors.GREEN;
    } else if (daysUntilDue > (-1 * this.taskItemInfo.graceDays)){
      //after due but before grace day ends
-     return 'orange';
+     return ConstColors.ORANGE;
    } else {
      //past due and grace days
-     return 'red';
+     return ConstColors.RED;
    }
   }
 

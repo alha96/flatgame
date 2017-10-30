@@ -36,6 +36,10 @@ export class TasksComponent implements OnInit {
 
   }
 
+  onExpandClicked(){
+    this.taskTodoItems.push(new TaskItem(null, 'Terasse pegen', 'desc', 4, false, 'local_bar', 7, 0, 3, '2017-11-01T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'));
+  }
+
   constructor() {
   }
 

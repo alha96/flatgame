@@ -18,3 +18,7 @@ body {
   border-radius: 50%;
   float:left;
 }
+
+.full-width {
+  width: 100%;
+}

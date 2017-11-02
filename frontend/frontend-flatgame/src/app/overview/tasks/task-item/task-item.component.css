@@ -1,8 +1,6 @@
 .task-action {
-  vertical-align: middle;
   float:right;
   display: inline;
-
 }
 
 mat-checkbox {
@@ -14,7 +12,7 @@ mat-checkbox {
 
 mat-icon {
   padding-right: 10px;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 5px;
 }
 
@@ -22,3 +20,4 @@ mat-icon {
 span {
   font-size:12pt;
 }
+

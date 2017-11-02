@@ -1,0 +1,39 @@
+<div>
+  <mat-icon>
+    call
+  </mat-icon>
+
+  <div >
+    <form class="example-form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Aufgabenname" value="Sushi">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Beschreibung" value="Sushi">
+      </mat-form-field>
+      <mat-slider class="full-width"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value="2"
+                  thumb-label="true"
+      ></mat-slider>
+      alle
+      <mat-form-field >
+        <input matInput type="number"
+               placeholder="Häufigkeit"
+               value="1">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option value="days">Tage</mat-option>
+          <mat-option value="weeks">Wochen</mat-option>
+          <mat-option value="years">Monate</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+</div>

@@ -7,21 +7,26 @@ MatToolbarModule,
   MatListModule,
   MatCardModule,
   MatExpansionModule,
-  MatSelectModule
+  MatSelectModule,
+  MatInputModule,
+  MatSliderModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './overview/tasks/tasks.component';
-import { TaskItemDetailComponent } from './overview/tasks/task-item/task-item-detail.component';
+import { TaskItemComponent } from './overview/tasks/task-item/task-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UsersComponent } from './overview/users/users.component';
 import { UserItemComponent } from './overview/users/user-item/user-item.component';
+import { SettingsWgComponent } from './settings-wg/settings-wg.component';
+import { SelectionComponent } from './settings-wg/selection/selection.component';
+import { TasksDetailComponent } from './settings-wg/tasks-detail/tasks-detail.component';
+import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-item/task-detail-item.component';
 
 
 @NgModule({
@@ -30,14 +35,17 @@ import { UserItemComponent } from './overview/users/user-item/user-item.componen
     HeaderComponent,
     OverviewComponent,
     TasksComponent,
-    TaskItemDetailComponent,
+    TaskItemComponent,
     UsersComponent,
-    UserItemComponent
+    UserItemComponent,
+    SettingsWgComponent,
+    SelectionComponent,
+    TasksDetailComponent,
+    TaskDetailItemComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ChartsModule,
     FlexLayoutModule,
     FormsModule,
     MatButtonModule,
@@ -47,9 +55,12 @@ import { UserItemComponent } from './overview/users/user-item/user-item.componen
     MatListModule,
     MatCardModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

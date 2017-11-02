@@ -1,12 +1,13 @@
-<div fxLayout="row">
-  <img class="img-circle" src="{{userInfo.profile_image}}" alt="Smiley face" height="50" width="50">
+<div fxLayout="row" class="rowItem" (click)="onUserClicked()">
+  <img class="img-circle" src="{{userInfo.profile_image}}" alt="Smiley face" height="50px" width="auto">
   <div class="userInfo">
     <div class="userNamePoints">
       <span class="user-name">{{userInfo.username}}</span>
       <span class="points" >{{userInfo.points}}</span>
     </div>
 
-
+    <canvas #canvas_ranking class="rankingBar" width="100%" height="5px">
+    </canvas>
   </div>
 </div>
 

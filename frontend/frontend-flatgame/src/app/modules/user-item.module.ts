@@ -16,4 +16,6 @@ export class UserItem {
     this.profile_image = profile_image;
     this.points = points;
   }
+
+
 }

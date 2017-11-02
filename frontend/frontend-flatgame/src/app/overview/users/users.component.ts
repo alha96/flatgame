@@ -9,10 +9,10 @@ import {UserItem} from "../../modules/user-item.module";
 export class UsersComponent implements OnInit {
 
   userInfos: UserItem[] = [
-    new UserItem("123", "TSchnee45", "https://randomuser.me/api/portraits/men/82.jpg", 70),
-    new UserItem("321", "Alex", "https://randomuser.me/api/portraits/men/12.jpg", 65),
-    new UserItem("321", "MaxiiD", "https://randomuser.me/api/portraits/men/12.jpg", 20),
-    new UserItem("321", "Patrick", "https://randomuser.me/api/portraits/men/12.jpg", 45)
+    new UserItem("123", "TSchnee45", "https://randomuser.me/aBS@other code", 70),
+    new UserItem("321", "Alex", "https://randomuser.me/api/BS@other code", 65),
+    new UserItem("321", "MaxiiD", "https://randomuser.me/api/BS@other code", 20),
+    new UserItem("321", "Patrick", "https://randomuser.me/api/BS@other code", 45)
   ];
 
   constructor() { }
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
   onUserClicked(userItem : UserItem){
     console.log("yes");
     userItem.points += 5;
-    this.userInfos.push( new UserItem("321", "Patrick", "https://randomuser.me/api/portraits/men/12.jpg", 45));
+    this.userInfos.push( new UserItem("321", "Testuser", "https://randomuser.me/api/BS@other code", Math.floor(Math.random() * 101)  ));
     this.updateMembers();
 
   }

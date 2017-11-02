@@ -3,10 +3,34 @@
   <span>WG-Spiel</span>
 
   <div class="action-buttons">
-    <button mat-button>Übersicht</button>
-    <button mat-button>Verlauf</button>
-    <button mat-button>Einstellungen</button>
+    <button mat-button routerLink="/overview">Übersicht</button>
+    <button mat-button routerLink="/history">Verlauf</button>
+    <button mat-button routerLink="/settings-flat">Einstellungen</button>
   </div>
+
+  <img class="img-circle" src="https://picsum.photos/100/100/?random" alt="Smiley face" height="40px" width="auto">
+  <span style="font-size: 0.8em;">Patrick</span>
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>event</mat-icon>
+      <span>Abwesenheitsplanung</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Einstellungen</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>assignment</mat-icon>
+      <span>Impressum</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>call_missed_outgoing</mat-icon>
+      <span>Abmelden</span>
+    </button>
+  </mat-menu>
 
 
 </mat-toolbar>

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule,
-MatToolbarModule,
+import {
+  MatButtonModule,
+  MatToolbarModule,
   MatCheckboxModule,
   MatIconModule,
   MatListModule,
@@ -9,7 +10,8 @@ MatToolbarModule,
   MatExpansionModule,
   MatSelectModule,
   MatInputModule,
-  MatSliderModule
+  MatSliderModule,
+  MatMenuModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -27,7 +29,13 @@ import { SettingsWgComponent } from './settings-wg/settings-wg.component';
 import { SelectionComponent } from './settings-wg/selection/selection.component';
 import { TasksDetailComponent } from './settings-wg/tasks-detail/tasks-detail.component';
 import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-item/task-detail-item.component';
+import {RouterModule, Routes} from "@angular/router";
 
+const appRoutes: Routes = [
+  { path: '', component: OverviewComponent},
+  { path: 'overview', component: OverviewComponent},
+  { path: 'settings-flat', component: SettingsWgComponent}
+];
 
 @NgModule({
   declarations: [
@@ -48,6 +56,7 @@ import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
     MatButtonModule,
     MatToolbarModule,
     MatCheckboxModule,
@@ -57,7 +66,8 @@ import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-
     MatExpansionModule,
     MatSelectModule,
     MatInputModule,
-    MatSliderModule
+    MatSliderModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

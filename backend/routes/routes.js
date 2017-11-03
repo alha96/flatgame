@@ -31,11 +31,6 @@ router.route('/flat/:flatId')
     .put(flatController.update_flat)
     .delete(flatController.delete_flat);
 
-router.route('/flat/:flatId/task')
-    .all(authMiddleware.authenticate)
-    .get(flatController.get_all_tasks_of_flat)
-    .post(flatController.create_task_in_flat);
-
 router.route('/flat/:flatId/user')
     .all(authMiddleware.authenticate)
     .get(flatController.get_all_users_of_flat);
@@ -45,9 +40,18 @@ router.route('/flat/:flatId/user/:userId')
     .put(flatController.modify_user_in_flat)
     .delete(flatController.delete_user_from_flat);
 
+router.route('/flat/:flatId/task')
+    .all(authMiddleware.authenticate)
+    .get(flatController.get_tasks_done);
+
 router.route('/flat/:flatId/task/:taskId')
     .all(authMiddleware.authenticate)
-    .get(flatController.get_users_of_task);
+    .post(flatController.set_task_done);
+
+router.route('/task')
+    .all(authMiddleware.authenticate)
+    .get(taskController.get_all_tasks)
+    .post(taskController.create_task);
 
 router.route('/task/:taskId')
     .all(authMiddleware.authenticate)

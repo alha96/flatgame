@@ -4,7 +4,7 @@ info:
   version: 0.2.0
   title: Flatgame
 host: arkas.alnima.uberspace.de
-basePath: /api/
+basePath: /
 paths:
   /user:
     get:
@@ -37,7 +37,7 @@ paths:
         schema:
           $ref: '#/definitions/User'
       responses:
-        200: 
+        200:
           description: "User created"
           schema:
             $ref: '#/definitions/User'
@@ -78,7 +78,7 @@ paths:
         schema:
           $ref: '#/definitions/User'
       responses:
-        200: 
+        200:
           description: "User updated"
         400:
           description: "Bad request"
@@ -173,38 +173,35 @@ paths:
           description: "Unauthorized"
   /flat/{flatid}/task:
     get:
-      description: "Get all tasks of a flat"
+      description: "Get all task logs related to the flat"
       parameters:
       - in: "path"
         name: "flatid"
         type: "string"
         required: true
         description: "The ID of the flat"
+      - in: "query"
+        name: "taskid"
+        type: "string"
+        required: false
+        description: "Limit the results to a specific taskid"
+      - in: "query"
+        name: "skip"
+        type: "number"
+        required: false
+        description: "Used for pagination"
+      - in: "query"
+        name: "limit"
+        type: "number"
+        required: false
+        description: "Used for pagination"
       responses:
         200:
           description: "Tasks found"
           schema:
             type: "array"
             items:
-              $ref: '#/definitions/Task'
-        401:
-          description: "Unauthorized"
-    post:
-      description: "Create a task for this flat"
-      parameters:
-      - in: "path"
-        name: "flatid"
-        type: "string"
-        required: true
-        description: "The ID of the flat"
-      - in: "body"
-        name: "body"
-        description: "Contains all attributes of the task. If an attribute is missing, it will not be changed."
-        schema:
-          $ref: '#/definitions/Task'
-      responses:
-        200:
-          description: "Task created"
+              $ref: '#/definitions/TaskInfo'
         401:
           description: "Unauthorized"
   /flat/{flatid}/user:
@@ -226,7 +223,7 @@ paths:
   /flat/{flatid}/user/{userid}:
     put:
       description: "Add or change user in flat"
-      parameters: 
+      parameters:
       - in: "path"
         name: "flatid"
         type: "string"
@@ -250,7 +247,7 @@ paths:
           description: "Unauthorized"
     delete:
       description: "Delete user in flat"
-      parameters: 
+      parameters:
       - in: "path"
         name: "flatid"
         type: "string"
@@ -262,44 +259,80 @@ paths:
         required: true
         description: "The ID of the user"
       responses:
-        200: 
+        200:
           description: "Deleted user"
         401:
           description: "Unauthorized"
   /flat/{flatid}/task/{taskid}:
-    get:
-      #maybe: if no taskId given give all completed tasks with the user and date when completed
-      description: "Get the previous users, which completed this task."
+    post:
+      description: "Set a task as done"
       parameters:
-      - in: "path"
-        name: "taskid"
-        type: "string"
-        required: true
-        description: "The ID of the task"
       - in: "path"
         name: "flatid"
         type: "string"
         required: true
-        description: "The ID of the flat"
-      - in: "query"
-        name: "from"
-        type: "integer"
+        description: "The id of the flat"
+      - in: "path"
+        name: "taskid"
+        type: "string"
+        required: true
+        description: "The id of the task"
+      - in: "body"
+        name: "user"
         required: false
-        description: "With this parameter you can specify how many users you want to skip beginning with the newest."
-      - in: "query"
-        name: "to"
-        type: "integer"
-        required: false
-        description: "With this parameter you can specify how many users you want to get from the one in 'from'"
+        description: "Specify which user has done the task (Admin permissions required) If not set the user from the current session will be used"
+        schema:
+          type: "object"
+          properties:
+            user:
+              type: "string"
       responses:
         200:
-          description: "Found the following tasks"
+          description: "Ok"
+          schema:
+            $ref: '#/definitions/TaskInfo'
+        401:
+          description: 'Unauthorized'
+        409:
+          description: "Task already done"
+        500:
+          description: "Internal Server error"
+  /task:
+    get:
+      description: "Get all tasks. Limited to the flatid from the current session"
+      parameters:
+        - in: "query"
+          name: "done"
+          description: "Set to true or false to filter the result."
+          type: "string"
+      responses:
+        200:
+          description: "Ok"
           schema:
             type: "array"
-            items: 
-              $ref: '#/definitions/TaskInfo'
+            items:
+              $ref: '#/definitions/Task'
         401:
           description: "Unauthorized"
+        500:
+          description: "Internal Server Error"
+    post:
+      description: "Create a task. The flatid from the current session will be used."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Contains all attributes of the task. If an attribute is missing, it will not be changed."
+        schema:
+          $ref: '#/definitions/Task'
+      responses:
+        200:
+          description: "Task created"
+        401:
+          description: "Unauthorized"
+        400:
+          description: "Bad Request"
+        500:
+          description: "Internal Server Error"
   /task/{taskid}:
     get:
       description: "Get a task by id"
@@ -331,21 +364,6 @@ paths:
           description: "Task deleted"
         401:
           description: "Unauthorized"
-  /token:
-    post:
-      description: "Request an access token by providing an authorization grant for a supported oauth provider (NOT WORKING YET)"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "provider = Supported oauth2 provder [google]\ngrant = Authorization grant\nredirect = Redirect uri used to get the grant"
-        schema:
-          $ref: '#/definitions/oAuthTokenRequest'
-      responses:
-        400:
-          description: "An error occured (See the error message)"
-        200:
-          description: "Success"
-
 definitions:
   User:
     type: "object"
@@ -365,7 +383,7 @@ definitions:
   Flat:
     type: "object"
     properties:
-      name: 
+      name:
         type: "string"
       id:
         type: "string"
@@ -375,7 +393,7 @@ definitions:
           properties:
             id:
               type: "string"
-            isAdmin: 
+            isAdmin:
               type: "boolean"
       tasks:
         type: "array"
@@ -394,7 +412,7 @@ definitions:
         type: "string"
       name:
         type: "string"
-      description: 
+      description:
         type: "string"
       points:
         type: "integer"
@@ -402,13 +420,10 @@ definitions:
         type: "string"
         format: "date-time"
         # null if never done
-      lastdoneUserName:
+      lastdoneUser:
         type: "string"
         # null if never done
-      lastDoneUserId:
-        type: "string"
-        # null if never done
-      dueDate:
+      duedate:
         type: "string"
         format: "date-time"
       frequency:
@@ -440,14 +455,4 @@ definitions:
     properties:
       isAdmin:
         type: "boolean"
-  oAuthTokenRequest:
-    type: "object"
-    properties:
-      provider:
-        type: "string"
-      grant:
-        type: "string"
-      redirect:
-        type: "string"
   #reference icon images
-  

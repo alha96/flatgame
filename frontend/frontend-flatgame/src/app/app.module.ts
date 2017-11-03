@@ -30,11 +30,19 @@ import { SelectionComponent } from './settings-wg/selection/selection.component'
 import { TasksDetailComponent } from './settings-wg/tasks-detail/tasks-detail.component';
 import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-item/task-detail-item.component';
 import {RouterModule, Routes} from "@angular/router";
+import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.component';
+import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
+import { HistoryComponent } from './history/history.component';
 
 const appRoutes: Routes = [
   { path: '', component: OverviewComponent},
   { path: 'overview', component: OverviewComponent},
-  { path: 'settings-flat', component: SettingsWgComponent}
+  { path: 'settings-flat', component: SettingsWgComponent, children: [
+    { path: 'tasks-detail', component: TasksDetailComponent },
+    { path: 'users-detail', component: UsersDetailComponent },
+    { path: 'settings-detail', component: SettingsDetailComponent }
+  ]},
+  { path: 'history', component: HistoryComponent}
 ];
 
 @NgModule({
@@ -49,7 +57,10 @@ const appRoutes: Routes = [
     SettingsWgComponent,
     SelectionComponent,
     TasksDetailComponent,
-    TaskDetailItemComponent
+    TaskDetailItemComponent,
+    UsersDetailComponent,
+    SettingsDetailComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

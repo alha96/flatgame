@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule,
-MatToolbarModule,
+import {
+  MatButtonModule,
+  MatToolbarModule,
   MatCheckboxModule,
   MatIconModule,
   MatListModule,
@@ -9,7 +10,8 @@ MatToolbarModule,
   MatExpansionModule,
   MatSelectModule,
   MatInputModule,
-  MatSliderModule
+  MatSliderModule,
+  MatMenuModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -27,7 +29,21 @@ import { SettingsWgComponent } from './settings-wg/settings-wg.component';
 import { SelectionComponent } from './settings-wg/selection/selection.component';
 import { TasksDetailComponent } from './settings-wg/tasks-detail/tasks-detail.component';
 import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-item/task-detail-item.component';
+import {RouterModule, Routes} from "@angular/router";
+import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.component';
+import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
+import { HistoryComponent } from './history/history.component';
 
+const appRoutes: Routes = [
+  { path: '', component: OverviewComponent},
+  { path: 'overview', component: OverviewComponent},
+  { path: 'settings-flat', component: SettingsWgComponent, children: [
+    { path: 'tasks-detail', component: TasksDetailComponent },
+    { path: 'users-detail', component: UsersDetailComponent },
+    { path: 'settings-detail', component: SettingsDetailComponent }
+  ]},
+  { path: 'history', component: HistoryComponent}
+];
 
 @NgModule({
   declarations: [
@@ -41,13 +57,17 @@ import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-
     SettingsWgComponent,
     SelectionComponent,
     TasksDetailComponent,
-    TaskDetailItemComponent
+    TaskDetailItemComponent,
+    UsersDetailComponent,
+    SettingsDetailComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
     MatButtonModule,
     MatToolbarModule,
     MatCheckboxModule,
@@ -57,7 +77,8 @@ import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-
     MatExpansionModule,
     MatSelectModule,
     MatInputModule,
-    MatSliderModule
+    MatSliderModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

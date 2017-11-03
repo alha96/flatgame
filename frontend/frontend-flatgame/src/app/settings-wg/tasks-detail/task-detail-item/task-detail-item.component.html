@@ -1,9 +1,35 @@
 <div>
+    <div > <!-- VIEW ONLY -->
+      <button mat-icon-button [matMenuTriggerFor]="task_option">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #task_option="matMenu">
+        <button mat-menu-item>
+          <mat-icon>loop</mat-icon>
+          <span>Ändern</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Löschen</span>
+        </button>
+      </mat-menu>
+      <mat-icon class="inline">fingerprint</mat-icon>
+      <div class="inline">
+        <h3>{{taskInfo.name}}</h3>
+        <p>Beschreibung: {{taskInfo.description}}</p>
+        <p>Punkte: {{taskInfo.points}}</p>
+        <p>Häufigkeit: {{taskInfo.getRegularityString()}}</p>
+        <p>Bearbeitungszeit: {{taskInfo.graceDays}} Tage</p>
+        <p>Zuletzt erledigt von Jens am 10.07.2017</p>
+      </div>
+    <br class="clearInline"/>
+  </div>
+<div style="display:none">
   <mat-icon>
     call
   </mat-icon>
 
-  <div >
+  <div > <!-- EDIT -->
     <form class="example-form">
       <mat-form-field class="full-width">
         <input matInput placeholder="Aufgabenname" value="Sushi">
@@ -36,4 +62,8 @@
   </div>
 
   <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+</div>
+
+  <hr [hidden]="isLast">
+
 </div>

@@ -28,8 +28,29 @@ export class TaskItem {
     this.lastDoneDate = new Date(lastDoneDate);
     this.lastDoneUserName = lastDoneUserName;
     this.lastDoneUserId = lastDoneUserId;
-
   }
 
+  public getRegularityString() : string {
+    var s = ''
+
+    if (this.frequency <= 0 ){
+      s += "Unregelmäßig";
+    } else if (this.frequency == 1 ){
+      switch (this.frequencyType) {
+        case 0: s += "jeden Tag"; break;
+        case 1: s += "jede Woche"; break;
+        case 2: s += "jedes Jahr"; break;
+      }
+    }  else {
+      s += "alle " + this.frequency + " ";
+      switch (this.frequencyType) {
+        case 0: s += "Tage"; break;
+        case 1: s += "Wochen"; break;
+        case 2: s += "Jahre"; break;
+      }
+    }
+    return s;
+
+  }
 
 }

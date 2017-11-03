@@ -1,4 +1,6 @@
-
 <mat-card class="card">
-  <app-task-detail-item></app-task-detail-item>
+  <app-task-detail-item *ngFor="let taskItem of taskItems; let last = last"
+                        [taskInfo]="taskItem"
+                        [isLast]="last"
+  ></app-task-detail-item>
 </mat-card>

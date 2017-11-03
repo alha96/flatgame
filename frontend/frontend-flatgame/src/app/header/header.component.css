@@ -6,3 +6,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+button {
+  text-transform: uppercase;
+  background-color: transparent;
+  border-color: transparent;
+}
+button a {
+  text-decoration: none;
+}
+
+img {
+  margin-right:15px;
+}
+

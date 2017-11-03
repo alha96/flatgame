@@ -1,0 +1,15 @@
+p, h3 {
+  margin-bottom: 2px;
+}
+.inline {
+  float: left;
+}
+
+mat-icon{
+  margin-right: 4px;
+}
+.clearInline { clear:both; }
+
+.list-item {
+  margin-top: 16px ;
+}

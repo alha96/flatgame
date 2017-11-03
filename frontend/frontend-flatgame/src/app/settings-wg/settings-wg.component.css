@@ -10,3 +10,6 @@
 .small {
   flex-grow: 1;
 }
+:host{
+  display: flex;
+}

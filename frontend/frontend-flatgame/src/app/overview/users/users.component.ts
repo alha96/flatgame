@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
   onUserClicked(userItem : UserItem){
     console.log("yes");
     userItem.points += 5;
-    this.userInfos.push( new UserItem("321", "Testuser", "https://randomuser.me/api/BS@other code", Math.floor(Math.random() * 101)  ));
+   // this.userInfos.push( new UserItem("321", "Testuser", "https://randomuser.me/api/BS@other code", Math.floor(Math.random() * 101)  ));
     this.updateMembers();
 
   }

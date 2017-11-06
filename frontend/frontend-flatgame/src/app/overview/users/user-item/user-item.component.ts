@@ -12,16 +12,20 @@ export class UserItemComponent implements OnInit {
   @Input() userInfo: UserItem;
   @Output() userClicked = new EventEmitter<UserItem>();
 
-  @ViewChild('canvas_ranking') rankingCanvas: ElementRef;
-  public context: CanvasRenderingContext2D;
+  // @ViewChild('canvas_ranking') rankingCanvas: ElementRef;
+  // public context: CanvasRenderingContext2D;
 
-  private myIsReady = false;
+  // private myIsReady = false;
 
   constructor() { }
 
   onUserClicked(){
-    //pass to users controller component
+    //pass to users controller components
     this.userClicked.emit(this.userInfo);
+  }
+
+  getRankingPercentage(){
+    return (this.userInfo.points/this.userInfo.wgMaxPoints) * 100;
   }
 
   ngOnInit() {
@@ -42,24 +46,24 @@ export class UserItemComponent implements OnInit {
   }
 
 
-  drawRankingBar(percentageFilled : number){
-    if (percentageFilled > 1) percentageFilled = 1;
-    if (percentageFilled < 0 ) percentageFilled = 0;
+  // drawRankingBar(percentageFilled : number){
+  //   if (percentageFilled > 1) percentageFilled = 1;
+  //   if (percentageFilled < 0 ) percentageFilled = 0;
+  //
+  //   var width = this.rankingCanvas.nativeElement.width;
+  //
+  //   this.context.strokeStyle = this.getRankingBarColor(this.userInfo);
+  //   this.context.lineWidth = 10;
+  //   this.context.moveTo(0,0);
+  //   this.context.lineTo(100 * percentageFilled,0);
+  //   this.context.stroke();
+  // }
 
-    var width = this.rankingCanvas.nativeElement.width;
-
-    this.context.strokeStyle = this.getRankingBarColor(this.userInfo);
-    this.context.lineWidth = 10;
-    this.context.moveTo(0,0);
-    this.context.lineTo(100 * percentageFilled,0);
-    this.context.stroke();
-  }
-
-  private getRankingBarColor(userInfo: UserItem){
-    if (userInfo.wgRang == 1 ||
-      ((userInfo.points/userInfo.wgMaxPoints) > 0.9)) {
+  getRankingBarColor(){
+    if (this.userInfo.wgRang == 1 ||
+      ((this.userInfo.points/this.userInfo.wgMaxPoints) > 0.9)) {
       return ConstColors.GREEN; //green
-    } else if (userInfo.wgRang == userInfo.wgNumMembers) {
+    } else if (this.userInfo.wgRang == this.userInfo.wgNumMembers) {
       return ConstColors.RED; //red
     } else {
       return ConstColors.ORANGE; //yellow
@@ -67,12 +71,12 @@ export class UserItemComponent implements OnInit {
   }
 
  ngAfterViewInit() : void {
-   this.context = (<HTMLCanvasElement>this.rankingCanvas.nativeElement).getContext('2d');
-   this.myIsReady = true;
-   console.log(this.myIsReady);
-
-   this.drawRankingBar(this.userInfo.points/this.userInfo.wgMaxPoints);
-   this.myIsReady = true;
+   // this.context = (<HTMLCanvasElement>this.rankingCanvas.nativeElement).getContext('2d');
+   // this.myIsReady = true;
+   // console.log(this.myIsReady);
+   //
+   // this.drawRankingBar(this.userInfo.points/this.userInfo.wgMaxPoints);
+   // this.myIsReady = true;
 }
 
 }

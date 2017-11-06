@@ -12,8 +12,8 @@ const authMiddleware = require('../middleware/authMiddleware');
 //if the method is not expicitly named 'by_username"
 //then it uses the id
 router.route('/user')
-    .get(userController.get_user_by_username)
-    .post(userController.create_user);
+    .get(userController.get_user_by_username);
+//    .post(userController.create_user);
 
 router.route('/user/:userId')
     .all(authMiddleware.authenticate)

@@ -1,126 +1,137 @@
 /**
  * Created by ahatzold on 06.10.2017.
  */
-var mongoose = require('mongoose');
-var User = require('../models/User');
+const mongoose = require('mongoose');
+const User = require('../models/User');
 
-exports.get_user_by_username = function (req, res) {
+exports.get_user_by_username = (req, res) => {
     console.log('Getting a user by username...');
-    var username = req.query.username;
+    const username = req.query.username;
     if (isStringNull(username)) {
         console.log('No username given!');
-        res.status(400).send({error: 'Please provide a username!'});
-    } else {
-        User.find({username: username}, function(err, result) {
-            if (err) {
-                res.status(404).send({error: err});
-                console.log('No user found: ' + err);
-            } else {
-                var userMap = {};
-                result.forEach(function(user) {
-                    userMap[user._id] = user;
-                });
-                console.log(isObjectEmpty(userMap));
-                if (!isObjectEmpty(userMap)) {
-                    res.status(200).json(userMap);
-                    console.log('Following users found:', JSON.stringify(userMap));
-                } else {
-                    res.status(404).send({error: 'No user found'});
-                    console.log('No user found');
-                }
-            }
-        });
+         return res.status(400).json({error: 'Please provide a username!'});
     }
-};
-
-exports.create_user = function (req, res) {
-    console.log('Creating a user...');
-    var user = new User(req.body);
-    user.save(function (err, result) {
-        if (err) {
-            res.status(400).send({error: err});
-            console.log('User not created');
-        } else {
-            res.status(200).json(result);
-            console.log('User created: ', JSON.stringify(result));
-        }
+    User.find({username: username}).then(users => {
+        // var userMap = {};
+        // result.forEach(function(user) {
+        //     userMap[user._id] = user;
+        // });
+        // console.log(isObjectEmpty(userMap));
+        // if (!isObjectEmpty(userMap)) {
+        //     res.status(200).json(userMap);
+        //     console.log('Following users found:', JSON.stringify(userMap));
+        // } else {
+        //     res.status(404).send({error: 'No user found'});
+        //     console.log('No user found');
+        // }
+        console.log('Following users found:', JSON.stringify(users));
+        res.status(200).json(users);
+    }).catch(err => {
+        res.status(404).json({error: err});
+        console.log('No user found: ' + err);
     });
 };
 
-exports.get_user = function (req, res) {
+//Not needed
+// exports.create_user = (req, res) => {
+//     console.log('Creating a user...');
+//     let user;
+//     try {
+//         user = new User(req.body);
+//     } catch (err) {
+//         return res.status(400).json({error: err});
+//     }
+//
+//     user.save().then(user => {
+//         res.status(200).json(user);
+//         console.log('User created: ', JSON.stringify(user));
+//     }).catch(err => {
+//         res.status(500).send({error: err});
+//         console.log('User not created', err);
+//     });
+// };
+
+exports.get_user = (req, res) => {
+    //TODO Who is allowed to get a user?
     console.log('Getting a user by id...');
-    var userId = req.params.userId;
-    if (typeof params !== 'undefined' && params !== null) {
+    const userId = req.params.userId;
+    if (!userId) {
         console.log('No userId given!');
-        res.status(400).send({error: 'No userId given!'});
-    } else {
-        User.findOne({_id: userId}, function (err, result) {
-            if (err) {
-                //TODO cast error kommt, wenn id zu kurz ist - ändern?
-                res.status(400).send(err);
-                console.log('User not found: ' + err);
-            } else {
-                if (result) {
-                    res.status(200).json(result);
-                    console.log('User found:', JSON.stringify(result));
-                } else {
-                    res.status(404).send('User not found');
-                    console.log('User not found');
-                }
-            }
-        })
+        return res.status(400).send({error: 'No userId given!'});
     }
+    User.findById(userId).then(user => {
+        if (user) {
+            res.status(200).json(user);
+            console.log('User found:', JSON.stringify(user));
+        } else {
+            res.status(404).send('User not found');
+            console.log('User not found');
+        }
+    }).catch(err => {
+        res.status(400).send(err);
+        console.log('User not found: ' + err);
+    });
 };
 
-exports.update_user = function (req, res) {
+exports.update_user = (req, res) => {
     console.log('Updating a user...');
-    var userId = req.params.userId;
-    if (typeof params !== 'undefined' && params !== null) {
+    const userId = req.params.userId;
+    if (!userId) {
         console.log('No userId given!');
-        res.status(400).send({error: 'No userId given!'});
-    } else {
-        //TODO username und email kann hier null sein - beheben!
-        User.findOneAndUpdate({_id: userId}, req.body, function(err, result){
-            if (err) {
-                //TODO cast error kommt, wenn id zu kurz ist - ändern?
-                res.status(400).send(err);
-                console.log('User not updated: ' + err);
-            } else {
-                if (result) {
-                    res.status(200).json(result);
-                    console.log('User updated');
-                } else {
-                    res.status(401).send('User not updated');
-                    console.log('User not updated');
-                }
-            }
-        })
+        return res.status(400).send({error: 'No userId given!'});
     }
+
+    if(!res.locals.user._id.equals(userId)) {
+        console.log('Requesting user isn\'t allowed to update this user');
+        return res.status(401).json({error: 'Unauthorized'});
+    }
+
+    //TODO Which fields shouldn't be updated
+    let updateUser = req.body;
+    delete updateUser.points;
+    delete updateUser.googleid;
+    delete updateUser.email;
+    User.findByIdAndUpdate(userId, updateUser).then(user => {
+        if (user) {
+            res.status(200).json(user);
+            console.log('User updated');
+        } else {
+            res.status(401).send('User not updated');
+            console.log('User not updated');
+        }
+    }).catch(err => {
+        res.status(400).send(err);
+        console.log('User not updated: ' + err);
+    });
 };
 
-exports.delete_user = function (req, res) {
+exports.delete_user = (req, res) => {
     console.log('Deleting a user...');
-    var userId = req.params.userId;
-    if (typeof params !== 'undefined' && params !== null) {
+    const userId = req.params.userId;
+    if (!userId) {
         console.log('No userId given!');
-        res.status(400).send({error: 'No userId given!'});
-    } else {
-        User.remove({_id: userId}, function(err, result){
-            if (err) {
-                //TODO cast error kommt, wenn id zu kurz ist - ändern?
-                res.status(401).send(err);
-                console.log('User not deleted: ' + err);
-            } else {
-                if (result) {
-                    res.status(200).json(result);
-                    console.log('User deleted: ' + JSON.stringify(result));
-                } else {
-                    res.status(401).send('User not deleted');
-                    console.log('User not deleted');
-                }
-            }
-        })
+        return res.status(400).send({error: 'No userId given!'});
     }
+
+    if(!res.locals.user._id.equals(userId)) {
+        console.log('Requesting user isn\'t allowed to delete this user');
+        return res.status(401).json({error: 'Unauthorized'});
+    }
+
+    User.findByIdAndRemove(userId).then(user => {
+        if (user) {
+            res.status(200).json(user);
+            console.log('User deleted: ' + JSON.stringify(user));
+        } else {
+            res.status(401).send('Unauthorized');
+            console.log('User not deleted');
+        }
+        //TODO Delete flat and so on
+    }).catch(err => {
+        //TODO cast error kommt, wenn id zu kurz ist - ändern?
+        res.status(401).send(err);
+        console.log('User not deleted: ' + err);
+    });
 };
 
 function isStringNull(string) {

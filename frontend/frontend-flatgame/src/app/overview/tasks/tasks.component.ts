@@ -9,8 +9,8 @@ import {TaskItem} from '../../modules/task-item.module';
 export class TasksComponent implements OnInit {
 
   taskTodoItems: TaskItem[] = [
-    new TaskItem(null, 'Blumen gießen', 'desc', 3, false, 'spa', 7, 0, 1, '2017-11-04T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'),
-    new TaskItem(null, 'Einkaufen gehen', 'desc', 2, false, 'local_grocery_store', 7, 0, 3, '2017-10-30T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'),
+    new TaskItem(null, 'Blumen gießen', 'desc', 3, false, 'spa', 7, 0, 1, '2017-11-08T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'),
+    new TaskItem(null, 'Einkaufen gehen', 'desc', 2, false, 'local_grocery_store', 7, 0, 15, '2017-10-30T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'),
     new TaskItem(null, 'Terasse pegen', 'desc', 4, false, 'local_bar', 7, 0, 3, '2017-11-01T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234')
   ];
   taskIrregularItems: TaskItem[] = [

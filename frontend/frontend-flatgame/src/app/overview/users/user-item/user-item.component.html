@@ -6,8 +6,14 @@
       <span class="points" >{{userInfo.points}}</span>
     </div>
 
-    <canvas #canvas_ranking class="rankingBar" width="100%" height="5px">
-    </canvas>
+    <mat-progress-bar
+      width="100%"
+      [value]="getRankingPercentage()"
+      color="#FF00FF"
+    ></mat-progress-bar>
+
+   <!-- <canvas #canvas_ranking class="rankingBar" width="100%" height="5px">
+    </canvas> -->
   </div>
 </div>
 

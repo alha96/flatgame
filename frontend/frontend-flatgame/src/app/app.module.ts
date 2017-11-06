@@ -11,7 +11,8 @@ import {
   MatSelectModule,
   MatInputModule,
   MatSliderModule,
-  MatMenuModule
+  MatMenuModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.component';
 import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
 import { HistoryComponent } from './history/history.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 const appRoutes: Routes = [
   { path: '', component: OverviewComponent},
@@ -60,7 +62,8 @@ const appRoutes: Routes = [
     TaskDetailItemComponent,
     UsersDetailComponent,
     SettingsDetailComponent,
-    HistoryComponent
+    HistoryComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatInputModule,
     MatSliderModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

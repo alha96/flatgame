@@ -7,6 +7,7 @@ const userController = require('../controllers/userController');
 const flatController = require('../controllers/flatController');
 const taskController = require('../controllers/taskController');
 const authController = require('../controllers/authController');
+const absenceController = require('../controllers/absenceController');
 const authMiddleware = require('../middleware/authMiddleware');
 
 //if the method is not expicitly named 'by_username"
@@ -20,6 +21,12 @@ router.route('/user/:userId')
     .get(userController.get_user)
     .put(userController.update_user)
     .delete(userController.delete_user);
+
+router.route('/user/:userId/absence')
+    .all(authMiddleware.authenticate)
+    .post(absenceController.create_absence)
+    .get(absenceController.get_absence)
+    .delete(absenceController.delete_absence);
 
 router.route('/flat')
     .all(authMiddleware.authenticate)

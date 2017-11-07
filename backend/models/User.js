@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+let userSchema = new Schema({
     username: {type: String, required: true},
     email: {type: String, default: null},
     //TODO Set default image
@@ -13,6 +13,8 @@ const userSchema = new Schema({
     points: {type: Number, default: 0},
     googleid: Number
 });
+
+//userSchema.pre('remove')
 
 const User = mongoose.model('User', userSchema);
 

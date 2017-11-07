@@ -63,6 +63,5 @@ app.use('/static', express.static('public'));
 
 //return 404, if route does not exist
 app.use(function(req, res) {
-    console.log(req.session);
     res.status(404).send({url: req.originalUrl + ' not found'})
 });

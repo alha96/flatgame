@@ -3,6 +3,8 @@
  */
 const mongoose = require('mongoose');
 const User = require('../models/User');
+const Flat = require('../models/Flat');
+const Task = require('../models/Task');
 
 exports.get_user_by_username = (req, res) => {
     console.log('Getting a user by username...');
@@ -118,17 +120,15 @@ exports.delete_user = (req, res) => {
         return res.status(401).json({error: 'Unauthorized'});
     }
 
-    User.findByIdAndRemove(userId).then(user => {
-        if (user) {
-            res.status(200).json(user);
-            console.log('User deleted: ' + JSON.stringify(user));
-        } else {
-            res.status(401).send('Unauthorized');
+    User.findById(userId).then(user => {
+        if (!user) {
             console.log('User not deleted');
+            throw ('Unauthorized');
         }
+
+        return Promise.all([Promise.resolve(user), Fl])
         //TODO Delete flat and so on
     }).catch(err => {
-        //TODO cast error kommt, wenn id zu kurz ist - ändern?
         res.status(401).send(err);
         console.log('User not deleted: ' + err);
     });

@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const User = require('../models/User');
 
-exports.oAuth2_redirect = function (req, res) {
+exports.oAuth2_redirect = (req, res) => {
     if(!req.params.provider) {
         res.status(400).json({error: "Missing oauth provider"});
     }
@@ -35,7 +35,7 @@ exports.oAuth2_redirect = function (req, res) {
     res.redirect(authorizationUri);
 };
 
-exports.oAuth2_handle_google = function (req, res) {
+exports.oAuth2_handle_google = (req, res) => {
     if(!req.query.code)
     {
         res.status(400).json({error: "Invalid oauth code"});
@@ -50,18 +50,18 @@ exports.oAuth2_handle_google = function (req, res) {
 
     const oauth2 = oAuthClient.create(config.oauth2.google.oauth);
 
-    oauth2.authorizationCode.getToken(tokenConfig).then(function (result) {
+    oauth2.authorizationCode.getToken(tokenConfig).then(result => {
         //Seems like this is a valid user
         //Let's get some details from google :)
         const accessToken = result.access_token;
         return fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {headers: {Authorization: 'Bearer ' + accessToken}});
-    }).then(function (res) {
+    }).then(res => {
         if(res.status !== 200){
             throw('Access token seems to be invalid');
         }
         return res.json();
-    }).then(function (data) {
-        User.findOne().where('googleid').equals(data.id).exec().then(function (doc) {
+    }).then(data => {
+        User.findOne().where('googleid').equals(data.id).exec().then(doc => {
             if (doc) {
                 req.session.userid = doc._id;
                 res.redirect(303, req.session.return);
@@ -73,7 +73,7 @@ exports.oAuth2_handle_google = function (req, res) {
                     points: 0,
                     googleid: data.id
                 });
-                user.save().then(function (doc) {
+                user.save().then(doc => {
                     //User created
                     console.log('User created: ', doc);
                     req.session.userid = doc._id;
@@ -81,18 +81,18 @@ exports.oAuth2_handle_google = function (req, res) {
                 })
             }
         });
-    }).catch(function (error) {
+    }).catch(error => {
         console.error(error);
         res.status(500).send('Something broke!')
     });
 };
 
-exports.get_current_user = function (req, res) {
+exports.get_current_user = (req, res) => {
         res.status(200).json(res.locals.user);
 };
 
-exports.destroy_session = function (req, res) {
-    req.session.destroy(function (err) {
+exports.destroy_session = (req, res) => {
+    req.session.destroy(err => {
         if(err){
             return res.status(500).json({error: 'Unable to destroy the session'});
         }

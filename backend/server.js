@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 console.log('Connecting to database...');
 
-mongoose.connect(config.connection.connectionString, {
+mongoose.connect(config.general.connectionString, {
     useMongoClient: true
 }, function(error){
     if(error){

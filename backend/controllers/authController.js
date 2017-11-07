@@ -23,9 +23,11 @@ exports.oAuth2_redirect = function (req, res) {
     //TODO Move to state parameter?
     req.session.return = req.query.return;
 
+    const redirect = (config.general.base_path ? config.general.base_path  : req.protocol + '://' + req.host) + req.path + '/callback';
+
     // Authorization oauth2 URI
     const authorizationUri = oauth2.authorizationCode.authorizeURL({
-        redirect_uri: req.protocol + '://' + req.host + req.path + '/callback',
+        redirect_uri: redirect,
         scope: config.oauth2[req.params.provider].scope,
         state: req.query.state ? req.query.state : null
     });
@@ -39,9 +41,11 @@ exports.oAuth2_handle_google = function (req, res) {
         res.status(400).json({error: "Invalid oauth code"});
     }
 
+    const redirect = (config.general.base_path ? config.general.base_path  : req.protocol + '://' + req.host) + req.path;
+
     const tokenConfig = {
         code: req.query.code,
-        redirect_uri: req.protocol + '://' + req.host + req.path
+        redirect_uri: redirect
     };
 
     const oauth2 = oAuthClient.create(config.oauth2.google.oauth);

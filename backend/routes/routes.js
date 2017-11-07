@@ -25,7 +25,10 @@ router.route('/user/:userId')
 router.route('/user/:userId/absence')
     .all(authMiddleware.authenticate)
     .post(absenceController.create_absence)
-    .get(absenceController.get_absence)
+    .get(absenceController.get_absence);
+
+router.route('/user/:userId/absence/:absenceId')
+    .all(authMiddleware.authenticate)
     .delete(absenceController.delete_absence);
 
 router.route('/flat')

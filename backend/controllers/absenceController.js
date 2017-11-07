@@ -72,14 +72,19 @@ exports.delete_absence = (req, res) => {
         return res.status(400).json({error: 'Missing userId'});
     }
 
-    const userId = req.params.userId;
+    if(!req.params.absenceId){
+        return res.status(400).json({error: 'Missing absenceId'});
+    }
 
-    if(!res.locals.users._id.equals(userId)){
+    const userId = req.params.userId;
+    const absenceId = req.params.absenceId;
+
+    if(!res.locals.user._id.equals(userId)){
         console.log('Requesting user isn\'t allowed to create an absence for this user');
         return res.status(401).json({error: 'Unauthorized'});
     }
 
-    Absence.findByIdAndRemove(absence => {
+    Absence.findByIdAndRemove(absenceId).then(absence => {
         res.status(200).json(absence);
     }).catch(err => {
         console.log(err);

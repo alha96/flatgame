@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-progress-bar',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnInit {
+
+  @Input() primaryColour:string = '';
+  @Input() secoundaryColour:string = '';
 
   constructor() { }
 

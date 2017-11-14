@@ -35,16 +35,42 @@ import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.co
 import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
 import { HistoryComponent } from './history/history.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from "./auth.guard";
+import { BaseRequestOptions } from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
-  { path: '', component: OverviewComponent},
-  { path: 'overview', component: OverviewComponent},
-  { path: 'settings-flat', component: SettingsWgComponent, children: [
-    { path: 'tasks-detail', component: TasksDetailComponent },
-    { path: 'users-detail', component: UsersDetailComponent },
-    { path: 'settings-detail', component: SettingsDetailComponent }
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'overview',
+    component: OverviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings-flat',
+    component: SettingsWgComponent,
+    children: [
+    {
+      path: 'tasks-detail',
+      component: TasksDetailComponent
+    },
+    {
+      path: 'users-detail',
+      component: UsersDetailComponent
+    },
+    {
+      path: 'settings-detail',
+      component: SettingsDetailComponent
+    }
   ]},
-  { path: 'history', component: HistoryComponent}
+  {
+    path: 'history',
+    component: HistoryComponent
+  }
 ];
 
 @NgModule({
@@ -63,7 +89,8 @@ const appRoutes: Routes = [
     UsersDetailComponent,
     SettingsDetailComponent,
     HistoryComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +109,12 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSliderModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 

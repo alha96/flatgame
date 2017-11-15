@@ -17,11 +17,11 @@ before_script: # commands to run before the build step
 script: 
 - cd backend && npm install && npm test
 - cd ../frontend/frontend-flatgame && npm install
-- ng build --prod --bh /frontend/
+- ng build --prod --bh /
 
 deploy:
     provider: script
     skip_cleanup: true
-    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config && rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/frontend/frontend-flatgame/dist/ $USER@$HOST:~/html/frontend/ -v
+    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config && rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/frontend/frontend-flatgame/dist/ $USER@$HOST:/var/www/virtual/$user/flatgame.joblock.de/ -v
     on:
         branch: master

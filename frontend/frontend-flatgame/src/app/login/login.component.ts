@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     //localStorage.removeItem('currentUser');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 //    this.returnUrl = this.router.url;
-    this.googleUrl = 'http://arkas.alnilam.uberspace.de/api/auth/oauth2/google?return=' + this.returnUrl;
+    this.googleUrl = '/api/auth/oauth2/google?return=' + this.returnUrl;
 //    this.googleUrl = 'http://arkas.alnilam.uberspace.de/api/auth/oauth2/google?return=http://localhost:4200';
   }
 

@@ -73,10 +73,6 @@ const appRoutes: Routes = [
       {
         path: 'history',
         component: HistoryComponent
-      },
-      {
-        path: '',
-        redirectTo: 'overview'
       }
     ]
   },

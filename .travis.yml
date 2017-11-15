@@ -9,7 +9,7 @@ before_install:
 
 script: 
 - cd backend && npm install && npm test
-- cd ../frontend-flatgame && npm install
+- cd ../frontend/frontend-flatgame
 - ng build --prod
 
 deploy:

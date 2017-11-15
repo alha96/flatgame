@@ -6,6 +6,8 @@ node_js:
 - node
 
 before_install:
+- sudo apt-get -qq update
+- sudo apt-get install rsync
 - openssl aes-256-cbc -K $encrypted_af70c45caba8_key -iv $encrypted_af70c45caba8_iv -in priv_rsa.enc -out /tmp/priv_rsa -d
 - chmod 600 /tmp/priv_rsa
 
@@ -15,13 +17,11 @@ before_script: # commands to run before the build step
 script: 
 - cd backend && npm install && npm test
 - cd ../frontend/frontend-flatgame && npm install
-- ng build --prod
+- ng build --prod --bh /frontend/
 
 deploy:
     provider: script
     skip_cleanup: true
-    script: 
-    - rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config
-    - rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/frontend/frontend-flatgame/dist $USER@$HOST:~/angular/ -v
+    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config && rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/frontend/frontend-flatgame/dist/ $USER@$HOST:~/html/frontend/ -v
     on:
         branch: master

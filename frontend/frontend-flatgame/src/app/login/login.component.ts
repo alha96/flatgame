@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     //User ausloggen wenn er auf die Login Seite geht?
     //localStorage.removeItem('currentUser');
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+//    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.router.url;
     this.googleUrl = 'http://arkas.alnilam.uberspace.de/api/auth/oauth2/google?return=' + this.returnUrl;
 //    this.googleUrl = 'http://arkas.alnilam.uberspace.de/api/auth/oauth2/google?return=http://localhost:4200';
   }

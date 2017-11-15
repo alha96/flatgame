@@ -36,8 +36,8 @@ import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-
 import { HistoryComponent } from './history/history.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from "./auth.guard";
-import { BaseRequestOptions } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { LayoutComponent } from './layout/layout.component';
 
 const appRoutes: Routes = [
   {
@@ -45,30 +45,44 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'overview',
-    component: OverviewComponent,
-    canActivate: [AuthGuard]
+    path: '',
+    component: LayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'overview',
+        component: OverviewComponent
+      },
+      {
+        path: 'settings-flat',
+        component: SettingsWgComponent,
+        children: [
+          {
+            path: 'tasks-detail',
+            component: TasksDetailComponent
+          },
+          {
+            path: 'users-detail',
+            component: UsersDetailComponent
+          },
+          {
+            path: 'settings-detail',
+            component: SettingsDetailComponent
+          }]
+      },
+      {
+        path: 'history',
+        component: HistoryComponent
+      },
+      {
+        path: '',
+        redirectTo: 'overview'
+      }
+    ]
   },
   {
-    path: 'settings-flat',
-    component: SettingsWgComponent,
-    children: [
-    {
-      path: 'tasks-detail',
-      component: TasksDetailComponent
-    },
-    {
-      path: 'users-detail',
-      component: UsersDetailComponent
-    },
-    {
-      path: 'settings-detail',
-      component: SettingsDetailComponent
-    }
-  ]},
-  {
-    path: 'history',
-    component: HistoryComponent
+    path: '**',
+    redirectTo: ''
   }
 ];
 
@@ -88,7 +102,8 @@ const appRoutes: Routes = [
     UsersDetailComponent,
     SettingsDetailComponent,
     HistoryComponent,
-    LoginComponent
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

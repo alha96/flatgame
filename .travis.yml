@@ -22,6 +22,6 @@ script:
 deploy:
     provider: script
     skip_cleanup: true
-    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config && rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/frontend/frontend-flatgame/dist/ $USER@$HOST:/var/www/virtual/$USER/flatgame.joblock.de/ -v
+    script: rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/backend/ $USER@$HOST:~/node/ -v --exclude=config && rsync -r -e 'ssh -i /tmp/priv_rsa' --delete-after $TRAVIS_BUILD_DIR/frontend/frontend-flatgame/dist/ $USER@$HOST:/var/www/virtual/$USER/flatgame.joblock.de/ -v --exclude='.htaccess' --exclude='api'
     on:
         branch: master

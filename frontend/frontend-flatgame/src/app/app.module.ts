@@ -34,7 +34,6 @@ import {RouterModule, Routes} from "@angular/router";
 import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.component';
 import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
 import { HistoryComponent } from './history/history.component';
-import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from "./auth.guard";
 import { BaseRequestOptions } from '@angular/http';
@@ -89,7 +88,6 @@ const appRoutes: Routes = [
     UsersDetailComponent,
     SettingsDetailComponent,
     HistoryComponent,
-    ProgressBarComponent,
     LoginComponent
   ],
   imports: [

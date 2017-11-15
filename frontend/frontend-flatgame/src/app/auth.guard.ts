@@ -9,8 +9,9 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private http: Http) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.http.request('http://arkas.alnilam.uberspace.de/api/auth/session').subscribe((res: Response) => {console.log(res.ok); return res.ok;})) {
+    if (this.http.request('http://arkas.alnilam.uberspace.de/api/auth/session').subscribe((res: Response) => {console.log(res.json()); return res.ok;}, (err: Response) => {return false;})) {
       // logged in so return true
+      console.log("");
       return true;
     }
 

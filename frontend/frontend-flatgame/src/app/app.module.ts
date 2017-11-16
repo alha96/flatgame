@@ -38,6 +38,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from "./auth.guard";
 import { HttpModule } from '@angular/http';
 import { LayoutComponent } from './layout/layout.component';
+import {UserService} from "./services/user.service";
 
 const appRoutes: Routes = [
   {
@@ -122,6 +123,7 @@ const appRoutes: Routes = [
     HttpModule
   ],
   providers: [
+    UserService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.http.request('/api/auth/session').map(result => {
+      console.log(result);
       return true;
     }).catch(err => {
       this.router.navigate(['/login'], {queryParams: {returnUrl: this.location.path()}});

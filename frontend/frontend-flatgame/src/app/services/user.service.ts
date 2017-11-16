@@ -6,12 +6,12 @@ export class UserService {
 
   constructor() { }
 
-  private users: User;
-  set user(){
-
+  private _currUser: User;
+  set currUser(user: User){
+    this._currUser = user;
   };
-  get user(): User {
-    return null;
+  get currUser(): User {
+    return this._currUser;
   };
 
 }

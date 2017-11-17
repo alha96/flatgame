@@ -75,7 +75,7 @@ router.route('/auth/oauth2/google/callback')
     .get(authController.oAuth2_handle_google);
 
 router.route('/auth/session')
-//    .all(authMiddleware.authenticate)
+    .all(authMiddleware.authenticate)
     .get(authController.get_current_user)
     .delete(authController.destroy_session);
 

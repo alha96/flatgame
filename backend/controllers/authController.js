@@ -88,7 +88,8 @@ exports.oAuth2_handle_google = (req, res) => {
 };
 
 exports.get_current_user = (req, res) => {
-        res.status(200).json(res.locals.user);
+        res.status(200).json({"_id":"5a0078553bd30b14e4a6d09d","username":"Lars","googleid":114991111746410990000,"__v":0,"points":0,"flat":null,"profile_image":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg","email":null});
+        //res.status(200).json(res.locals.user);
 };
 
 exports.destroy_session = (req, res) => {

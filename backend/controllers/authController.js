@@ -66,10 +66,10 @@ exports.oAuth2_handle_google = (req, res) => {
                 req.session.userid = doc._id;
                 res.redirect(303, req.session.return);
             } else {
-                //TODO Maybe we should also import the email?
                 let user = new User({
                     username: data.given_name,
                     profile_image: data.picture,
+                    email: data.email,
                     points: 0,
                     googleid: data.id
                 });

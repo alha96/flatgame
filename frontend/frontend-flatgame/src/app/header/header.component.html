@@ -1,14 +1,14 @@
-<header>
 <mat-toolbar color="primary">
-  <span>WG-Spiel</span>
+  <a mat-button><mat-icon class="logo">home</mat-icon><span>WG-Spiel</span></a>
 
-  <div class="action-buttons">
-    <button mat-button routerLink="/overview">Übersicht</button>
-    <button mat-button routerLink="/history">Verlauf</button>
-    <button mat-button routerLink="/settings-flat">Einstellungen</button>
-  </div>
 
-  <img class="img-circle" src="https://picsum.photos/100/100/?random" alt="Smiley face" height="40px" width="auto">
+  <div fxFlex="<grow>"></div>
+  <a fxHide.lt-sm mat-button routerLink="/overview">Übersicht</a>
+  <a fxHide.lt-sm mat-button routerLink="/history">Verlauf</a>
+  <a fxHide.lt-sm mat-button routerLink="/settings-flat">Einstellungen</a>
+  <div fxFlex="<grow>"></div>
+
+  <img class="img-circle" src="{{user.profile_image}}" height="40px" width="auto">
   <button mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -30,7 +30,9 @@
       <span>Abmelden</span>
     </button>
   </mat-menu>
-
-
+  <mat-toolbar-row fxHide.gt-xs fxLayout="row">
+    <a fxFlex="<grow>" mat-button routerLink="/overview">Übersicht</a>
+    <a fxFlex="<grow>" mat-button routerLink="/history">Verlauf</a>
+    <a fxFlex="<grow>" mat-button routerLink="/settings-flat">Einstellungen</a>
+  </mat-toolbar-row>
 </mat-toolbar>
-</header>

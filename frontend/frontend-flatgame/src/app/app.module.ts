@@ -38,6 +38,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from "./auth.guard";
 import { HttpModule } from '@angular/http';
 import { LayoutComponent } from './layout/layout.component';
+import {UserService} from "./services/user.service";
+import {HttpClient, HttpHandler} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes = [
   {
@@ -119,9 +122,10 @@ const appRoutes: Routes = [
     MatSliderModule,
     MatMenuModule,
     MatProgressBarModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
+    UserService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

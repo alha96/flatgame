@@ -16,7 +16,23 @@ button a {
   text-decoration: none;
 }
 
+.mat-button{
+   min-width: inherit;
+}
+
+.logo {
+  margin: 0 4px 3px 0;
+}
+
 img {
   margin-right:15px;
 }
 
+mat-toolbar {
+  display: block;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+nav {
+  width: 100%;
+}

@@ -48,6 +48,10 @@ export class TaskItemComponent implements OnInit {
   onTaskClicked() {
     this.taskItemInfo.done = !this.taskItemInfo.done;
     this.taskCompleted.emit(this.taskItemInfo);
+    console.log("Clicked taskIfnoItem");
+  }
+  onCheckboxClicked(){
+    //this.taskItemInfo.done = !this.taskItemInfo.done;
   }
 
   //not always correct result, see comment at getLastDoneDate

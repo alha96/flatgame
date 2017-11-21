@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TaskItem} from "../../modules/task-item.module";
+import {TaskItem} from "../../models/task-item.module";
 
 @Component({
   selector: 'app-tasks-detail',
@@ -7,6 +7,7 @@ import {TaskItem} from "../../modules/task-item.module";
   styleUrls: ['./tasks-detail.component.css']
 })
 export class TasksDetailComponent implements OnInit {
+
 
   taskItems: TaskItem[] = [
     new TaskItem("123", "Dachboden prüfen", "Alle Ecken des Dachbodens durchleuch", 3, false, "fingerprint", 1, 2, 7, "21.02.2018", null, null, null),

@@ -22,14 +22,14 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './overview/tasks/tasks.component';
-import { TaskItemComponent } from './overview/tasks/task-item/task-item.component';
+import { TaskItemComponent } from './shared-components/task-item/task-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UsersComponent } from './overview/users/users.component';
-import { UserItemComponent } from './overview/users/user-item/user-item.component';
+import { UserItemComponent } from './shared-components/user-item/user-item.component';
 import { SettingsWgComponent } from './settings-wg/settings-wg.component';
 import { SelectionComponent } from './settings-wg/selection/selection.component';
 import { TasksDetailComponent } from './settings-wg/tasks-detail/tasks-detail.component';
-import { TaskDetailItemComponent } from './settings-wg/tasks-detail/task-detail-item/task-detail-item.component';
+import { TaskDetailItemComponent } from './shared-components/task-detail-item/task-detail-item.component';
 import {RouterModule, Routes} from "@angular/router";
 import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.component';
 import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
@@ -41,6 +41,7 @@ import { LayoutComponent } from './layout/layout.component';
 import {UserService} from "./services/user.service";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {HttpClientModule} from "@angular/common/http";
+import { TasksHistoryComponent } from './overview/tasks-history/tasks-history.component';
 
 const appRoutes: Routes = [
   {
@@ -102,7 +103,8 @@ const appRoutes: Routes = [
     SettingsDetailComponent,
     HistoryComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    TasksHistoryComponent
   ],
   imports: [
     BrowserModule,

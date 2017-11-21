@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TaskItem} from '../../../modules/task-item.module';
-import {ConstColors} from "../../../constants/colors.const";
+import {TaskItem} from "../../models/task-item.module";
+import {ConstColors} from "../../constants/colors.const";
+
 
 @Component({
   selector: 'app-task-item-detail',
@@ -13,7 +14,8 @@ export class TaskItemComponent implements OnInit {
 
 
   getIconColor() :string {
-    var daysUntilDue = this.getDaysUntilDue(this.taskItemInfo.dueDate);
+    var daysUntilDu2e = this.getUntilDue(this.taskItemInfo.dueDate);
+    var daysUntilDue = 1;
 
    if (daysUntilDue > 0) {
      //before due
@@ -34,7 +36,7 @@ export class TaskItemComponent implements OnInit {
   // with the calculations
   getLastDoneDateString() : string {
     var doneDate = this.taskItemInfo.lastDoneDate;
-    var daysSince = -1 * this.getDaysUntilDue(doneDate);
+    var daysSince = -1 * this.getUntilDue(doneDate).getDay();
  //   if (daysSince > 2){
       return doneDate.toDateString();
   //  } else if (daysSince > 1) {
@@ -46,8 +48,8 @@ export class TaskItemComponent implements OnInit {
   }
 
   onTaskClicked() {
-    this.taskItemInfo.done = !this.taskItemInfo.done;
-    this.taskCompleted.emit(this.taskItemInfo);
+    //this.taskItemInfo.done = !this.taskItemInfo.done;
+    //this.taskCompleted.emit(this.taskItemInfo);
     console.log("Clicked taskIfnoItem");
   }
   onCheckboxClicked(){
@@ -55,12 +57,27 @@ export class TaskItemComponent implements OnInit {
   }
 
   //not always correct result, see comment at getLastDoneDate
-  getDaysUntilDue(dateUntil : Date){
-    var curDate = new Date();
-    var millisUntilDue = dateUntil.getTime() - curDate.getTime();
-    var hoursUntilDue = millisUntilDue / 1000 / 60 / 60;
-    var daysUntilDue = hoursUntilDue / 24;
-    return daysUntilDue;
+  //negative return date means getSinceDue
+  //return value always is in UTC
+  getUntilDue(dateUntil : Date) : Date{
+    console.log("bals");
+    var curDateTime = new Date();
+    var untilDateTime = dateUntil;
+    var curUTCTimestamp = Math.round(curDateTime.getTime()/1000);
+    var untilTimestamp = Math.round(untilDateTime.getTime()/1000);
+    var curUTCSecondsSinceMidnight = (((curDateTime.getUTCHours()*60) + curDateTime.getUTCMinutes()) * 60 +curDateTime.getUTCSeconds());
+    var curUTCTimestampDay = curUTCTimestamp - curUTCSecondsSinceMidnight;
+
+    var secondsBetweenUntilAndNow = untilTimestamp - curUTCTimestampDay;
+    console.log(untilTimestamp);
+    console.log(curUTCTimestampDay);
+    console.log(secondsBetweenUntilAndNow);
+
+    var timeUntil = new Date(secondsBetweenUntilAndNow);
+
+  //  var curDateAtNight = curDate.getTime() - curDate.get()
+
+    return timeUntil;
   }
 
   constructor() {

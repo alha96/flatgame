@@ -12,6 +12,7 @@ export class TaskItem {
   public lastDoneDate: Date; // may be null if never done
   public lastDoneUserName: string; // may be null if never done
   public lastDoneUserId: string; // may be null if never done
+  public inEditMode: boolean = false;
 
 
   constructor (id: string, name: string, description: string, points: number, done: boolean, icon: string, frequency: number, frequencyType: number,  graceDays: number, dueDate: string, lastDoneDate: string, lastDoneUserName: string, lastDoneUserId: string ) {

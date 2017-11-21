@@ -28,3 +28,12 @@ html, body {
   flex-wrap: wrap;
   align-items: flex-start;
 }
+
+.text_small {
+  font-size: 10pt;
+}
+
+.invisible_link {
+  text-decoration: none;
+  text-decoration-color: black;
+}

@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {ConstColors} from "../../../constants/colors.const";
-import {UserItem} from "../../../modules/user-item.module";
+import {UserItem} from "../../models/user-item.module";
+import {ConstColors} from "../../constants/colors.const";
+
 
 @Component({
   selector: 'app-user-item',

@@ -1,0 +1,44 @@
+<div (click)="onTaskClicked()" style="display:flex; align-items: start">
+
+  <div class="this-img-left">
+    <img
+      [style.display]="taskItemInfo.done ? 'block' : 'none'"
+      class="img-circle icon-sm "
+      src="https://randomuser.me/api/portraits/men/29.jpg"
+      alt="Smiley face"
+      height="30px" width="auto">
+    <img class=" icon-sm "
+         src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_class_black_24px.svg"
+         alt="Smiley face"
+         height="25px" width="auto" >
+  </div>
+
+  <div class="this-task-info">
+    <span>
+      {{taskItemInfo.name}} </span>
+    <br/>
+    <div
+      [style.display]="taskItemInfo.done ? 'block' : 'none'"
+      class="text_small">
+      erledigt {{getLastDoneDateString()}} von
+      <a class="invisible_link"
+         routerLink="/users/todo">
+        {{taskItemInfo.lastDoneUserName}}
+      </a>
+    </div>
+  </div>
+
+  <!--<span&ndash;&gt;-->
+  <!--[style.display]="taskItemInfo.done ? 'block' : 'none'">-->
+  <!--am {{getLastDoneDateString()}} von Pat-->
+  <!--</span>-->
+  <div class="this-task-action">
+    <span class="task-points">{{taskItemInfo.points}}P</span>
+    <mat-checkbox
+      value="true"
+      [style.display]="taskItemInfo.done ? 'none' : 'inline'">
+    </mat-checkbox>
+
+  </div>
+
+</div>

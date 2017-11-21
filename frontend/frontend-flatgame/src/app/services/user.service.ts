@@ -6,7 +6,8 @@ export class UserService {
 
   constructor() { }
 
-  private _currUser: User;
+  //TODO Remove the default user object
+  private _currUser: User = {profile_image: "https://randomuser.me/api/portraits/men/75.jpg"};
   set currUser(user: User){
     this._currUser = user;
   };

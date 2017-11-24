@@ -32,6 +32,7 @@ export class TaskItem {
   }
 
   public getRegularityString() : string {
+    console.log(this.name + ": '" + this.frequencyType+"' " + typeof this.frequencyType);
     var s = ''
 
     if (this.frequency <= 0 ){
@@ -40,18 +41,18 @@ export class TaskItem {
       switch (this.frequencyType) {
         case 0: s += "jeden Tag"; break;
         case 1: s += "jede Woche"; break;
-        case 2: s += "jedes Jahr"; break;
+        case 2: s += "jeden Monat"; break;
       }
     }  else {
       s += "alle " + this.frequency + " ";
       switch (this.frequencyType) {
         case 0: s += "Tage"; break;
         case 1: s += "Wochen"; break;
-        case 2: s += "Jahre"; break;
+        case 2: s += "Monate"; break;
       }
     }
     return s;
-
   }
+
 
 }

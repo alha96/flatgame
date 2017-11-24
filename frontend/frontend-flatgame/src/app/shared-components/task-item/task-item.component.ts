@@ -56,11 +56,11 @@ export class TaskItemComponent implements OnInit {
     //this.taskItemInfo.done = !this.taskItemInfo.done;
   }
 
+  //BULLSHIT DOES NOT REALLY WORK
   //not always correct result, see comment at getLastDoneDate
   //negative return date means getSinceDue
   //return value always is in UTC
   getUntilDue(dateUntil : Date) : Date{
-    console.log("bals");
     var curDateTime = new Date();
     var untilDateTime = dateUntil;
     var curUTCTimestamp = Math.round(curDateTime.getTime()/1000);
@@ -69,9 +69,9 @@ export class TaskItemComponent implements OnInit {
     var curUTCTimestampDay = curUTCTimestamp - curUTCSecondsSinceMidnight;
 
     var secondsBetweenUntilAndNow = untilTimestamp - curUTCTimestampDay;
-    console.log(untilTimestamp);
-    console.log(curUTCTimestampDay);
-    console.log(secondsBetweenUntilAndNow);
+   // console.log(untilTimestamp);
+   // console.log(curUTCTimestampDay);
+   // console.log(secondsBetweenUntilAndNow);
 
     var timeUntil = new Date(secondsBetweenUntilAndNow);
 

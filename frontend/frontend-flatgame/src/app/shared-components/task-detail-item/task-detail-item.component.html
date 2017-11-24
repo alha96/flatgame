@@ -1,20 +1,13 @@
 <div>
-    <div  > <!-- VIEW ONLY -->
-      <button mat-icon-button [matMenuTriggerFor]="task_option">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #task_option="matMenu">
-        <button mat-menu-item>
-          <mat-icon>loop</mat-icon>
-          <span>Ändern</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>delete</mat-icon>
-          <span>Löschen</span>
-        </button>
-      </mat-menu>
-      <mat-icon class="inline">fingerprint</mat-icon>
-      <div class="inline">
+  <div class="container"> <!-- VIEW ONLY -->
+
+
+    <div class="container-left">
+      <img class="icon-sm this-img-left"
+           src="assets/icons/icons8_Bathtub_100px_7.png"
+           height="25px" width="auto">
+
+      <div class="this-task-info">
         <h3>{{taskInfo.name}}</h3>
         <p>Beschreibung: {{taskInfo.description}}</p>
         <p>Punkte: {{taskInfo.points}}
@@ -22,48 +15,99 @@
         <p>Bearbeitungszeit: {{taskInfo.graceDays}} Tage</p>
         <p>Zuletzt erledigt von Jens am 10.07.2017</p>
       </div>
+    </div>
+    <div class="container-right">
+      <button mat-icon-button class="this-task-action" [matMenuTriggerFor]="task_option">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #task_option="matMenu">
+        <button mat-menu-item (click)="onMenuEditClicked()">
+          <mat-icon>loop</mat-icon>
+          <span>{{isEditing ? "Verwefen" : "Ändern"}}</span>
+        </button>
+        <button mat-menu-item (click)="onMenuDeleteClicked()">
+          <mat-icon>delete</mat-icon>
+          <span>Löschen</span>
+        </button>
+      </mat-menu>
+
+
+    </div>
+
     <br class="clearInline"/>
   </div>
-<div style="display: none;">
-  <mat-icon>
-    call
-  </mat-icon>
 
-  <div > <!-- EDIT -->
-    <form class="example-form">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Aufgabenname" value="Sushi">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Beschreibung" value="Sushi">
-      </mat-form-field>
-      <mat-slider class="full-width"
-                  min="1"
-                  max="10"
-                  step="1"
-                  value="2"
-                  thumb-label="true"
-      ></mat-slider>
-      alle
-      <mat-form-field >
-        <input matInput type="number"
-               placeholder="Häufigkeit"
-               value="1">
-      </mat-form-field>
 
-      <mat-form-field>
-        <mat-select placeholder="Select">
-          <mat-option value="days">Tage</mat-option>
-          <mat-option value="weeks">Wochen</mat-option>
-          <mat-option value="years">Monate</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </form>
+  <div [style.display]="isEditing ?  'block' : 'none'"
+    >
+    <div class="container-left">
+      <img class="icon-sm this-img-left" (click)="openIconPicker()"
+           src="assets/icons/icons8_Bathtub_100px_7.png"
+           height="25px" width="auto">
+
+      <div> <!-- EDIT -->
+        <form class="example-form this-task-info">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="editingTaskInfo.name"
+                   name="inputName"
+                   matInput
+                   placeholder="Aufgabenname">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="editingTaskInfo.description"
+                   name="inputDesc"
+                   matInput
+                   placeholder="Beschreibung">
+          </mat-form-field>
+          <div>
+            <mat-form-field class="">
+              <input [(ngModel)]="editingTaskInfo.points"
+                     name="inputPoints"
+                     type="number"
+                     matInput
+                     placeholder="Punkte (zwischen 1 und 10)">
+            </mat-form-field>
+            <mat-form-field class="">
+              <input [(ngModel)]="editingTaskInfo.graceDays"
+                     name="inputTime"
+                     type="number"
+                     matInput
+                     placeholder="Bearbeitungszeit">
+              <span matSuffix>Tage</span>
+            </mat-form-field>
+
+          </div>
+          alle
+          <mat-form-field>
+            <input [(ngModel)]="editingTaskInfo.frequency"
+                   name="inputTime"
+                   matInput
+                   type="number"
+                   placeholder="Häufigkeit">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Select"
+                        [(value)]="editingTaskInfo.frequencyType"
+                        name="inputTime">
+              <mat-option value="0">Tage</mat-option>
+              <mat-option value="1">Wochen</mat-option>
+              <mat-option value="2">Monate</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button
+                  class="pull-right"
+                  (click)="onSaveClicked()"
+                  color="primary">Primary</button>
+
+        </form>
+      </div>
+
+      <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    </div>
+
+    <hr [hidden]="isLast">
+
+
   </div>
-
-  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
-</div>
-
-  <hr [hidden]="isLast">
-
-</div>

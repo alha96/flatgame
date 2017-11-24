@@ -13,3 +13,25 @@ mat-icon{
 .list-item {
   margin-top: 16px ;
 }
+
+.this-task-info {
+  display: inline;
+  flex-grow: 1;
+  margin-top:7px;
+}
+.this-task-action {
+  float:right;
+  margin-top: 5px;
+}
+.icon-sm {
+  padding-right: 10px;
+  padding-top: 5px;
+}
+
+.container-left {
+  width: 90%;
+  display: flex;
+}
+.container-right {
+  width: 10%;
+}

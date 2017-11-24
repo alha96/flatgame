@@ -32,3 +32,13 @@ span {
   margin-top:7px;
 }
 
+.text_small {
+  font-size: 10pt;
+}
+
+.invisible_link {
+  text-decoration: none;
+  text-decoration-color: black;
+}
+
+

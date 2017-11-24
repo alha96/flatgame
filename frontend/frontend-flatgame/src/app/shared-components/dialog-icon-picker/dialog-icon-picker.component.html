@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Icon Auswählen:</h1>
+
+<div mat-dialog-content>
+  <mat-grid-list cols="4" rowHeight="60px">
+    <mat-grid-tile *ngFor="let icon of icons" >
+      <button mat-button class="mat-icon-button logo" (click)="iconClicked(icon.id)">
+        <img class="logo-image" src="assets/icons/{{icon.filePath}}" height="100%" width="auto">
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">
+    Abbrechen
+  </button>
+</div>

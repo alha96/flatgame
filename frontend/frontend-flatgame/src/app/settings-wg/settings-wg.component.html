@@ -1,6 +1,9 @@
-<div class="container">
-  <app-selection class="flex-item small"></app-selection>
-  <!--<app-tasks-detail class="flex-item large"></app-tasks-detail>-->
-  <router-outlet class="flex-item large"></router-outlet>
+<div fxLayout fxFlexAlign="start">
+
+  <app-selection></app-selection>
+  <!--<app-tasks-detail  style="width: 500px"></app-tasks-detail>-->
+  <div>
+    <router-outlet ></router-outlet>
+  </div>
 
 </div>

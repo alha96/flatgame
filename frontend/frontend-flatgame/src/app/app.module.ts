@@ -12,7 +12,8 @@ import {
   MatInputModule,
   MatSliderModule,
   MatMenuModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatDialogModule, MatGridListModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -30,7 +31,7 @@ import { SettingsWgComponent } from './settings-wg/settings-wg.component';
 import { SelectionComponent } from './settings-wg/selection/selection.component';
 import { TasksDetailComponent } from './settings-wg/tasks-detail/tasks-detail.component';
 import { TaskDetailItemComponent } from './shared-components/task-detail-item/task-detail-item.component';
-import {RouterModule, Routes} from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { UsersDetailComponent } from './settings-wg/users-detail/users-detail.component';
 import { SettingsDetailComponent } from './settings-wg/settings-detail/settings-detail.component';
 import { HistoryComponent } from './history/history.component';
@@ -42,6 +43,7 @@ import {UserService} from "./services/user.service";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {HttpClientModule} from "@angular/common/http";
 import { TasksHistoryComponent } from './overview/tasks-history/tasks-history.component';
+import { DialogIconPickerComponent } from './shared-components/dialog-icon-picker/dialog-icon-picker.component';
 
 const appRoutes: Routes = [
   {
@@ -104,7 +106,8 @@ const appRoutes: Routes = [
     HistoryComponent,
     LoginComponent,
     LayoutComponent,
-    TasksHistoryComponent
+    TasksHistoryComponent,
+    DialogIconPickerComponent
   ],
   imports: [
     BrowserModule,
@@ -124,13 +127,16 @@ const appRoutes: Routes = [
     MatSliderModule,
     MatMenuModule,
     MatProgressBarModule,
-    HttpClientModule
+    MatDialogModule,
+    HttpClientModule,
+    MatGridListModule
   ],
   providers: [
     UserService,
     AuthGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogIconPickerComponent] //can someone explain why?
 })
 
 export class AppModule { }

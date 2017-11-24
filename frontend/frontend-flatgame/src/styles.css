@@ -29,6 +29,7 @@ html, body {
   align-items: flex-start;
 }
 
+
 .text_small {
   font-size: 10pt;
 }
@@ -36,4 +37,8 @@ html, body {
 .invisible_link {
   text-decoration: none;
   text-decoration-color: black;
+}
+
+.pull-right {
+  float: right;
 }

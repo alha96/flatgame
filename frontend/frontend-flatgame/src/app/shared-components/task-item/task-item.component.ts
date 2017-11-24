@@ -12,7 +12,6 @@ export class TaskItemComponent implements OnInit {
   @Input() taskItemInfo: TaskItem;
   @Output() taskCompleted = new EventEmitter<TaskItem>();
 
-
   getIconColor() :string {
     var daysUntilDu2e = this.getUntilDue(this.taskItemInfo.dueDate);
     var daysUntilDue = 1;

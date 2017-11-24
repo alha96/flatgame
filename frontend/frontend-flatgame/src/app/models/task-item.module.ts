@@ -14,7 +14,6 @@ export class TaskItem {
   public lastDoneUserId: string; // may be null if never done
 
 
-
   constructor (id: string, name: string, description: string, points: number, done: boolean, icon: string, frequency: number, frequencyType: number,  graceDays: number, dueDate: string, lastDoneDate: string, lastDoneUserName: string, lastDoneUserId: string ) {
     this.id = id;
     this.name = name;

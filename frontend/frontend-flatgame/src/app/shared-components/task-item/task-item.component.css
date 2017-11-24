@@ -19,13 +19,6 @@ mat-checkbox {
   padding-top: 5px;
 }
 
-/* how to I set this on a higher level */
-span {
-  font-size:12pt;
-  vertical-align:top;
-
-}
-
 .this-task-info {
   display: inline;
   flex-grow: 1;

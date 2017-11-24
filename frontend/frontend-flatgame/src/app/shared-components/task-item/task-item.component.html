@@ -14,7 +14,7 @@
   </div>
 
   <div class="this-task-info">
-    <span>
+    <span class="text_normal">
       {{taskItemInfo.name}} </span>
     <br/>
     <div
@@ -33,7 +33,7 @@
   <!--am {{getLastDoneDateString()}} von Pat-->
   <!--</span>-->
   <div class="this-task-action">
-    <span class="task-points">{{taskItemInfo.points}}P</span>
+    <span class="task-points text_normal">{{taskItemInfo.points}}P</span>
     <mat-checkbox
       value="true"
       [style.display]="taskItemInfo.done ? 'none' : 'inline'">

@@ -1,0 +1,35 @@
+<mat-card>
+  <h2>Filter</h2>
+  <h3>Aufgaben</h3>
+  <mat-form-field >
+    <mat-select placeholder="Aufgabenauswahl" [formControl]="taskChoice" multiple>
+      <!--TODO make dynamic-->
+      <mat-option *ngFor="let taskItem of tasks" [value]="taskItem">
+        <img class="icon-select"
+             src="assets/icons/icons8_Bathtub_100px_7.png"
+             alt="Smiley face"
+             height="25px" width="auto" >
+        {{taskItem}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <section class="user-filter text_normal">
+    <h3>Benutzer</h3>
+    <mat-checkbox >
+        <!--[style.display]="taskItemInfo.done ? 'block' : 'none'"-->
+      Patrick</mat-checkbox>
+    <br/>
+    <mat-checkbox>Alex</mat-checkbox>
+    <br/>
+    <mat-checkbox>Yannik</mat-checkbox>
+  </section>
+
+
+  <h3>Zeit  </h3>
+  insert noUiSlider
+  <h3>Punkte</h3>
+  insert noUiSlider
+
+</mat-card>

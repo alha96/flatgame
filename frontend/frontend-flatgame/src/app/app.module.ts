@@ -17,7 +17,7 @@ import {
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -44,6 +44,7 @@ import {HttpClient, HttpHandler} from "@angular/common/http";
 import {HttpClientModule} from "@angular/common/http";
 import { TasksHistoryComponent } from './overview/tasks-history/tasks-history.component';
 import { DialogIconPickerComponent } from './shared-components/dialog-icon-picker/dialog-icon-picker.component';
+import { FilterComponent } from './history/filter/filter.component';
 
 const appRoutes: Routes = [
   {
@@ -107,13 +108,15 @@ const appRoutes: Routes = [
     LoginComponent,
     LayoutComponent,
     TasksHistoryComponent,
-    DialogIconPickerComponent
+    DialogIconPickerComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     MatButtonModule,
     MatToolbarModule,

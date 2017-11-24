@@ -12,7 +12,7 @@ export class TaskItem {
   public lastDoneDate: Date; // may be null if never done
   public lastDoneUserName: string; // may be null if never done
   public lastDoneUserId: string; // may be null if never done
-  public inEditMode: boolean = false;
+
 
 
   constructor (id: string, name: string, description: string, points: number, done: boolean, icon: string, frequency: number, frequencyType: number,  graceDays: number, dueDate: string, lastDoneDate: string, lastDoneUserName: string, lastDoneUserId: string ) {
@@ -32,8 +32,7 @@ export class TaskItem {
   }
 
   public getRegularityString() : string {
-    console.log(this.name + ": '" + this.frequencyType+"' " + typeof this.frequencyType);
-    var s = ''
+    var s = '';
 
     if (this.frequency <= 0 ){
       s += "Unregelmäßig";
@@ -52,6 +51,22 @@ export class TaskItem {
       }
     }
     return s;
+  }
+  public toString() : string {
+    return "id: '" + this.id + "', " +
+      "name: '" + this.name + "', " +
+      "description: '" + this.description + "', " +
+      "icon: '" + this.icon + "', " +
+      "points: '" + this.points + "', " +
+      "done: '" + this.done + "', " +
+      "frequency: '" + this.frequency + "', " +
+      "frequencyType: '" + this.frequencyType + "', " +
+      "graceDays: '" + this.graceDays + "', " +
+      "dueDate: '" + this.dueDate + "', " +
+      "lastDoneDate: '" + this.lastDoneDate + "', " +
+      "lastDoneUserName: '" + this.lastDoneUserName + "', " +
+      "lastDoneUserId: '" + this.lastDoneUserId + "', ";
+
   }
 
 }

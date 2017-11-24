@@ -1,6 +1,12 @@
 <mat-card >
-  <app-task-detail-item *ngFor="let taskItem of taskItems; let last = last"
-                        [taskInfo]="taskItem"
-                        [isLast]="last"
+  <app-task-detail-item
+    *ngFor="let taskItem of taskItems; let last = last"
+    [taskInfo]="taskItem"
+    [isLast]="last"
   ></app-task-detail-item>
+
+  <button mat-fab class="pull-right" (click)="onAddFabClicked()">
+    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+  </button>
+
 </mat-card>

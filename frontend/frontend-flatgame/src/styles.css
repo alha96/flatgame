@@ -29,7 +29,6 @@ html, body {
   align-items: flex-start;
 }
 
-
 .text_small {
   font-size: 10pt;
 }
@@ -42,3 +41,11 @@ html, body {
 .pull-right {
   float: right;
 }
+/*@ LARS why does this not work
+hr {
+  border: none;
+  height: 1px;
+  color: #333;
+  background-color: #333;
+}
+*/

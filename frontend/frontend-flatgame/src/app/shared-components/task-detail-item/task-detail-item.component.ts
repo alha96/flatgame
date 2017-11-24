@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TaskItem} from "../../models/task-item.module";
 import {MatDialog} from "@angular/material";
 import {DialogIconPickerComponent} from "../dialog-icon-picker/dialog-icon-picker.component";
+import {ConstIcons} from "../../constants/icons";
 
 @Component({
   selector: 'app-task-detail-item',
@@ -16,14 +17,18 @@ export class TaskDetailItemComponent implements OnInit {
   //using a copy of taskInfo so non-comitted changes do not immediatly change the internal data. Saving an Edit (if successful) changes taskInfo to the new state
   editingTaskInfo : TaskItem;
   isEditing : boolean = false;
-  editingFrequencyTypeStr : string = "0";
+  editingFrequencyTypeStr : string;
 
-  openIconPicker(){
+  //overlayVisible : boolean = false;
+
+  onIconClicked(){
+    //icon can only be changed if user has editing priviliges (is in editing pane)
+    if (!this.isEditing) return null;
     let dialog = this.dialog.open(DialogIconPickerComponent);
     dialog.afterClosed().subscribe(selection => {
       if (selection){
         console.log(selection);
-        this.taskInfo.icon = selection;
+        this.editingTaskInfo.icon = selection;
       } else {
         //cancelled
         console.log("nothing");
@@ -33,10 +38,23 @@ export class TaskDetailItemComponent implements OnInit {
   }
 
   onMenuEditClicked(){
+    if (this.isEditing){
+      //clicked verwerfen, reset values of temp editing Data holder
+      this.editingTaskInfo = Object.assign({}, this.taskInfo);
+      this.editingFrequencyTypeStr = this.editingTaskInfo.frequencyType.toString();
+    }
     this.isEditing = !this.isEditing;
+
   }
   onMenuDeleteClicked(){
-    console.log(this.taskInfo.frequencyType);
+    console.log("1 " + this.taskInfo.frequency);
+    console.log("2 " + this.editingTaskInfo.frequency);
+    //this.overlayVisible = true;
+  }
+
+
+  getIcon() : string{
+    return new ConstIcons().getIconLocation(this.taskInfo.icon);
   }
 
   onSaveClicked(){
@@ -51,15 +69,20 @@ export class TaskDetailItemComponent implements OnInit {
     console.log(this.taskInfo.frequencyType);
     this.taskInfo.graceDays = this.editingTaskInfo.graceDays;
     //other attrinutes keep old value (dueDate, lastDone*)
+
+    this.isEditing = false;
   }
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.taskInfo.frequencyType = 0;
     //clone data object into temp editing object
     this.editingTaskInfo = Object.assign({}, this.taskInfo);
-    this.editingFrequencyTypeStr = this.editingTaskInfo.frequencyType.toString();
+    this.editingFrequencyTypeStr = this.editingTaskInfo.frequencyType != null ? this.editingTaskInfo.frequencyType.toString() : '23456';
+    if (this.taskInfo.id == null){
+      //new Task being added
+      this.isEditing = true;
+    }
   }
 
 }

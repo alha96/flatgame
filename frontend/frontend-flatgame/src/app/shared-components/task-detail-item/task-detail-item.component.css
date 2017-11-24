@@ -5,9 +5,7 @@ p, h3 {
   float: left;
 }
 
-mat-icon{
-  margin-right: 4px;
-}
+
 .clearInline { clear:both; }
 
 .list-item {
@@ -25,7 +23,7 @@ mat-icon{
 }
 .icon-sm {
   padding-right: 10px;
-  padding-top: 5px;
+  padding-top: 8px;
 }
 
 .container-left {
@@ -35,3 +33,5 @@ mat-icon{
 .container-right {
   width: 10%;
 }
+
+

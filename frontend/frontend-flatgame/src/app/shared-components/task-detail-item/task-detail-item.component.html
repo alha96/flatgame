@@ -1,52 +1,24 @@
 <div>
-  <div class="container"> <!-- VIEW ONLY -->
+  <div class="container">
 
-
+    <!-- VIEW ONLY -->
     <div class="container-left">
       <img class="icon-sm this-img-left"
-           src="assets/icons/icons8_Bathtub_100px_7.png"
+           (click)="onIconClicked()"
+           src="{{getIcon()}}"
            height="25px" width="auto">
 
-      <div class="this-task-info">
+      <div class="this-task-info" [style.display]="!isEditing ? 'block' : 'none'">
         <h3>{{taskInfo.name}}</h3>
         <p>Beschreibung: {{taskInfo.description}}</p>
         <p>Punkte: {{taskInfo.points}}
         <p>Häufigkeit: {{taskInfo.getRegularityString()}}</p>
         <p>Bearbeitungszeit: {{taskInfo.graceDays}} Tage</p>
-        <p>Zuletzt erledigt von Jens am 10.07.2017</p>
+        <p [style.display]="taskInfo.lastDoneUserName != null ? 'block' : 'gone'">Zuletzt erledigt von Jens am 10.07.2017TOOOODOOOO</p>
       </div>
-    </div>
-    <div class="container-right">
-      <button mat-icon-button class="this-task-action" [matMenuTriggerFor]="task_option">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-
-      <mat-menu #task_option="matMenu">
-        <button mat-menu-item (click)="onMenuEditClicked()">
-          <mat-icon>loop</mat-icon>
-          <span>{{isEditing ? "Verwefen" : "Ändern"}}</span>
-        </button>
-        <button mat-menu-item (click)="onMenuDeleteClicked()">
-          <mat-icon>delete</mat-icon>
-          <span>Löschen</span>
-        </button>
-      </mat-menu>
-
-
-    </div>
-
-    <br class="clearInline"/>
-  </div>
-
-
-  <div [style.display]="isEditing ?  'block' : 'none'"
-  >
-    <div class="container-left">
-      <img class="icon-sm this-img-left" (click)="openIconPicker()"
-           src="assets/icons/icons8_Bathtub_100px_7.png"
-           height="25px" width="auto">
-
-      <div> <!-- EDIT -->
+      <div class="this-task-info"
+           [style.display]="isEditing ?  'block' : 'none'">
+        <!-- EDITING PANE -->
         <form class="example-form this-task-info">
           <mat-form-field class="full-width">
             <input [(ngModel)]="editingTaskInfo.name"
@@ -80,6 +52,8 @@
           </div>
           alle
           <mat-form-field>
+            <!--@LARS: WHY kommt immer 2???????-->
+                   <!--value="{{editingTaskInfo.frequency}}"-->
             <input name="inputTime"
                    [(ngModel)]="editingTaskInfo.frequency"
                    matInput
@@ -99,10 +73,34 @@
           <button mat-raised-button
                   class="pull-right"
                   (click)="onSaveClicked()"
-                  color="primary">Primary</button>
+                  color="primary">Speichern</button>
         </form>
       </div>
+      <!--<div id="overlay" onclick="off()" [style.display]="overlayVisible ? 'block' : 'none'"></div>-->
+
     </div>
-    <mat-divider [hidden]="isLast"></mat-divider>
-  </div>
-</div>
+    <div class="container-right">
+      <button mat-icon-button class="this-task-action" [matMenuTriggerFor]="task_option">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #task_option="matMenu">
+        <button mat-menu-item (click)="onMenuEditClicked()">
+          <mat-icon>loop</mat-icon>
+          <span>{{isEditing ? "Verwefen" : "Ändern"}}</span>
+        </button>
+        <button mat-menu-item (click)="onMenuDeleteClicked()">
+          <mat-icon>delete</mat-icon>
+          <span>Löschen</span>
+        </button>
+      </mat-menu>
+
+
+    </div>
+
+    <br class="clearInline"/>
+    </div>
+
+    <!--<mat-divider [hidden]="isLast"></mat-divider>-->
+    <hr [hidden]="isLast"/>
+ </div>

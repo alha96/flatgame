@@ -16,6 +16,7 @@ export class TaskDetailItemComponent implements OnInit {
   //using a copy of taskInfo so non-comitted changes do not immediatly change the internal data. Saving an Edit (if successful) changes taskInfo to the new state
   editingTaskInfo : TaskItem;
   isEditing : boolean = false;
+  editingFrequencyTypeStr : string = "0";
 
   openIconPicker(){
     let dialog = this.dialog.open(DialogIconPickerComponent);
@@ -46,7 +47,8 @@ export class TaskDetailItemComponent implements OnInit {
     this.taskInfo.icon = this.editingTaskInfo.icon;
     this.taskInfo.frequency = this.editingTaskInfo.frequency;
     //unary + operator converts string to number
-    this.taskInfo.frequencyType= +this.editingTaskInfo.frequencyType;
+    this.taskInfo.frequencyType= +this.editingFrequencyTypeStr;
+    console.log(this.taskInfo.frequencyType);
     this.taskInfo.graceDays = this.editingTaskInfo.graceDays;
     //other attrinutes keep old value (dueDate, lastDone*)
   }
@@ -57,6 +59,7 @@ export class TaskDetailItemComponent implements OnInit {
     this.taskInfo.frequencyType = 0;
     //clone data object into temp editing object
     this.editingTaskInfo = Object.assign({}, this.taskInfo);
+    this.editingFrequencyTypeStr = this.editingTaskInfo.frequencyType.toString();
   }
 
 }

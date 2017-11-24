@@ -40,7 +40,7 @@
 
 
   <div [style.display]="isEditing ?  'block' : 'none'"
-    >
+  >
     <div class="container-left">
       <img class="icon-sm this-img-left" (click)="openIconPicker()"
            src="assets/icons/icons8_Bathtub_100px_7.png"
@@ -80,8 +80,8 @@
           </div>
           alle
           <mat-form-field>
-            <input [(ngModel)]="editingTaskInfo.frequency"
-                   name="inputTime"
+            <input name="inputTime"
+                   [(ngModel)]="editingTaskInfo.frequency"
                    matInput
                    type="number"
                    placeholder="Häufigkeit">
@@ -89,7 +89,7 @@
 
           <mat-form-field>
             <mat-select placeholder="Select"
-                        [(value)]="editingTaskInfo.frequencyType"
+                        [(ngModel)]="editingFrequencyTypeStr"
                         name="inputTime">
               <mat-option value="0">Tage</mat-option>
               <mat-option value="1">Wochen</mat-option>
@@ -100,14 +100,9 @@
                   class="pull-right"
                   (click)="onSaveClicked()"
                   color="primary">Primary</button>
-
         </form>
       </div>
-
-      <script src="https://hammerjs.github.io/dist/hammer.js"></script>
     </div>
-
-    <hr [hidden]="isLast">
-
-
+    <mat-divider [hidden]="isLast"></mat-divider>
   </div>
+</div>

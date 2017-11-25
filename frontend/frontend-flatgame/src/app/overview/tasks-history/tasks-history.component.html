@@ -1,33 +1,13 @@
 <mat-card class="card">
   <mat-card-title>Letzte erledigte Tasks</mat-card-title>
   <app-task-item-detail
-    *ngFor="let taskItem of taskTodoItems"
-    [taskItemInfo]="taskItem"
-    (taskCompleted)="onTaskCompleted($event)">
+    *ngFor="let taskItem of taskItem"
+    [taskItemInfo]="taskItem">
   </app-task-item-detail>
 
-  <div [style.display]="taskIrregularItems.length > 0 ? 'block' : 'none'" >
-    <mat-form-field>
-      <mat-select placeholder="Planunabhängige Aufgabe"  [(ngModel)]="taskIrregularSelected">
-        <mat-option
-          *ngFor="let taskItem of taskIrregularItems"
-          [value]="taskItem.id">
-          {{ taskItem.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button
-            color="primary"
-            [disabled]="taskIrregularSelected == null"
-            (click)="onIrregularTaskDone()">
-      Erledigt
-    </button>
-  </div>
-
-  <button mat-icon-button class="expandButton" (click)="onExpandClicked()">
+  <button mat-icon-button class="expandButton pull-right" (click)="onExpandClicked()">
     <mat-icon aria-label="Expand tasks button">expand_more</mat-icon>
   </button>
-
-
+  {{filterOptions.user.id}}
 
 </mat-card>

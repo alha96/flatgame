@@ -13,7 +13,7 @@ import {
   MatSliderModule,
   MatMenuModule,
   MatProgressBarModule,
-  MatDialogModule, MatGridListModule
+  MatDialogModule, MatGridListModule, MatRadioModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -45,6 +45,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { TasksHistoryComponent } from './overview/tasks-history/tasks-history.component';
 import { DialogIconPickerComponent } from './shared-components/dialog-icon-picker/dialog-icon-picker.component';
 import { FilterComponent } from './history/filter/filter.component';
+import {NouisliderModule} from "ng2-nouislider";
 
 const appRoutes: Routes = [
   {
@@ -132,7 +133,9 @@ const appRoutes: Routes = [
     MatProgressBarModule,
     MatDialogModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    NouisliderModule,
+    MatRadioModule
   ],
   providers: [
     UserService,

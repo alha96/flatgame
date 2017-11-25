@@ -1,8 +1,15 @@
 <!--Same as in module settings. Improvements should be done to both -->
 
+<script src="../overview/tasks-history/tasks-history.component.ts"></script>
 <div fxLayout fxFlexAlign="start">
 
-  <app-filter></app-filter>
-  <app-tasks-history></app-tasks-history>
+  <app-filter
+    (updatedFilter)="filterOptions = $event"
+  ></app-filter>
+  {{filterOptions}}
+  <app-tasks-history
+    style="margin-top:15px;"
+    [updatedFilter]="filterOptions"
+  ></app-tasks-history>
 
 </div>

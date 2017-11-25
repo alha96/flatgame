@@ -27,7 +27,7 @@ export class TasksComponent implements OnInit {
 
   onTaskCompleted(taskInfo: TaskItem) {
     console.log('Clicked ' + taskInfo.name + ', state: ' + taskInfo.done);
-    //this.taskTodoItems.push(taskInfo);
+    //this.taskItem.push(taskInfo);
 
 
   }

@@ -13,30 +13,38 @@ export class TasksHistoryComponent implements OnInit {
   @Input() filterTaskTypes : TaskItem[];
 
   taskItem: TaskItem[] = [
-    new TaskItem(null, 'Blumen gießen', 'desc', 3, true, 'spa', 7, 0, 1, '2017-11-08T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'),
-    new TaskItem(null, 'Einkaufen gehen', 'desc', 2, true, 'local_grocery_store', 7, 0, 15, '2017-10-30T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'),
-    new TaskItem(null, 'Terasse pegen', 'desc', 4, true, 'local_bar', 7, 0, 3, '2017-11-01T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234')
+    new TaskItem(null, 'Blumen gießen', 'desc', 3, true, 'spa', 7, 0, 1, '2017-11-08T00:00:00', '2017-10-28T00:00:00', 'Pat', '2'),
+    new TaskItem(null, 'Einkaufen gehen', 'desc', 2, true, 'local_grocery_store', 7, 0, 15, '2017-10-30T00:00:00', '2017-10-28T00:00:00', 'Pat', '2'),
+    new TaskItem(null, 'Terasse pegen', 'desc', 4, true, 'local_bar', 7, 0, 3, '2017-11-01T00:00:00', '2017-10-28T00:00:00', 'Nick', '1')
   ];
+
+  shownTaskItems : TaskItem[];
 
    onExpandClicked() {
     for (var i = 1; i < 4; i++)
-      this.taskItem.push(new TaskItem(null, 'Terasse pegen', 'desc', i * 2, true, 'local_bar', 7, 0, 3, '2017-11-01T00:00:00', '2017-10-28T00:00:00', 'Pat', '1234'));
+      this.taskItem.push(new TaskItem(null, 'Terasse pegen', 'desc', 2 , true, 'local_bar', 7, 0, 3, '2017-11-01T00:00:00', '2017-10-28T00:00:00', 'IDK', i.toString()));
 
   }
 
   constructor() { }
 
   ngOnInit() {
+     this.shownTaskItems = this.taskItem;
   }
 
 
   //////////////////FILTERING FOR HISTORY///////////////////
-  @Input('updatedFilter') filterOptions : FilterOptions;
+  private filterOptions: FilterOptions;
+  @Input('updatedFilter') set inFilterOptions(value: FilterOptions){
+     console.log("CHANGESFD");
+    this.filterOptions = value;
+    this.filterHitlist(value.taskTypes, value.user);
+  };
 
   filterHitlist(taskTypes: TaskItem[], user: UserItem, timeMin?: Date, timeMax?: Date, pointsMin?, pointsMax?) : TaskItem[]{
     //check if tasks exist that go back until timeMin
 
-    let hitTasks: TaskItem[];
+    let hitTasks: TaskItem[] = [];
     for (let task of this.taskItem){
       //check user match
       if (+user.id != 0){
@@ -45,16 +53,16 @@ export class TasksHistoryComponent implements OnInit {
           break; //else user matches
         }
       }
-      //check task match
-      let match = false;
-      for (let taskType of taskTypes){
-        if (taskType.id == task.id){
-          match = true;
-          break;
-        }
-      }
+      // //check task match
+      // let match = false;
+      // for (let taskType of taskTypes){
+      //   if (taskType.id == task.id){
+      //     match = true;
+      //     break;
+      //   }
+      // }
       //if no hit in taskType comparison loop task not a hit
-      if (!match) break;
+      // if (!match) break;
       //check task done time in range
       if (timeMin != null && timeMax != null){
         if (!(task.lastDoneDate.getTime() >= timeMin.getTime() && task.lastDoneDate.getTime() <= timeMax.getTime())){
@@ -72,7 +80,7 @@ export class TasksHistoryComponent implements OnInit {
       //any tasks that makes it this far has matched every requirement
       hitTasks.push(task);
     }
-
+    this.shownTaskItems = hitTasks;
     return hitTasks;
   }
 

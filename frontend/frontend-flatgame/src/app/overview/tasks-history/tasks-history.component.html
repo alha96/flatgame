@@ -1,13 +1,12 @@
 <mat-card class="card">
   <mat-card-title>Letzte erledigte Tasks</mat-card-title>
   <app-task-item-detail
-    *ngFor="let taskItem of taskItem"
+    *ngFor="let taskItem of shownTaskItems"
     [taskItemInfo]="taskItem">
   </app-task-item-detail>
 
   <button mat-icon-button class="expandButton pull-right" (click)="onExpandClicked()">
     <mat-icon aria-label="Expand tasks button">expand_more</mat-icon>
   </button>
-  {{filterOptions.user.id}}
 
 </mat-card>

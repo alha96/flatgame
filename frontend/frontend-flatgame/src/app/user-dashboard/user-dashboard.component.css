@@ -1,0 +1,24 @@
+.title-section {
+  margin-left:25px;
+  display: inline-flex;
+}
+
+.user-info {
+  margin:20px;
+}
+
+.img-circle {
+  float: none;
+}
+
+.container{
+  display:flex;
+  flex-wrap: wrap
+}
+
+.flex-item{
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-basis: 50%;
+}

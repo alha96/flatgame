@@ -26,6 +26,9 @@
                    name="inputName"
                    matInput
                    placeholder="Aufgabenname">
+            <!--<mat-error *ngIf="nameFormControl.hasError('empty')">-->
+              <!--Please enter a valid email address-->
+            <!--</mat-error>-->
           </mat-form-field>
           <mat-form-field class="full-width">
             <input [(ngModel)]="editingTaskInfo.description"

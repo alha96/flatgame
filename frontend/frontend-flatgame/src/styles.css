@@ -46,6 +46,11 @@ html, body {
   float: right;
 }
 
+.cardless-border{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 
 /*@ LARS why does this not work
 hr {

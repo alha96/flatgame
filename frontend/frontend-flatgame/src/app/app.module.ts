@@ -46,6 +46,9 @@ import { TasksHistoryComponent } from './overview/tasks-history/tasks-history.co
 import { DialogIconPickerComponent } from './shared-components/dialog-icon-picker/dialog-icon-picker.component';
 import { FilterComponent } from './history/filter/filter.component';
 import {NouisliderModule} from "ng2-nouislider";
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { AbscensesComponent } from './user-dashboard/abscenses/abscenses.component';
+import { AbscenseItemComponent } from './user-dashboard/abscense-item/abscense-item.component';
 
 const appRoutes: Routes = [
   {
@@ -60,6 +63,10 @@ const appRoutes: Routes = [
       {
         path: 'overview',
         component: OverviewComponent
+      },
+      {
+        path: 'user-dashboard',
+        component: UserDashboardComponent
       },
       {
         path: 'settings-flat',
@@ -86,7 +93,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'overview'
   }
 ];
 
@@ -110,7 +117,10 @@ const appRoutes: Routes = [
     LayoutComponent,
     TasksHistoryComponent,
     DialogIconPickerComponent,
-    FilterComponent
+    FilterComponent,
+    UserDashboardComponent,
+    AbscensesComponent,
+    AbscenseItemComponent
   ],
   imports: [
     BrowserModule,

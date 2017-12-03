@@ -48,7 +48,7 @@ import { FilterComponent } from './history/filter/filter.component';
 import {NouisliderModule} from "ng2-nouislider";
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AbscensesComponent } from './user-dashboard/abscenses/abscenses.component';
-import { AbscenseItemComponent } from './user-dashboard/abscense-item/abscense-item.component';
+import { AbscenseItemComponent } from './user-dashboard/abscenses/abscense-item/abscense-item.component';
 
 const appRoutes: Routes = [
   {

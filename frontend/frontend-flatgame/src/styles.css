@@ -51,12 +51,16 @@ html, body {
   margin-bottom: 25px;
 }
 
-html { 
-   box-sizing: border-box; 
-},
+html {
+   box-sizing: border-box;
+}
 
 *, :before, *:after {
-  box-sizing: inherit; 
+  box-sizing: inherit;
+}
+
+.fill-hor {
+  width: 100%
 }
 
 

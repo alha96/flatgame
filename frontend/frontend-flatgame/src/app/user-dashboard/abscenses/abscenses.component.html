@@ -5,14 +5,15 @@
   <div>
 
     <app-abscense-item
-      *ngFor="let absence of absences"
-      [absence]="absence"
+      *ngFor="let absence of absences, let i = index"
+      [absenceInfo]="absence"
+      (updatedAbsenceValues)="absenceInfoChanged(i, $event)"
     ></app-abscense-item>
   </div>
 
   <br/> <br/>
   <!--Nur wenn eingeloggt-->
-  <button mat-fab class="pull-right" (click)="onAddFabClicked()">
+  <button mat-fab class="pull-right" (click)="onAddAbsenceClicked()">
     <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
   </button>
 

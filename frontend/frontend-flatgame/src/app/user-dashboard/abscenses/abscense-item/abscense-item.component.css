@@ -1,0 +1,12 @@
+.container-left {
+  width: 90%;
+  display: flex;
+  margin-top: 10px;
+}
+.container-right {
+  width: 10%;
+}
+.container{
+  display:flex;
+  flex-wrap: wrap
+}

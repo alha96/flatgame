@@ -1,15 +1,14 @@
 <div class="cardless-border">
 
   <section class="title-section">
-    <img class="img-circle" src="https://randomuser.me/api/portraits/women/76.jpg"
+    <img class="img-circle" src="{{user.profile_image}}"
          onerror="if (this.src != 'assets/no_user.jpg') this.src = 'assets/no_user.jpg';" alt="Smiley face"
          height="150px" width="150px">
 
     <div class="user-info">
-      <h1>Johanne</h1>
-      <p class="text_normal">Mitglied in DuerrleWG seit 21.12.2112</p>
-      <p class="text_normal">Email: johanne1919@gmail.com</p>
-
+      <h1>{{user.username}}</h1>
+      <p class="text_normal">Mitglied in {{user.flat}} seit MISSING</p>
+      <p class="text_normal">Email: {{user.email}}</p>
     </div>
   </section>
 

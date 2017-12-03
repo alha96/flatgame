@@ -9,10 +9,10 @@ import {UserItem} from "../../models/user-item.module";
 export class UsersComponent implements OnInit {
 
   userInfos: UserItem[] = [
-    new UserItem("123", "TSchnee45", "https://randomuser.me/aBS@other code", 70),
-    new UserItem("321", "Alex", "https://randomuser.me/api/BS@other code", 65),
-    new UserItem("321", "MaxiiD", "https://randomuser.me/api/BS@other code", 20),
-    new UserItem("321", "Patrick", "https://randomuser.me/api/BS@other code", 45)
+    new UserItem("123", "TSchnee45", null, "https://randomuser.me/aBS@other code", 70),
+    new UserItem("321", "Alex", null, "https://randomuser.me/api/BS@other code", 65),
+    new UserItem("321", "MaxiiD", null, "https://randomuser.me/api/BS@other code", 20),
+    new UserItem("321", "Patrick", null, "https://randomuser.me/api/BS@other code", 45)
   ];
 
   constructor() { }

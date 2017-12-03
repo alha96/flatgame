@@ -13,7 +13,9 @@ import {
   MatSliderModule,
   MatMenuModule,
   MatProgressBarModule,
-  MatDialogModule, MatGridListModule, MatRadioModule
+  MatDialogModule, MatGridListModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
+  MatSnackBarModule,
+  MAT_DATE_LOCALE
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -66,6 +68,10 @@ const appRoutes: Routes = [
       },
       {
         path: 'user-dashboard',
+        component: UserDashboardComponent
+      },
+      {
+        path: 'user-dashboard/:userid',
         component: UserDashboardComponent
       },
       {
@@ -145,11 +151,15 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatGridListModule,
     NouisliderModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   providers: [
     UserService,
-    AuthGuard
+    AuthGuard,
+    {provide: MAT_DATE_LOCALE, useValue: 'de-DE'}
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogIconPickerComponent] //can someone explain why?

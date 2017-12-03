@@ -1,4 +1,44 @@
-<p>
-  <span class="text_normal">{{getDaysUntilString()}}</span>
-  <span class="text_normal pull-right">{{getFormated(absence.start)}} - {{getFormated(absence.end)}}</span>
-</p>
+<div class="container">
+  <div class="container-left">
+  <p *ngIf="!isEditing" class="fill-hor">
+    <span class="text_normal">{{getDaysUntilString()}}</span>
+    <span class="text_normal pull-right">{{getFormated(absenceInfo.start)}} - {{getFormated(absenceInfo.end)}}</span>
+  </p>
+  <div *ngIf="isEditing">
+    <div >
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Startdatum" [formControl]="dateStartControl"
+               [min]="getStartMinDate()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Enddatum" [formControl]="dateEndControl"
+               [min]="dateStartControl.value">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="pull-right" (click)="onSaveChangesClicked()">Speichern</button>
+    </div>
+
+
+  </div>
+</div>
+  <div class="container-right">
+    <button mat-icon-button class="this-task-action" [matMenuTriggerFor]="task_option">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #task_option="matMenu">
+      <button mat-menu-item (click)="onMenuEditClicked()">
+        <mat-icon>loop</mat-icon>
+        <span>{{isEditing ? "Verwefen" : "Ändern"}}</span>
+      </button>
+      <button mat-menu-item (click)="onMenuDeleteClicked()">
+        <mat-icon>delete</mat-icon>
+        <span>Löschen</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

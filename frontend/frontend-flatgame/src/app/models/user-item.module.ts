@@ -10,11 +10,12 @@ export class UserItem {
   public wgMaxPoints: number;
 
 
-  constructor(id: string, username: string, profile_image?: string, points?: number) {
+  constructor(id: string, username: string, email? :  string, profile_image?: string, points?: number) {
     this.id = id;
     this.username = username;
     this.profile_image = profile_image;
     this.points = points;
+    this.email = email;
   }
 
 

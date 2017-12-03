@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AbsenceItem} from "../../models/absence-item.module";
 
 @Component({
@@ -8,6 +8,7 @@ import {AbsenceItem} from "../../models/absence-item.module";
 })
 export class AbscensesComponent implements OnInit {
 
+  @Input() userId : string;
   //called from absence items when something changes and must be sent to server
   absenceInfoChanged(item: number, updatedData : AbsenceItem){
     if (updatedData == null){
@@ -31,6 +32,7 @@ export class AbscensesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //TODO load data for user UserId and add to absences
   }
 
 }

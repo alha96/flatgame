@@ -3,7 +3,7 @@ import {FormControl} from "@angular/forms";
 import {TaskItem} from "../../models/task-item.module";
 import {ConstIcons} from "../../constants/icons";
 import {UserItem} from "../../models/user-item.module";
-import {FilterOptions} from "../../models/filter-options.module";
+import {HistoryFilterOptions} from "../../models/filter-options.module";
 
 @Component({
   selector: 'app-filter',
@@ -20,10 +20,10 @@ import {FilterOptions} from "../../models/filter-options.module";
 export class FilterComponent implements OnInit {
 
   // @Output() updatedFilter = new EventEmitter<Number>();
-  @Output() updatedFilter = new EventEmitter<FilterOptions>();
+  @Output() updatedFilter = new EventEmitter<HistoryFilterOptions>();
 
 
-  filterOptions : FilterOptions;
+  filterOptions : HistoryFilterOptions;
 
   taskList: TaskItem[] = [
     new TaskItem("1", 'Blumen gießen', null, 3, false, 'toilet_bowl'),
@@ -55,7 +55,8 @@ export class FilterComponent implements OnInit {
 
   onFilterUpdateClicked(){
     //FOR WHATEVER REASON JUST CHANGING THE VALUES IN THE OBJECT DOES NOT WORK. BUGGG
-     this.updatedFilter.emit(new FilterOptions(this.taskList, this.userFilterSelection));
+     //this.updatedFilter.emit(new HistoryFilterOptions(this.taskList, this.userFilterSelection));
+    //TODO Change lists to only ID arrays
   }
   constructor() { }
 
@@ -72,7 +73,8 @@ export class FilterComponent implements OnInit {
     // this.taskChoice;
     // this.taskChoice[0] = this.taskList[1];
     // this.done = true;
-    this.filterOptions = new FilterOptions(this.taskList, this.userFilterSelection);
+    //TODO Reinsert with array
+    //this.filterOptions = new HistoryFilterOptions(this.taskList, this.userFilterSelection);
      this.updatedFilter.emit(this.filterOptions);
 
   }

@@ -13,11 +13,14 @@
   </section>
 
   <section class="container">
-    <app-tasks-history class="flex-item">
-    </app-tasks-history>
 
-    <app-abscenses class="flex-item">
+    <app-abscenses class="flex-item"
+      [userId]="userId" >
     </app-abscenses>
+    
+    <app-tasks-history class="flex-item"
+    [updatedFilter]="crHistory">
+    </app-tasks-history>
 
   </section>
 </div>

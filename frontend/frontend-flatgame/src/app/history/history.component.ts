@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FilterOptions} from "../models/filter-options.module";
+import {HistoryFilterOptions} from "../models/filter-options.module";
 import {UserItem} from "../models/user-item.module";
 @Component({
   selector: 'app-history',
@@ -9,7 +9,7 @@ import {UserItem} from "../models/user-item.module";
 export class HistoryComponent implements OnInit {
 
   // @Input() filterOptions : Number = 2;
-  @Input() filterOptions : FilterOptions = new FilterOptions(null, new UserItem("10", "Pat",null,null));
+  @Input() filterOptions : HistoryFilterOptions = new HistoryFilterOptions(null,["10"]);
 
   constructor() { }
 

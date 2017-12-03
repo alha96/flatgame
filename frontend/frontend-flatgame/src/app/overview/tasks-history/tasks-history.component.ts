@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TaskItem} from "../../models/task-item.module";
 import {UserItem} from "../../models/user-item.module";
-import {FilterOptions} from "../../models/filter-options.module";
+import {HistoryFilterOptions} from "../../models/filter-options.module";
 
 @Component({
   selector: 'app-tasks-history',
@@ -34,11 +34,12 @@ export class TasksHistoryComponent implements OnInit {
 
 
   //////////////////FILTERING FOR HISTORY///////////////////
-  private filterOptions: FilterOptions;
-  @Input('updatedFilter') set inFilterOptions(value: FilterOptions){
+  private filterOptions: HistoryFilterOptions;
+  @Input('updatedFilter') set inFilterOptions(value: HistoryFilterOptions){
      console.log("CHANGESFD");
     this.filterOptions = value;
-    this.filterHitlist(value.taskTypes, value.user);
+    //TODO update for Ids only
+    //this.filterHitlist(value.taskTypes, value.user);
   };
 
   filterHitlist(taskTypes: TaskItem[], user: UserItem, timeMin?: Date, timeMax?: Date, pointsMin?, pointsMax?) : TaskItem[]{

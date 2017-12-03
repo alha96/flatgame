@@ -5,9 +5,13 @@ export class UserItem {
   public profile_image: string;
   public points: number;
   public flat: string;
+  //probably should be saved somewhere else
   public wgRang: number;
   public wgNumMembers: number;
   public wgMaxPoints: number;
+  //insert inFlat since
+  //insert isAdmin
+  //insert inWgSince
 
 
   constructor(id: string, username: string, email? :  string, profile_image?: string, points?: number) {

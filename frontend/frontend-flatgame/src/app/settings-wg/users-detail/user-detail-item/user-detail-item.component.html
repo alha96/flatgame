@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container-left">
+    <img class="img-circle mar15h" src="{{userInfo.profile_image}}"
+         onerror="if (this.src != 'assets/no_user.jpg') this.src = 'assets/no_user.jpg';" alt="Smiley face"
+         height="80px" width="80px">
+
+    <div class="this-user-info">
+      <h3>{{userInfo.username}}</h3>
+      <p>NGIF Administrator der WG</p>
+      <p>Mitglied in WGNAME seit: DATE </p>
+      <p>Punkte: {{userInfo.points}}</p>
+    </div>
+  </div>
+  <div class="container-right">
+    <button mat-icon-button class="this-task-action" [matMenuTriggerFor]="task_option">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #task_option="matMenu">
+      <button mat-menu-item (click)="onMenuMakeAdminClicked()">
+        <mat-icon>loop</mat-icon>
+        <span>Zum Administrator ernennen</span>
+      </button>
+      <button mat-menu-item (click)="onMenuChangePointsClicked()">
+        <mat-icon>delete</mat-icon>
+        <span>Punktanzahl ändern</span>
+      </button>
+      <button mat-menu-item (click)="onMenuDeleteClicked()">
+        <mat-icon>delete</mat-icon>
+        <span>Löschen</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <!--@LARS Why does it never show-->
+  <hr [hidden]="isLast"/>
+
+</div>

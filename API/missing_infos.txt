@@ -2,4 +2,11 @@ Missing data
 
 User:
    - in flat since {{date}}
+   - isAdmin
+   - flatId & flatName
    
+Absences:
+   + by userId
+   - from
+   - until
+   - id

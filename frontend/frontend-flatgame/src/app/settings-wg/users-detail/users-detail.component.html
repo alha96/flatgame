@@ -1,42 +1,13 @@
 <mat-card class="card">
 
-  <!--<div class="container">-->
-    <!--<div class="container-left">-->
-      <!--<img class="img-circle" src="ffoo"-->
-           <!--onerror="if (this.src != 'assets/no_user.jpg') this.src = 'assets/no_user.jpg';" alt="Smiley face"-->
-           <!--height="150px" width="150px">-->
+  <app-user-detail-item
+  *ngFor="let userItem of users; let last = last"
+  [userInfo]="userItem"
+  [isLast]="last">
+  </app-user-detail-item>
 
-      <!--<div class="this-task-info">-->
-           <!--&lt;!&ndash;*ngIf="!isEditing">&ndash;&gt;-->
-
-        <!--<h3>foo</h3>-->
-        <!--<p>Beschreibung: </p>-->
-        <!--<p>Punkte:-->
-        <!--<p>Häufigkeit: </p>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container-right">-->
-      <!--<button mat-icon-button class="this-task-action" [matMenuTriggerFor]="task_option">-->
-        <!--<mat-icon>more_vert</mat-icon>-->
-      <!--</button>-->
-
-      <!--<mat-menu #task_option="matMenu">-->
-        <!--<button mat-menu-item (click)="onMenuEditClicked()">-->
-          <!--<mat-icon>loop</mat-icon>-->
-          <!--&lt;!&ndash;<span>{{isEditing ? "Verwefen" : "Ändern"}}</span>&ndash;&gt;-->
-        <!--</button>-->
-        <!--<button mat-menu-item (click)="onMenuDeleteClicked()">-->
-          <!--<mat-icon>delete</mat-icon>-->
-          <!--<span>Löschen</span>-->
-        <!--</button>-->
-      <!--</mat-menu>-->
-    <!--</div>-->
-
-    <!--<br class="clearInline"/>-->
-  <!--</div>-->
-
-  <!--&lt;!&ndash;<mat-divider [hidden]="isLast"></mat-divider>&ndash;&gt;-->
-  <!--&lt;!&ndash;<hr [hidden]="isLast"/>&ndash;&gt;-->
+  <!--<mat-divider [hidden]="isLast"></mat-divider>-->
+  <!--<hr [hidden]="isLast"/>-->
 
 
 </mat-card>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../models/user";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -10,11 +12,16 @@ import {User} from "../models/user";
 export class HeaderComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private http: HttpClient, private router: Router) {
     this.user = this.userService.currUser;
   }
 
   ngOnInit() {
+  }
+
+  logout(){
+    this.http.delete("/api/auth/session");
+    this.router.navigate(['/login']);
   }
 
 }

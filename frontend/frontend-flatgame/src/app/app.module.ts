@@ -62,6 +62,7 @@ const appRoutes: Routes = [
     path: '',
     component: LayoutComponent,
     canActivate: [AuthGuard],
+    redirectTo: 'overview',
     children: [
       {
         path: 'overview',

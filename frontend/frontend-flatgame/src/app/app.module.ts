@@ -56,11 +56,18 @@ import { UserDetailItemComponent } from './settings-wg/users-detail/user-detail-
 const appRoutes: Routes = [
   {
     path: 'login',
+    pathMatch: 'full',
     component: LoginComponent
   },
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'overview'
+  },
+  {
+    path: '',
     component: LayoutComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
       {
         path: 'overview',
@@ -94,16 +101,12 @@ const appRoutes: Routes = [
       {
         path: 'history',
         component: HistoryComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'overview'
       }
     ]
-  },
-  {
-    path: '**',
-    redirectTo: 'overview'
-  },
-  {
-    path: '',
-    redirectTo: 'overview'
   }
 ];
 

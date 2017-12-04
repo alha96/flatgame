@@ -20,8 +20,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.http.delete("/api/auth/session");
-    this.router.navigate(['/login']);
+    this.http.delete("/api/auth/session").subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    });
+    //this.router.navigate(['/login']);
   }
 
 }

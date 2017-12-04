@@ -59,10 +59,8 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: '',
     component: LayoutComponent,
     canActivate: [AuthGuard],
-    redirectTo: 'overview',
     children: [
       {
         path: 'overview',
@@ -101,6 +99,10 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
+    redirectTo: 'overview'
+  },
+  {
+    path: '',
     redirectTo: 'overview'
   }
 ];

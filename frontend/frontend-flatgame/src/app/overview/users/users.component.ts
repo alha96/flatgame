@@ -2,10 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserItem} from "../../models/user-item.module";
 import {UserService} from "../../services/user.service";
 import {FlatService} from "../../services/flat.service";
-import {forEach} from "@angular/router/src/utils/collection";
-import {Flat} from "../../models/flat";
 import {User} from "../../models/user";
-import {userInfo} from "os";
 
 @Component({
   selector: 'app-users',

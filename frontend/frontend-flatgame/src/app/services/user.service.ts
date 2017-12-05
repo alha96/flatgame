@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   //TODO Remove the default user object
   private _currUser: User = {
@@ -22,5 +23,17 @@ export class UserService {
   get currUser(): User {
     return this._currUser;
   };
+
+  getUserById(id: String): User {
+    console.log("getUserById: " + id);
+    this.http.get<User>('/api/user/' + id).subscribe(data => {
+      console.log(data);
+      return data;
+    }, err => {
+      console.log(err);
+      return null;
+    });
+    return null;
+  }
 
 }

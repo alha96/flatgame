@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {UserItem} from "../../models/user-item.module";
+import {UserService} from "../../services/user.service";
+import {FlatService} from "../../services/flat.service";
+import {forEach} from "@angular/router/src/utils/collection";
+import {Flat} from "../../models/flat";
+import {User} from "../../models/user";
+import {userInfo} from "os";
 
 @Component({
   selector: 'app-users',
@@ -15,13 +21,18 @@ export class UsersComponent implements OnInit {
     new UserItem("321", "Patrick", null, "https://randomuser.me/api/BS@other code", 45)
   ];
 
-  constructor() { }
+  constructor(private userService: UserService, private flatService: FlatService) { }
 
   ngOnInit() {
    this.updateMembers();
   }
 
   private updateMembers(){
+    this.flatService.currFlat.members.forEach(member => {
+      console.log("Add new User to component with id " + member._id);
+      var user:User = this.userService.getUserById(member._id);
+      this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
+    });
     this.userInfos = this.sortUsers(this.userInfos);
     this.userInfos = this.addRanking(this.userInfos);
   }

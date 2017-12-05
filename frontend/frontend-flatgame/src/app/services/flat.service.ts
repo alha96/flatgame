@@ -1,37 +1,51 @@
 import { Injectable } from '@angular/core';
 import {Flat} from "../models/flat";
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class FlatService {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private userService: UserService) { }
 
   //TODO Remove the default flat object
   private _currFlat: Flat = {
     name: "Meine Demo WG",
-    id: "12345abcde",
+    _id: "123456789",
     image: null,
-    description: null
+    description: null,
+    tasks: null,
+    members: null
   };
-  set currFlat(user: Flat){
-    this._currFlat = user;
+  set currFlat(flat: Flat){
+    this._currFlat = flat;
   };
   get currFlat(): Flat {
-    return this._currFlat;
+    return this.getFlatById(this.userService.currUser.flat);
   };
 
   public createFlat(flatname: String){
     this.http.post("/api/flat", "" +
       "{\n" +
       "  \"name\": \"" + flatname + "\",\n" +
-      "  \"id\": " + "12345" + "\n" +
       "}"
-    ).subscribe(data => {
+    , {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(data => {
       console.log(data);
+      this.router.navigate(['overview']);
     }, err => {
       console.log(err);
     });
+  }
+
+  public getFlatById(id: String): Flat {
+    this.http.get("/api/flat/" + id).subscribe(data => {
+      console.log(data);
+      return data;
+    }, err => {
+      console.log(err);
+      return null;
+    });
+    return null;
   }
 }

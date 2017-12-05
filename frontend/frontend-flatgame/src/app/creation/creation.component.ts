@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../models/user";
 import {UserService} from "../services/user.service";
+import {FlatService} from "../services/flat.service";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {MatInputModule} from '@angular/material/input';
@@ -13,7 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 export class CreationComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService, private http: HttpClient, private router: Router) {
+  constructor(private flatService: FlatService, private userService: UserService, private http: HttpClient, private router: Router) {
     this.user = this.userService.currUser;
   }
 
@@ -32,6 +33,7 @@ export class CreationComponent implements OnInit {
   createNewFlat(flatname: String) {
     if(flatname != ""){
       console.log("WG mit name (" + flatname + ") wird erstellt");
+      this.flatService.createFlat(flatname);
     } else {
       console.log("Der WG Name muss mindestens 4 Zeichen lang sein");
     }

@@ -13,9 +13,7 @@ export class UsersComponent implements OnInit {
 
   userInfos: UserItem[] = [
     new UserItem("123", "TSchnee45", null, "https://randomuser.me/aBS@other code", 70),
-    new UserItem("321", "Alex", null, "https://randomuser.me/api/BS@other code", 65),
-    new UserItem("321", "MaxiiD", null, "https://randomuser.me/api/BS@other code", 20),
-    new UserItem("321", "Patrick", null, "https://randomuser.me/api/BS@other code", 45)
+    new UserItem("321", "Alex", null, "https://randomuser.me/api/BS@other code", 65)
   ];
 
   constructor(private userService: UserService, private flatService: FlatService) { }
@@ -26,10 +24,11 @@ export class UsersComponent implements OnInit {
 
   private updateMembers(){
     this.flatService.currFlat.members.forEach(member => {
-      console.log("Add new User to component with id " + member._id);
+      console.log("Add new User to component with id " + member.user);
       var user:User = this.userService.getUserById(member.user);
       this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
     });
+    this.userInfos.push( new UserItem("321", "Patrick", null, "https://randomuser.me/api/BS@other code", 45));
     this.userInfos = this.sortUsers(this.userInfos);
     this.userInfos = this.addRanking(this.userInfos);
   }

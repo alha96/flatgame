@@ -22,7 +22,7 @@ export class FlatService {
     return this._currFlat;
   };
 
-  createFlat(flatname: String){
+  public createFlat(flatname: String){
     this.http.post("/api/flat", "" +
       "{\n" +
       "  \"name\": " + flatname + ",\n" +

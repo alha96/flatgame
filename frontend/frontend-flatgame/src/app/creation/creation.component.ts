@@ -33,7 +33,7 @@ export class CreationComponent implements OnInit {
   createNewFlat(flatname: String) {
     if(flatname != ""){
       console.log("WG mit name (" + flatname + ") wird erstellt");
-      //this.flatService.createFlat(flatname);
+      this.flatService.createFlat(flatname);
     } else {
       console.log("Der WG Name muss mindestens 4 Zeichen lang sein");
     }

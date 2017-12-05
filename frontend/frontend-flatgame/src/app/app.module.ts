@@ -53,6 +53,7 @@ import { AbscensesComponent } from './user-dashboard/abscenses/abscenses.compone
 import { AbscenseItemComponent } from './user-dashboard/abscenses/abscense-item/abscense-item.component';
 import { UserDetailItemComponent } from './settings-wg/users-detail/user-detail-item/user-detail-item.component';
 import { CreationComponent } from './creation/creation.component';
+import {FlatService} from "./services/flat.service";
 
 const appRoutes: Routes = [
   {
@@ -174,6 +175,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserService,
+    FlatService,
     AuthGuard,
     {provide: MAT_DATE_LOCALE, useValue: 'de-DE'}
   ],

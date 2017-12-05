@@ -1,0 +1,88 @@
+#mainbg {
+  background-image: url("https://tatica.fedorapeople.org/Themes/F12/wallpaper-mosaico6.svg");
+  background-size: cover;
+  background-position: center;
+  height: 100%
+}
+
+#title {
+  font-size: 63px;
+  line-height: 68px;
+  margin: 1px !important;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#subtitle {
+  font-size: 25px;
+  margin-top: 15px !important;
+  margin-bottom: 25px !important;
+  margin-left: 80px !important;
+  margin-right: 80px !important;
+  color: #FFFFFF;
+}
+
+#creationCard {
+
+}
+
+#NewContainer {
+  color: #FFFFFF;
+}
+
+/deep/ .mat-input-underline {
+  background-color: #BBBBBB;
+}
+
+/deep/ .mat-input-placeholder {
+  color: #BBBBBB;
+}
+
+#erstellenBtn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.toolbar-space {
+  align: middle;
+}
+
+.action-buttons {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-by-margins {
+  max-width: 1080px;
+  margin: 0 auto !important;
+  float: none !important;
+  height: calc(100% - 64px)
+}
+
+button {
+  text-transform: uppercase;
+  background-color: transparent;
+  border-color: transparent;
+}
+button a {
+  text-decoration: none;
+}
+
+.mat-button{
+  min-width: inherit;
+}
+
+.logo {
+  margin: 0 4px 3px 0;
+}
+
+img {
+  margin-right:15px;
+}
+
+mat-toolbar {
+  display: block;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}

@@ -1,13 +1,15 @@
 #loginContainer {
   height: 100%;
-  background-image: url("http://ftp.fau.de/scientific/graphics/latest/backgrounds/Edge.of.Space/atomshine-16-9.svg");
+  background-image: url("https://tatica.fedorapeople.org/Themes/F12/wallpaper-mosaico6.svg");
   background-size: cover;
   background-position: center;
 }
 
 #title {
   font-size: 63px;
+  line-height: 68px;
   color: #FFFFFF;
+  text-align: center;
 }
 
 #loginCard {

@@ -52,12 +52,19 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { AbscensesComponent } from './user-dashboard/abscenses/abscenses.component';
 import { AbscenseItemComponent } from './user-dashboard/abscenses/abscense-item/abscense-item.component';
 import { UserDetailItemComponent } from './settings-wg/users-detail/user-detail-item/user-detail-item.component';
+import { CreationComponent } from './creation/creation.component';
 
 const appRoutes: Routes = [
   {
     path: 'login',
     pathMatch: 'full',
     component: LoginComponent
+  },
+  {
+    path: 'create',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: CreationComponent
   },
   {
     path: '',
@@ -134,7 +141,8 @@ const appRoutes: Routes = [
     UserDashboardComponent,
     AbscensesComponent,
     AbscenseItemComponent,
-    UserDetailItemComponent
+    UserDetailItemComponent,
+    CreationComponent
   ],
   imports: [
     BrowserModule,

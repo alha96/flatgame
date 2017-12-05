@@ -1,0 +1,40 @@
+<div id="mainbg">
+  <mat-toolbar color="primary" >
+    <a mat-button><mat-icon class="logo">home</mat-icon><span>WG-Spiel</span></a>
+
+    <div fxFlex="<grow>"></div>
+    <div fxFlex="<grow>"></div>
+
+    <img class="img-circle" src="{{user.profile_image}}" height="40px" width="auto">
+    <button mat-button (click)="logout()">
+      <mat-icon>call_missed_outgoing</mat-icon>
+      <span>Abmelden</span>
+    </button>
+  </mat-toolbar>
+
+  <main class="center-by-margins" fxLayoutAlign="center center">
+
+      <div id="creationCard" fxFlex="70">
+        <div fxLayoutAlign="center">
+          <h1 id="title" class="mat-title">
+            Hallo {{user.username}},
+          </h1>
+        </div>
+        <div fxLayoutAlign="center">
+          <h2 id="subtitle" class="mat-title">
+            Du bist noch in keiner WG. Du kannst nun entweder eine neue WG erstellen oder über den Link eines WG Admins beitreten.
+          </h2>
+        </div>
+        <div id="NewContainer" fxLayoutAlign="center">
+          <div class="input-container">
+            <mat-form-field color="accent">
+              <input #flatname matInput placeholder="WG-Name" (keyup.enter)="createNewFlat(flatname.value)">
+            </mat-form-field>
+          </div>
+          <button id="erstellenBtn" mat-raised-button color="accent" (click)="createNewFlat(flatname.value)">Erstellen</button>
+        </div>
+      </div>
+
+  </main>
+
+</div>

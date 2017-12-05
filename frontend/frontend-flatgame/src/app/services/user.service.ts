@@ -27,14 +27,7 @@ export class UserService {
 
   getUserById(id: String): Observable<User> {
     console.log("getUserById: " + id);
-    this.http.get<User>('/api/user/' + id).subscribe(data => {
-      console.log(data);
-      return data;
-    }, err => {
-      console.log(err);
-      return null;
-    });
-    return null;
+    return this.http.get<User>('/api/user/' + id);
   }
 
 }

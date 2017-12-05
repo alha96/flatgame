@@ -25,7 +25,7 @@ export class FlatService {
   public createFlat(flatname: String){
     this.http.post("/api/flat", "" +
       "{\n" +
-      "  \"name\": " + flatname + ",\n" +
+      "  \"name\": \"" + flatname + "\",\n" +
       "  \"id\": " + "12345" + "\n" +
       "}"
     ).subscribe(data => {

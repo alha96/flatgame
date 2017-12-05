@@ -1,35 +1,37 @@
 <mat-toolbar color="primary">
-  <a mat-button><mat-icon class="logo">home</mat-icon><span>WG-Spiel</span></a>
+  <mat-toolbar-row>
+    <a mat-button><mat-icon class="logo">home</mat-icon><span>WG-Spiel</span></a>
 
 
-  <div fxFlex="<grow>"></div>
-  <a fxHide.lt-sm mat-button routerLink="/overview">Übersicht</a>
-  <a fxHide.lt-sm mat-button routerLink="/history">Verlauf</a>
-  <a fxHide.lt-sm mat-button routerLink="/settings-flat">WG Informationen</a>
-  <div fxFlex="<grow>"></div>
+    <div fxFlex="<grow>"></div>
+    <a fxHide.lt-sm mat-button routerLink="/overview">Übersicht</a>
+    <a fxHide.lt-sm mat-button routerLink="/history">Verlauf</a>
+    <a fxHide.lt-sm mat-button routerLink="/settings-flat">WG Informationen</a>
+    <div fxFlex="<grow>"></div>
 
-  <img class="img-circle" src="{{user.profile_image}}" height="40px" width="auto">
-  <button mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item routerLink="/user-dashboard/absences">
-      <mat-icon>event</mat-icon>
-      <span>Abwesenheitsplanung</span>
+    <img class="img-circle" src="{{user.profile_image}}" height="40px" width="auto">
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button mat-menu-item routerLink="/user-dashboard">
-      <mat-icon>settings</mat-icon>
-      <span>Einstellungen</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>assignment</mat-icon>
-      <span>Impressum</span>
-    </button>
-    <button mat-menu-item (click)="logout()">
-      <mat-icon>call_missed_outgoing</mat-icon>
-      <span>Abmelden</span>
-    </button>
-  </mat-menu>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="/user-dashboard/absences">
+        <mat-icon>event</mat-icon>
+        <span>Abwesenheitsplanung</span>
+      </button>
+      <button mat-menu-item routerLink="/user-dashboard">
+        <mat-icon>settings</mat-icon>
+        <span>Einstellungen</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>assignment</mat-icon>
+        <span>Impressum</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>call_missed_outgoing</mat-icon>
+        <span>Abmelden</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
   <mat-toolbar-row fxHide.gt-xs fxLayout="row">
     <a fxFlex="<grow>" mat-button routerLink="/overview">Übersicht</a>
     <a fxFlex="<grow>" mat-button routerLink="/history">Verlauf</a>

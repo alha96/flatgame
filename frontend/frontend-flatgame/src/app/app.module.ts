@@ -54,6 +54,7 @@ import { AbscenseItemComponent } from './user-dashboard/abscenses/abscense-item/
 import { UserDetailItemComponent } from './settings-wg/users-detail/user-detail-item/user-detail-item.component';
 import { CreationComponent } from './creation/creation.component';
 import {FlatService} from "./services/flat.service";
+import { JoinComponent } from './join/join.component';
 
 const appRoutes: Routes = [
   {
@@ -66,6 +67,12 @@ const appRoutes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     component: CreationComponent
+  },
+  {
+    path: 'join/:joinid',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: JoinComponent
   },
   {
     path: '',
@@ -143,7 +150,8 @@ const appRoutes: Routes = [
     AbscensesComponent,
     AbscenseItemComponent,
     UserDetailItemComponent,
-    CreationComponent
+    CreationComponent,
+    JoinComponent
   ],
   imports: [
     BrowserModule,

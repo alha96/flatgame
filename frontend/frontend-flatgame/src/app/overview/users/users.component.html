@@ -2,8 +2,8 @@
   <mat-card-title>Mitbewohner</mat-card-title>
 
   <app-user-item
-  *ngFor="let userItem of userInfos; let i = index"
-  [userInfo]="userItem"
-  (userClicked)="onUserClicked($event)"
-></app-user-item>
+    *ngFor="let userItem of userInfos; let i = index"
+    [userInfo]="userItem"
+    (userClicked)="onUserClicked($event)"
+  ></app-user-item>
 </mat-card>

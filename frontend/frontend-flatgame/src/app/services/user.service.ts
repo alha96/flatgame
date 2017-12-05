@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class UserService {
@@ -24,7 +25,7 @@ export class UserService {
     return this._currUser;
   };
 
-  getUserById(id: String): User {
+  getUserById(id: String): Observable<User> {
     console.log("getUserById: " + id);
     this.http.get<User>('/api/user/' + id).subscribe(data => {
       console.log(data);

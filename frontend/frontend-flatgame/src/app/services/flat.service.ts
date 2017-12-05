@@ -3,6 +3,8 @@ import {Flat} from "../models/flat";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserService} from "./user.service";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class FlatService {
@@ -22,13 +24,17 @@ export class FlatService {
     this._currFlat = flat;
   };
   get currFlat(): Flat {
+    return this._currFlat;
+  };
+
+  getCurrFlat(): Observable<Flat> {
     return this.getFlatById(this.userService.currUser.flat);
   };
 
   public createFlat(flatname: String){
     this.http.post("/api/flat", "" +
       "{\n" +
-      "  \"name\": \"" + flatname + "\",\n" +
+      "  \"name\": \"" + flatname + "\"\n" +
       "}"
     , {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(data => {
       console.log(data);
@@ -38,14 +44,9 @@ export class FlatService {
     });
   }
 
-  public getFlatById(id: String): Flat {
-    this.http.get("/api/flat/" + id).subscribe(data => {
-      console.log(data);
-      return data;
-    }, err => {
-      console.log(err);
-      return null;
+  public getFlatById(id: String): Observable<Flat> {
+    return this.http.get<Flat>("/api/flat/" + id).map(res => {
+      return res;
     });
-    return null;
   }
 }

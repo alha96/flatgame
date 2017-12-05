@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
   private updateMembers(){
     this.flatService.currFlat.members.forEach(member => {
       console.log("Add new User to component with id " + member._id);
-      var user:User = this.userService.getUserById(member._id);
+      var user:User = this.userService.getUserById(member.user);
       this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
     });
     this.userInfos = this.sortUsers(this.userInfos);

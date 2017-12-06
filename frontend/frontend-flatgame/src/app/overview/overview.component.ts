@@ -16,9 +16,6 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     this.flat = this.flatService.currFlat;
-    this.flatService.getFlatById(this.userService.currUser.flat).subscribe( flat => {
-      this.flat = flat;
-    });
   }
 
 }

@@ -16,12 +16,8 @@ export class JoinComponent implements OnInit {
   constructor(private route: ActivatedRoute, private  flatService: FlatService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.flatService.getFlatById(params['joinid']).subscribe(flat => {
-        this.flatname = flat.name;
-        this.flatdescription = flat.description;
-      });
-    });
+    this.flatname = this.flatService.currFlat.name;
+    this.flatdescription = this.flatService.currFlat.description;
 
   }
 

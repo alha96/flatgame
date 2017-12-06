@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-invite',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InviteComponent implements OnInit {
 
-  constructor() { }
+  flatid: String;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.flatid = this.userService.currUser.flat;
   }
 
 }

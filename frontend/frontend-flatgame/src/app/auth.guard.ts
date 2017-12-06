@@ -9,11 +9,12 @@ import 'rxjs/add/operator/catch';
 import {UserService} from "./services/user.service";
 import {User} from "./models/user";
 import {Settings} from "./constants/settings";
+import {FlatService} from "./services/flat.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private http: HttpClient, private location: Location, private userService: UserService) {
+  constructor(private router: Router, private http: HttpClient, private location: Location, private userService: UserService, private flatService: FlatService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
@@ -24,6 +25,7 @@ export class AuthGuard implements CanActivate {
       this.http.get<User>('/api/auth/session').subscribe(data => {
         console.log(data);
         this.userService.currUser = data;
+        this.flatService.refreshFlat(data.flat);
         observer.next(true);
         observer.complete();
       }, err => {

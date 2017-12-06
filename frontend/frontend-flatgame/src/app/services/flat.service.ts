@@ -27,10 +27,6 @@ export class FlatService {
     return this._currFlat;
   };
 
-  getCurrFlat(): Observable<Flat> {
-    return this.getFlatById(this.userService.currUser.flat);
-  };
-
   public createFlat(flatname: String){
     this.http.post("/api/flat", "" +
       "{\n" +
@@ -44,7 +40,7 @@ export class FlatService {
     });
   }
 
-  public getFlatById(id: String): Observable<Flat> {
+  public refreshFlat(id: String): Observable<Flat> {
     return this.http.get<Flat>("/api/flat/" + id).map(res => {
       this.currFlat = res;
       return res;

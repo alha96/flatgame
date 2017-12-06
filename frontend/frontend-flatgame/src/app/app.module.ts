@@ -55,6 +55,7 @@ import { UserDetailItemComponent } from './settings-wg/users-detail/user-detail-
 import { CreationComponent } from './creation/creation.component';
 import {FlatService} from "./services/flat.service";
 import { JoinComponent } from './join/join.component';
+import { InviteComponent } from './overview/invite/invite.component';
 
 const appRoutes: Routes = [
   {
@@ -151,7 +152,8 @@ const appRoutes: Routes = [
     AbscenseItemComponent,
     UserDetailItemComponent,
     CreationComponent,
-    JoinComponent
+    JoinComponent,
+    InviteComponent
   ],
   imports: [
     BrowserModule,

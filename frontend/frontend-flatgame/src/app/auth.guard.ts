@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {UserService} from "./services/user.service";
 import {User} from "./models/user";
+import {Settings} from "./constants/settings";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -16,6 +17,9 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    if(Settings.authGardActivated == false){
+      //tbd return observer with true
+    }
     return new Observable<boolean>((observer) => {
       this.http.get<User>('/api/auth/session').subscribe(data => {
         console.log(data);

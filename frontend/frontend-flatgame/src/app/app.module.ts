@@ -56,6 +56,7 @@ import { CreationComponent } from './creation/creation.component';
 import {FlatService} from "./services/flat.service";
 import { JoinComponent } from './join/join.component';
 import { InviteComponent } from './overview/invite/invite.component';
+import { HeadComponent } from './overview/head/head.component';
 
 const appRoutes: Routes = [
   {
@@ -153,7 +154,8 @@ const appRoutes: Routes = [
     UserDetailItemComponent,
     CreationComponent,
     JoinComponent,
-    InviteComponent
+    InviteComponent,
+    HeadComponent
   ],
   imports: [
     BrowserModule,

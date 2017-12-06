@@ -15,8 +15,8 @@ export class FlatService {
   private _currFlat: Flat = {
     name: "Meine Demo WG",
     _id: "123456789",
-    image: null,
-    description: null,
+    image: "https://purplepzzzzdbt.weebly.com/uploads/5/3/2/4/53240413/7069678_orig.png",
+    description: "Eine tolle WG in der sich alle um die Tasks prügeln. Leider nur eine default WG",
     tasks: null,
     members: null
   };
@@ -46,7 +46,16 @@ export class FlatService {
 
   public getFlatById(id: String): Observable<Flat> {
     return this.http.get<Flat>("/api/flat/" + id).map(res => {
+      this.currFlat = res;
       return res;
+    });
+  }
+
+  public joinFlatById(id: String) {
+    this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
     });
   }
 

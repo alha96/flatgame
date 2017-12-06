@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Flat} from "../models/flat";
+import {FlatService} from "../services/flat.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  public flat: Flat;
+
+  constructor(private userService: UserService, private flatService: FlatService) { }
 
   ngOnInit() {
+    this.flat = this.flatService.currFlat;
+    this.flatService.getFlatById(this.userService.currUser.flat).subscribe( flat => {
+      this.flat = flat;
+    });
   }
 
 }

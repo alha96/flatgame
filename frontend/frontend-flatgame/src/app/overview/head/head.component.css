@@ -1,0 +1,25 @@
+#container {
+  margin: 5px;
+  width: 100%;
+}
+
+#pic {
+  border-color: #3367d6;
+  border-style: solid;
+  margin: 10px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 40px;
+  margin: 20px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 20px;
+  line-height: 23px;
+}
+

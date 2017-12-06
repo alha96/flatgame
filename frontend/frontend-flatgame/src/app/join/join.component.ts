@@ -26,7 +26,7 @@ export class JoinComponent implements OnInit {
   }
 
   joinFlat(){
-
+    this.flatService.joinFlatById(this.joinId);
   }
 
 }

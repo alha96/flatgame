@@ -43,6 +43,12 @@ export class FlatService {
   public refreshFlat(id: String): Observable<Flat> {
     return this.http.get<Flat>("/api/flat/" + id).map(res => {
       this.currFlat = res;
+      if(this.currFlat.description == null){
+        this.currFlat.description = "<<WG Beschreibung>>"
+      }
+      if(this.currFlat.image == null){
+        this.currFlat.image = "https://purplepzzzzdbt.weebly.com/uploads/5/3/2/4/53240413/7069678_orig.png";
+      }
       return res;
     });
   }

@@ -62,7 +62,7 @@ exports.get_flat = (req, res) => {
         return res.status(400).json({error: 'No flatId given!'});
     }
     Flat.findById(flatId).then(flat => {
-        if (flat)) {
+        if (flat) {
             res.status(200).json(flat);
             console.log('Flat found:', JSON.stringify(flat));
         } else {

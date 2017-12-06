@@ -13,8 +13,8 @@ import {Flat} from "../../models/flat";
 export class UsersComponent implements OnInit {
 
   userInfos: UserItem[] = [
-    new UserItem("123", "TSchnee45", null, "https://randomuser.me/aBS@other code", 70),
-    new UserItem("321", "Alex", null, "https://randomuser.me/api/BS@other code", 65)
+    new UserItem("123", "Bsp. TSchnee45", null, "https://randomuser.me/aBS@other code", 70),
+    new UserItem("321", "Bsp. Alex", null, "https://randomuser.me/api/BS@other code", 65)
   ];
 
   constructor(private userService: UserService, private flatService: FlatService) { }
@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
         })
       });
     });
-    this.userInfos.push( new UserItem("321", "Patrick", null, "https://randomuser.me/api/BS@other code", 45));
+    this.userInfos.push( new UserItem("321", "Bsp. Patrick", null, "https://randomuser.me/api/BS@other code", 45));
     this.userInfos = this.sortUsers(this.userInfos);
     this.userInfos = this.addRanking(this.userInfos);
   }

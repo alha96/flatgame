@@ -62,7 +62,7 @@ exports.get_flat = (req, res) => {
         return res.status(400).json({error: 'No flatId given!'});
     }
     Flat.findById(flatId).then(flat => {
-        if (flat && flat.members.some(member => {return member.user.equals(res.locals.user._id)})) {
+        if (flat) {
             res.status(200).json(flat);
             console.log('Flat found:', JSON.stringify(flat));
         } else {

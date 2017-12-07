@@ -253,10 +253,11 @@ exports.modify_user_in_flat = (req, res) => {
         return res.status(400).json({error: 'No userId given!'});
     }
 
-    if(req.body.isAdmin === undefined || req.body.isAdmin === null) {
-        console.log('Admin status missing');
-        return res.status(400).json({error: 'Admin status missing'});
-    }
+    // Deactivated so everybody can join with inv link
+    // if(req.body.isAdmin === undefined || req.body.isAdmin === null) {
+    //     console.log('Admin status missing');
+    //     return res.status(400).json({error: 'Admin status missing'});
+    // }
 
     const flatId = req.params.flatId;
     const userId = req.params.userId;

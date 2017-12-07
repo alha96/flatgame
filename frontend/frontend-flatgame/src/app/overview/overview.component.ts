@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Flat} from "../models/flat";
 import {FlatService} from "../services/flat.service";
 import {UserService} from "../services/user.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-overview',
@@ -10,12 +11,12 @@ import {UserService} from "../services/user.service";
 })
 export class OverviewComponent implements OnInit {
 
-  public flat: Flat;
+  public flatOb: Observable<Flat>;
 
   constructor(private userService: UserService, private flatService: FlatService) { }
 
   ngOnInit() {
-    this.flat = this.flatService.currFlat;
+    this.flatOb = this.flatService.getFlat();
   }
 
 }

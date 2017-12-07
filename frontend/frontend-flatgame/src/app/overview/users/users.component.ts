@@ -24,13 +24,13 @@ export class UsersComponent implements OnInit {
   }
 
   private updateMembers(){
-      this.flatService.currFlat.members.forEach(member => {
-        console.log("Add new User to component with id " + member.user);
-        this.userService.getUserById(member.user).subscribe(user => {
-          console.log("Add new User " + user._id + ", " + user.username);
-          this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
-        })
-      });
+      // this.flatService.currFlat.members.forEach(member => {
+      //   console.log("Add new User to component with id " + member.user);
+      //   this.userService.getUserById(member.user).subscribe(user => {
+      //     console.log("Add new User " + user._id + ", " + user.username);
+      //     this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
+      //   })
+      // });
 
     this.userInfos.push( new UserItem("321", "Bsp. Patrick", null, "https://randomuser.me/api/BS@other code", 45));
     this.userInfos = this.sortUsers(this.userInfos);

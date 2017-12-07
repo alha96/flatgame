@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs/Observable";
+import {Flat} from "../../models/flat";
+import {FlatService} from "../../services/flat.service";
 import {UserService} from "../../services/user.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-invite',
@@ -8,12 +12,14 @@ import {UserService} from "../../services/user.service";
 })
 export class InviteComponent implements OnInit {
 
-  flatid: String;
+  public flatOb: Observable<Flat>;
+  public user: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private flatService: FlatService, private userService: UserService) { }
 
   ngOnInit() {
-    this.flatid = this.userService.currUser.flat;
+    this.flatOb = this.flatService.getFlat();
+    this.user = this.userService.currUser;
   }
 
 }

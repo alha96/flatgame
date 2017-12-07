@@ -15,7 +15,7 @@ export class UserService {
     username: "Demo User",
     googleid: "0",
     points: 0,
-    flat: null,
+    flat: "123456789abc",
     email: "test@test.de"
   };
   set currUser(user: User){

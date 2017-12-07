@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Flat} from "../../models/flat";
 import {FlatService} from "../../services/flat.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-head',
@@ -9,12 +10,12 @@ import {FlatService} from "../../services/flat.service";
 })
 export class HeadComponent implements OnInit {
 
-  flat: Flat;
+  public flatOb: Observable<Flat>;
 
   constructor(private flatService: FlatService) { }
 
   ngOnInit() {
-    this.flat = this.flatService.currFlat;
+    this.flatOb = this.flatService.getFlat();
   }
 
 }

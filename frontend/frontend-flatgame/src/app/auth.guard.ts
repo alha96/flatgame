@@ -18,14 +18,13 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    if(Settings.authGardActivated == false){
-      //tbd return observer with true
+    if(!Settings.authGardActivated){
+      return Observable.of(true);
     }
     return new Observable<boolean>((observer) => {
       this.http.get<User>('/api/auth/session').subscribe(data => {
         console.log(data);
         this.userService.currUser = data;
-        this.flatService.refreshFlat(data.flat);
         observer.next(true);
         observer.complete();
       }, err => {

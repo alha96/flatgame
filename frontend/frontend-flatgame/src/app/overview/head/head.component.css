@@ -4,8 +4,7 @@
 }
 
 #pic {
-  border-color: #3367d6;
-  border-style: solid;
+  box-shadow: 3px 3px 10px #555555;
   margin: 10px;
   margin-right: 20px;
 }

@@ -3,9 +3,8 @@
 
 <div class="container">
   <app-head fxFlex="100" class="flex-item"></app-head>
-  <app-invite *ngIf="true" fxFlex="100" class="flex-item"></app-invite>
+  <app-invite *ngIf="(flatOb | async)?.members?.length < 2" fxFlex="100" class="flex-item"></app-invite>
   <app-users class="flex-item"></app-users>
   <app-tasks class="flex-item" ></app-tasks>
   <app-tasks-history class="flex-item"></app-tasks-history>
 </div>
-

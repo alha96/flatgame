@@ -14,12 +14,17 @@ export class InviteComponent implements OnInit {
 
   public flatOb: Observable<Flat>;
   public user: User;
+  public textToCopy: String;
 
   constructor(private flatService: FlatService, private userService: UserService) { }
 
   ngOnInit() {
     this.flatOb = this.flatService.getFlat();
     this.user = this.userService.currUser;
+  }
+
+  copy() {
+
   }
 
 }

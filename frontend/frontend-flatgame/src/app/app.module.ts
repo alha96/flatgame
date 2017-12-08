@@ -57,6 +57,8 @@ import {FlatService} from "./services/flat.service";
 import { JoinComponent } from './join/join.component';
 import { InviteComponent } from './overview/invite/invite.component';
 import { HeadComponent } from './overview/head/head.component';
+import {ClipboardModule} from "ngx-clipboard/dist";
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const appRoutes: Routes = [
   {
@@ -183,7 +185,9 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ClipboardModule,
+    MatTooltipModule
   ],
   providers: [
     UserService,

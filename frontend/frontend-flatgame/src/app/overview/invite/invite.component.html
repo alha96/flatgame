@@ -1,5 +1,6 @@
 <mat-card>
   <mat-card-title>Mitbewohner Einladen</mat-card-title>
   Oh.. Alleine in einer WG? Das geht doch nicht.. Schicke diesen Link an deine Mitbewohner um sie in die WG einzuladen:
-  <br><a href="join/{{user.flat}}">flatgame.joblock.de/join/{{user.flat}}</a>
+  <br><a #linkCP href="join/{{user.flat}}">flatgame.joblock.de/join/{{user.flat}}</a>
+  <button id="goBtn" mat-button color="accent" ngxClipboard [cbContent]="linkCP" (click)="copy()">Kopieren</button>
 </mat-card>

@@ -1,5 +1,13 @@
-<div id="container">
-  <img *ngIf="flatOb | async as flat" id="pic" class="img-circle" src="{{flat.image}}" height="100px" width="100px">
-  <h1 *ngIf="flatOb | async as flat">{{flat.name}}</h1>
-  <h2 *ngIf="flatOb | async as flat">{{flat.description}}</h2>
+<div id="container" fxLayoutAlign="right">
+  <img matTooltip="Tooltip!" *ngIf="flatOb | async as flat" id="pic" class="img-circle" src="{{flat.image}}" height="100px" width="100px">
+  <!-- <h1 class="h1c" #text [hidden]="true" *ngIf="flatOb | async as flat" (click) = "showHide=!showHide">{{flat.name}}</h1> -->
+  <div>
+    <div fxLayoutAlign="left">
+      <input (focus)="showHide=!showHide" maxlength="10" size="10" matTooltip="Bearbeiten" id="h1i" *ngIf="flatOb | async as flat" matInput value={{flat.name}}>
+      <!-- <i class="material-icons">create</i> -->
+    </div>
+    <h2 *ngIf="flatOb | async as flat">{{flat.description}}</h2>
+  </div>
+
+
 </div>

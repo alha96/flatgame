@@ -4,6 +4,7 @@ import {UserService} from "../../services/user.service";
 import {FlatService} from "../../services/flat.service";
 import {User} from "../../models/user";
 import {Flat} from "../../models/flat";
+import {Settings} from "../../constants/settings";
 
 @Component({
   selector: 'app-users',
@@ -12,10 +13,7 @@ import {Flat} from "../../models/flat";
 })
 export class UsersComponent implements OnInit {
 
-  userInfos: UserItem[] = [
-    new UserItem("123", "Bsp. TSchnee45", null, "https://randomuser.me/aBS@other code", 70),
-    new UserItem("321", "Bsp. Alex", null, "https://randomuser.me/api/BS@other code", 65)
-  ];
+  userInfos: UserItem[] = [];
 
   constructor(private userService: UserService, private flatService: FlatService) { }
 
@@ -24,15 +22,22 @@ export class UsersComponent implements OnInit {
   }
 
   private updateMembers(){
-      // this.flatService.currFlat.members.forEach(member => {
-      //   console.log("Add new User to component with id " + member.user);
-      //   this.userService.getUserById(member.user).subscribe(user => {
-      //     console.log("Add new User " + user._id + ", " + user.username);
-      //     this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
-      //   })
-      // });
-
-    this.userInfos.push( new UserItem("321", "Bsp. Patrick", null, "https://randomuser.me/api/BS@other code", 45));
+    if(Settings.defaultData){
+      this.userInfos.push(new UserItem("321", "Bsp. Patrick", null, "https://randomuser.me/api/BS@other code", 45));
+      this.userInfos.push(new UserItem("123", "Bsp. TSchnee45", null, "https://randomuser.me/aBS@other code", 70));
+      this.userInfos.push(new UserItem("321", "Bsp. Alex", null, "https://randomuser.me/api/BS@other code", 65));
+    } else {
+      this.flatService.getFlat().subscribe( flat => {
+        this.userInfos = [];
+        flat.members.forEach(member => {
+          console.log("Add new User to component with id " + member.user);
+          this.userService.getUserById(member.user).subscribe(user => {
+            console.log("Add new User " + user._id + ", " + user.username);
+            this.userInfos.push(new UserItem(user._id, user.username, user.email, user.profile_image, 50));
+          });
+        });
+      });
+    }
     this.userInfos = this.sortUsers(this.userInfos);
     this.userInfos = this.addRanking(this.userInfos);
   }

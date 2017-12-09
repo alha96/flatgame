@@ -1,13 +1,18 @@
 <div id="joinContainer" fxLayoutAlign="center center">
-  <div id="textCard" fxFlex="33">
+  <div id="textCard" fxFlex="50">
     <div fxLayoutAlign="center">
-      <h1 id="title" class="mat-title">
-        Möchtest du der WG {{flatname}} beitreten?
+      <h1 *ngIf="newFlatOb | async as flat" id="title" class="mat-title">
+        Möchtest du der WG<br> <span style="color: #00CC00">{{flat.name}}</span> <br>beitreten?
       </h1>
     </div>
     <div fxLayoutAlign="center">
-      <h2 id="subtitle" class="mat-title">
-        Beschreibung: tdb ;) Warnung falls schon in einer WG sollte hier auch noch stehen...
+      <h2 *ngIf="newFlatOb | async as flat" id="subtitle" class="mat-title">
+        {{flat.name}}: {{flat.description}}
+      </h2>
+    </div>
+    <div fxLayoutAlign="center">
+      <h2 *ngIf="oldFlatOb | async as flat" id="subtitle2" class="mat-title">
+        ACHTUNG: Du bist aktuell in der WG {{flat.name}}. Möchtest du diese WG verlassen und der Neuen beitreten?
       </h2>
     </div>
     <div id="NewContainer" fxLayoutAlign="center">

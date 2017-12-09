@@ -43,13 +43,17 @@ export class FlatService {
   };
 
   getFlat(): Observable<Flat> {
+    return this.getFlatById(this.userService.currUser.flat);
+  }
+
+  getFlatById(id: String): Observable<Flat> {
     if(this._currFlat) {
       return Observable.of(this._currFlat);
     } else if(this.observable) {
       return this.observable;
     } else {
       this.observable = this.http.get<Flat>(
-        "/api/flat/" + this.userService.currUser.flat,
+        "/api/flat/" + id,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')})
         .map(response =>  {
           this.observable = null;
@@ -73,7 +77,7 @@ export class FlatService {
     });
   }
 
-  public joinFlatById(id: String) {
+  public joinFlatById(id: String): Observable<boolean> {
     this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
       console.log(data);
       this.http.post(
@@ -84,6 +88,7 @@ export class FlatService {
         "}",
         {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe( data2 => {
           console.log(data2);
+          return Observable.of(true);
       }, err2 => {
         console.log(err2);
       });
@@ -91,6 +96,7 @@ export class FlatService {
     }, err => {
       console.log(err);
     });
+    return Observable.of(false);
   }
 
 }

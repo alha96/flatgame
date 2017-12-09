@@ -21,6 +21,15 @@
   color: #FFFFFF;
 }
 
+#subtitle2 {
+  font-size: 25px;
+  margin-top: 15px !important;
+  margin-bottom: 25px !important;
+  margin-left: 80px !important;
+  margin-right: 80px !important;
+  color: #FF0000;
+}
+
 #NewContainer {
   color: #FFFFFF;
 }

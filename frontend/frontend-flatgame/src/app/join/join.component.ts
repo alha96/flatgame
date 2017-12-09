@@ -14,6 +14,8 @@ export class JoinComponent implements OnInit {
 
   newFlatOb: Observable<Flat>;
   oldFlatOb: Observable<Flat>;
+  newflat: Flat;
+  oldflat: Flat;
   joinId: string;
 
   constructor(private route: ActivatedRoute, private  flatService: FlatService, private router: Router) { }
@@ -24,13 +26,13 @@ export class JoinComponent implements OnInit {
     this.newFlatOb = this.flatService.getFlatById(this.joinId);
 
     //handle if new flat = old flat (for now just routing it back to overview)
-    this.oldFlatOb.subscribe(res => {
-      this.newFlatOb.subscribe(res2 => {
-        if(res._id == res2._id){
-          this.router.navigate(['/overview']);
-        }
-      });
-    });
+    // this.oldFlatOb.subscribe(res => {
+    //   this.newFlatOb.subscribe(res2 => {
+    //     if(res._id == res2._id){
+    //       this.router.navigate(['/overview']);
+    //     }
+    //   });
+    // });
   }
 
   joinFlat(){

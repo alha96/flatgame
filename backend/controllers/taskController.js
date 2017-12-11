@@ -70,6 +70,14 @@ exports.create_task = (req, res) => {
     }catch(err){
         return res.status(400).json({error: "Task object is not valid: " + err.message});
     }
+    
+    if(!task.flat) {
+        if(res.locals.user.flat) {
+            task.flat = res.locals.user.flat;
+        } else {
+            return res.status(400).json({error: "Missing flat propery"});
+        }
+    }
 
     if(!task.flat.equals(res.locals.user.flat)){
         console.log('The user isn\'t a part of the flat');

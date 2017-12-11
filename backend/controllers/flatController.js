@@ -92,10 +92,10 @@ exports.update_flat = (req, res) => {
        }
 
         //Check user authorization
-        if(!flat.members.some(member => {return (member.user.equals(userId) && member.isAdmin)})) {
-            console.log('The requesting user doesn\'t have admin permissions in the flat');
-            throw('Unauthorized');
-        }
+        // if(!flat.members.some(member => {return (member.user.equals(userId) && member.isAdmin)})) {
+        //     console.log('The requesting user doesn\'t have admin permissions in the flat');
+        //     throw('Unauthorized');
+        // }
 
         for(const key in req.body) {
            if(key !== '_id'){

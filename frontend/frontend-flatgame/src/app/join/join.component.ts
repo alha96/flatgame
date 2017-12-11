@@ -41,6 +41,7 @@ export class JoinComponent implements OnInit {
         this.router.navigate(['/overview']);
       } else {
         //tbd handle error while joining flat
+        console.log("Fehler beim joinen der WG");
       }
     });
   }

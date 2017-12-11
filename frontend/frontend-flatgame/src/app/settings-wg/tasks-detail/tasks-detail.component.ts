@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TaskItem} from "../../models/task-item.module";
+import {TaskService} from "../../services/task.service";
 
 @Component({
   selector: 'app-tasks-detail',
@@ -7,7 +8,6 @@ import {TaskItem} from "../../models/task-item.module";
   styleUrls: ['./tasks-detail.component.css']
 })
 export class TasksDetailComponent implements OnInit {
-
 
   taskItems: TaskItem[] = [
     new TaskItem("123", "Dachboden prüfen", "Alle Ecken des Dachbodens durchleuch", 3, false, "bathtub", 3, 2, 7, "21.02.2018", null, null, null),
@@ -20,9 +20,21 @@ export class TasksDetailComponent implements OnInit {
     // this.taskItems.push(new TaskItem(null, "dsd", "", null, null, null, null, null, null, null, null, null, null));
   }
 
-  constructor() { }
+  onTaskAddedOrChanged(info : TaskItem){
+    console.log("Arrived " + info.name);
+  }
+
+
+
+  constructor( private clientTaskService : TaskService) {
+
+  }
 
   ngOnInit() {
+    console.log("Hi");
+    this.clientTaskService.postCreateTask(this.taskItems[1]).subscribe(ret => {
+      console.log("qwert" + ret.name);
+    });
   }
 
 }

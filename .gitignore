@@ -2,3 +2,4 @@
 /.idea
 /backend/config/default.json
 /backend/node_modules
+frontend/frontend-flatgame/proxy.conf.json

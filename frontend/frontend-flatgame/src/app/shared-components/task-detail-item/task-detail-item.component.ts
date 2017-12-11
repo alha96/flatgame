@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TaskItem} from "../../models/task-item.module";
 import {MatDialog} from "@angular/material";
 import {DialogIconPickerComponent} from "../dialog-icon-picker/dialog-icon-picker.component";
@@ -13,6 +13,8 @@ export class TaskDetailItemComponent implements OnInit {
 
   @Input() taskInfo: TaskItem;
   @Input() isLast: boolean;
+  @Output() onTaskCreatedOrChanged = new EventEmitter<TaskItem>();
+
 
   //using a copy of taskInfo so non-comitted changes do not immediatly change the internal data. Saving an Edit (if successful) changes taskInfo to the new state
   editingTaskInfo : TaskItem;
@@ -71,6 +73,8 @@ export class TaskDetailItemComponent implements OnInit {
     //other attrinutes keep old value (dueDate, lastDone*)
 
     this.isEditing = false;
+
+    this.onTaskCreatedOrChanged.emit(this.taskInfo);
   }
 
   constructor(public dialog: MatDialog) { }

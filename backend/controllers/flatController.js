@@ -276,10 +276,11 @@ exports.modify_user_in_flat = (req, res) => {
 
         if(index === -1){
             console.log('The user isn\'t a part of the flat');
-            throw ('Unauthorized');
+            flat.members.addToSet({user: userId, isAdmin: req.body.isAdmin});
+            //TODO change user flat
+        }else{
+            flat.members[index].isAdmin = req.body.isAdmin;
         }
-
-        flat.members[index].isAdmin = req.body.isAdmin;
 
         return flat.save();
     }).then(flat => {

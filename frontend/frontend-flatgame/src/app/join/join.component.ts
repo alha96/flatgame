@@ -22,6 +22,7 @@ export class JoinComponent implements OnInit {
 
   ngOnInit() {
     this.joinId = this.route.snapshot.params['joinid'];
+    console.log(this.joinId);
     this.oldFlatOb = this.flatService.getFlat();
     this.newFlatOb = this.flatService.getFlatById(this.joinId);
 

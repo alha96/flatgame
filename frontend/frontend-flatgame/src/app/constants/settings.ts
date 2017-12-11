@@ -1,5 +1,5 @@
 export class Settings {
-  public static authGardActivated = false;
-  public static defaultData = true;
+  public static authGardActivated = true;
+  public static defaultData = false;
   public static minFlatNameLength = 4;
 }

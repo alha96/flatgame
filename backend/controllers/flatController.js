@@ -268,10 +268,10 @@ exports.modify_user_in_flat = (req, res) => {
         }
 
         //Check user authorization
-        if(!flat.members.some(member => {return (member.user.equals(res.locals.user._id) && member.isAdmin)})){
-            console.log('The requesting user doesn\'t have admin permissions in the flat');
-            throw ('Unauthorized');
-        }
+        // if(!flat.members.some(member => {return (member.user.equals(res.locals.user._id) && member.isAdmin)})){
+        //     console.log('The requesting user doesn\'t have admin permissions in the flat');
+        //     throw ('Unauthorized');
+        // }
         const index = flat.members.findIndex(member => {return member.user.equals(userId)});
 
         if(index === -1){

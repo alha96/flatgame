@@ -91,7 +91,7 @@ export class FlatService {
 
   public joinFlatById(id: String): Observable<[Flat, User]> {
     let req1 = this.http.put<Flat>("/api/flat/" + id + "/user/" + this.userService.currUser._id, {isAdmin: false});
-    let req2 = this.http.post<User>("/api/user/" + this.userService.currUser._id, {flat: id});
+    let req2 = this.http.put<User>("/api/user/" + this.userService.currUser._id, {flat: id});
     return forkJoin([req1, req2]);
     // this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
     //   console.log(data);

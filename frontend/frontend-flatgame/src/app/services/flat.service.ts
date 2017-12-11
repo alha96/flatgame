@@ -90,7 +90,7 @@ export class FlatService {
   public joinFlatById(id: String): Observable<boolean> {
     this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
       console.log(data);
-      this.http.post(
+      this.http.put(
         "/api/user/" + this.userService.currUser._id,
         "" +
         "{\n" +

@@ -47,6 +47,7 @@ export class FlatService {
   }
 
   getFlatById(id: String): Observable<Flat> {
+    console.log("GetFlat: " + id);
     if(this._currFlat) {
       return Observable.of(this._currFlat);
     } else if(this.observable) {

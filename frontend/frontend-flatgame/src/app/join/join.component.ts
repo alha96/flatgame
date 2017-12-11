@@ -37,6 +37,7 @@ export class JoinComponent implements OnInit {
 
   joinFlat(){
     this.flatService.joinFlatById(this.joinId).subscribe(res => {
+      console.log(res);
       if(res){
         this.router.navigate(['/overview']);
       } else {

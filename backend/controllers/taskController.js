@@ -68,7 +68,7 @@ exports.create_task = (req, res) => {
     try {
         task = new Task(req.body);
     }catch(err){
-        return res.status(400).send(err);
+        return res.status(400).json({error: "Task object is not valid: " + err.message});
     }
 
     if(!task.flat.equals(res.locals.user.flat)){

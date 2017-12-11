@@ -9,6 +9,8 @@ import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import {Settings} from "../constants/settings";
 import {UserItem} from "../models/user-item.module";
+import {forkJoin} from "rxjs/observable/forkJoin";
+import {User} from "../models/user";
 
 
 @Injectable()
@@ -87,26 +89,29 @@ export class FlatService {
     });
   }
 
-  public joinFlatById(id: String): Observable<boolean> {
-    this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
-      console.log(data);
-      this.http.put(
-        "/api/user/" + this.userService.currUser._id,
-        "" +
-        "{\n" +
-        "  \"flat\": \"" + id + "\"\n" +
-        "}",
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe( data2 => {
-          console.log(data2);
-          return Observable.of(true);
-      }, err2 => {
-        console.log(err2);
-      });
-
-    }, err => {
-      console.log(err);
-    });
-    return Observable.of(false);
+  public joinFlatById(id: String): Observable<[Flat, User]> {
+    let req1 = this.http.put<Flat>("/api/flat/" + id + "/user/" + this.userService.currUser._id, {isAdmin: false});
+    let req2 = this.http.post<User>("/api/user/" + this.userService.currUser._id, {flat: id});
+    return forkJoin([req1, req2]);
+    // this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
+    //   console.log(data);
+    //   this.http.put(
+    //     "/api/user/" + this.userService.currUser._id,
+    //     "" +
+    //     "{\n" +
+    //     "  \"flat\": \"" + id + "\"\n" +
+    //     "}",
+    //     {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe( data2 => {
+    //       console.log(data2);
+    //       return Observable.of(true);
+    //   }, err2 => {
+    //     console.log(err2);
+    //   });
+    //
+    // }, err => {
+    //   console.log(err);
+    // });
+    // return Observable.of(false);
   }
 
 }

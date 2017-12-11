@@ -38,12 +38,9 @@ export class JoinComponent implements OnInit {
   joinFlat(){
     this.flatService.joinFlatById(this.joinId).subscribe(res => {
       console.log(res);
-      if(res){
-        this.router.navigate(['/overview']);
-      } else {
-        //tbd handle error while joining flat
-        console.log("Fehler beim joinen der WG");
-      }
+      this.router.navigate(['/overview']);
+    }, err => {
+      console.log('An error occured', err);
     });
   }
 

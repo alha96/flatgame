@@ -9,14 +9,14 @@ import {InterceptorService} from "../services/interceptor.service";
 })
 export class LoaderComponent implements OnInit, OnDestroy {
 
-  private _showSpinner: boolean;
+  public showSpinner: boolean;
   private _subscription: Subscription;
 
   constructor(private interceptorService: InterceptorService) { }
 
   ngOnInit() {
     this._subscription = this.interceptorService.hasPendingRequests.subscribe(hasPendingRequests => {
-      this._showSpinner = hasPendingRequests;
+      this.showSpinner = hasPendingRequests;
     });
   }
 

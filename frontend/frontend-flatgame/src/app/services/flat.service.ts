@@ -45,7 +45,7 @@ export class FlatService {
   };
 
   getFlat(): Observable<Flat> {
-    console.log("GetFlat: " + this.userService.currUser.flat);
+    //console.log("GetFlat: " + this.userService.currUser.flat);
     if(this._currFlat) {
       return Observable.of(this._currFlat);
     } else if(this.observable) {

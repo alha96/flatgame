@@ -91,7 +91,7 @@
       <mat-menu #task_option="matMenu">
         <button mat-menu-item (click)="onMenuEditClicked()">
           <mat-icon>loop</mat-icon>
-          <span>{{isEditing ? "Verwefen" : "Ändern"}}</span>
+          <span>{{taskInfo.isEditing ? "Verwefen" : "Ändern"}}</span>
         </button>
         <button mat-menu-item (click)="onMenuDeleteClicked()">
           <mat-icon>delete</mat-icon>

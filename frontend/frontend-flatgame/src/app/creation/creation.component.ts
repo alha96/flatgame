@@ -30,7 +30,7 @@ export class CreationComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  createNewFlat(flatname: String) {
+  createNewFlat(flatname: string) {
     if(flatname != ""){
       console.log("WG mit name (" + flatname + ") wird erstellt");
       this.flatService.createFlat(flatname);

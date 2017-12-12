@@ -11,12 +11,17 @@ import {Settings} from "../constants/settings";
 import {UserItem} from "../models/user-item.module";
 import {forkJoin} from "rxjs/observable/forkJoin";
 import {User} from "../models/user";
+import {MessageService} from "./message.service";
 
 
 @Injectable()
 export class FlatService {
 
-  constructor(private router: Router, private http: HttpClient, private userService: UserService) {
+  constructor(private router: Router,
+              private http: HttpClient,
+              private userService: UserService,
+              private messageService: MessageService) {
+
     if(Settings.defaultData){
       this._currFlat = {
         name: "Meine Demo WG",
@@ -26,10 +31,13 @@ export class FlatService {
         tasks: null,
         members: null
       };
-      // this._currFlat.members.concat({user: "Test", _id: "test", isAdmin: false});
-      // this._currFlat.members.concat({user: "Test2", _id: "test2", isAdmin: false});
-      // this._currFlat.members.concat({user: "Test3", _id: "test3", isAdmin: false});
     }
+  }
+
+  private demoFlat  = {
+    name: "Meine Demo WG",
+    image: "https://purplepzzzzdbt.weebly.com/uploads/5/3/2/4/53240413/7069678_orig.png",
+    description: "Die beste WG der Welt!"
   }
 
   //TODO Remove the default flat object
@@ -76,16 +84,14 @@ export class FlatService {
     return this.observable;
   }
 
-  public createFlat(flatname: String){
-    this.http.post("/api/flat", "" +
-      "{\n" +
-      "  \"name\": \"" + flatname + "\"\n" +
-      "}"
-      , {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(data => {
+  public createFlat(flatname: string){
+    this.demoFlat.name = flatname;
+    this.http.post("/api/flat", this.demoFlat, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(data => {
       console.log(data);
       this.router.navigate(['overview']);
     }, err => {
       console.log(err);
+      this.messageService.displayMessage("Es konnte leider keine WG erstellt werden!");
     });
   }
 
@@ -93,25 +99,6 @@ export class FlatService {
     let req1 = this.http.put<Flat>("/api/flat/" + id + "/user/" + this.userService.currUser._id, {isAdmin: false});
     let req2 = this.http.put<User>("/api/user/" + this.userService.currUser._id, {flat: id});
     return forkJoin([req1, req2]);
-    // this.http.put("/api/flat/" + id + "/user/" + this.userService.currUser._id, null).subscribe( data => {
-    //   console.log(data);
-    //   this.http.put(
-    //     "/api/user/" + this.userService.currUser._id,
-    //     "" +
-    //     "{\n" +
-    //     "  \"flat\": \"" + id + "\"\n" +
-    //     "}",
-    //     {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe( data2 => {
-    //       console.log(data2);
-    //       return Observable.of(true);
-    //   }, err2 => {
-    //     console.log(err2);
-    //   });
-    //
-    // }, err => {
-    //   console.log(err);
-    // });
-    // return Observable.of(false);
   }
 
 }

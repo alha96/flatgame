@@ -4,6 +4,7 @@ import {Flat} from "../../models/flat";
 import {FlatService} from "../../services/flat.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-invite',
@@ -16,7 +17,7 @@ export class InviteComponent implements OnInit {
   public user: User;
   public textToCopy: String;
 
-  constructor(private flatService: FlatService, private userService: UserService) { }
+  constructor(private flatService: FlatService, private userService: UserService, private messageService: MessageService) { }
 
   ngOnInit() {
     this.flatOb = this.flatService.getFlat();
@@ -24,7 +25,7 @@ export class InviteComponent implements OnInit {
   }
 
   copy() {
-
+    this.messageService.displayMessage("Link in die Zwischenablage kopiert!");
   }
 
 }

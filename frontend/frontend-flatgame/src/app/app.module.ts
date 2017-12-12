@@ -60,6 +60,7 @@ import { HeadComponent } from './overview/head/head.component';
 import {ClipboardModule} from "ngx-clipboard/dist";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {TaskService} from "./services/task.service";
+import {MessageService} from "./services/message.service";
 
 const appRoutes: Routes = [
   {
@@ -194,6 +195,7 @@ const appRoutes: Routes = [
     UserService,
     FlatService,
     TaskService,
+    MessageService,
     AuthGuard,
     {provide: MAT_DATE_LOCALE, useValue: 'de-DE'}
   ],

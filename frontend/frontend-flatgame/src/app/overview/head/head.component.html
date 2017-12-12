@@ -1,4 +1,4 @@
-<div id="container" fxLayoutAlign="right">
+<div id="container">
   <img *ngIf="flatOb | async as flat" id="pic" class="img-circle" src="{{flat.image}}" height="100px" width="100px">
   <h1 class="h1c"*ngIf="flatOb | async as flat">{{flat.name}}</h1>
   <h2 *ngIf="flatOb | async as flat">{{flat.description}}</h2>

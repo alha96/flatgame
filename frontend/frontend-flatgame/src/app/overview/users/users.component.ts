@@ -5,6 +5,7 @@ import {FlatService} from "../../services/flat.service";
 import {User} from "../../models/user";
 import {Flat} from "../../models/flat";
 import {Settings} from "../../constants/settings";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-users',
@@ -15,7 +16,7 @@ export class UsersComponent implements OnInit {
 
   userInfos: UserItem[] = [];
 
-  constructor(private userService: UserService, private flatService: FlatService) { }
+  constructor(private userService: UserService, private flatService: FlatService, private messageService: MessageService) { }
 
   ngOnInit() {
    this.updateMembers();
@@ -47,7 +48,7 @@ export class UsersComponent implements OnInit {
     userItem.points += 5;
    // this.userInfos.push( new UserItem("321", "Testuser", "https://randomuser.me/api/BS@other code", Math.floor(Math.random() * 101)  ));
     this.updateMembers();
-
+    this.messageService.displayMessage("Do some stuff ;)");
   }
 
   private sortUsers(users: UserItem[]){

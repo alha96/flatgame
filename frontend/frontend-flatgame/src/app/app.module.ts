@@ -43,7 +43,7 @@ import { HttpModule } from '@angular/http';
 import { LayoutComponent } from './layout/layout.component';
 import {UserService} from "./services/user.service";
 import {HttpClient, HttpHandler} from "@angular/common/http";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { TasksHistoryComponent } from './overview/tasks-history/tasks-history.component';
 import { DialogIconPickerComponent } from './shared-components/dialog-icon-picker/dialog-icon-picker.component';
 import { FilterComponent } from './history/filter/filter.component';
@@ -60,6 +60,9 @@ import { HeadComponent } from './overview/head/head.component';
 import {ClipboardModule} from "ngx-clipboard/dist";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {TaskService} from "./services/task.service";
+import {MessageService} from "./services/message.service";
+import {LoaderComponent} from "./loader/loader.component";
+import {InterceptorService} from "./services/interceptor.service";
 
 const appRoutes: Routes = [
   {
@@ -70,7 +73,7 @@ const appRoutes: Routes = [
   {
     path: 'create',
     pathMatch: 'full',
-    canActivate: [AuthGuard],
+ //   canActivate: [AuthGuard],
     component: CreationComponent
   },
   {
@@ -87,7 +90,7 @@ const appRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [AuthGuard],
+ //   canActivate: [AuthGuard],
     children: [
       {
         path: 'overview',
@@ -158,7 +161,8 @@ const appRoutes: Routes = [
     CreationComponent,
     JoinComponent,
     InviteComponent,
-    HeadComponent
+    HeadComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -194,7 +198,10 @@ const appRoutes: Routes = [
     UserService,
     FlatService,
     TaskService,
+    MessageService,
     AuthGuard,
+    InterceptorService,
+    {provide: HTTP_INTERCEPTORS, useExisting: InterceptorService, multi: true},
     {provide: MAT_DATE_LOCALE, useValue: 'de-DE'}
   ],
   bootstrap: [AppComponent],

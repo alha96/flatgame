@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TaskItem} from "../../models/task-item.module";
 import {TaskService} from "../../services/task.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-tasks-detail',
@@ -16,25 +17,35 @@ export class TasksDetailComponent implements OnInit {
   ];
 
   onAddFabClicked(){
-    this.taskItems.push( new TaskItem(null, "", "", null, false, null, null, null, null, null, null, null, null));
+    this.taskItems.push( new TaskItem(null, "", "", null, false, null, null, null, null, null, null, null, null, true));
     // this.taskItems.push(new TaskItem(null, "dsd", "", null, null, null, null, null, null, null, null, null, null));
   }
 
-  onTaskAddedOrChanged(info : TaskItem){
-    console.log("Arrived " + info.name);
+  onTaskAddedOrChanged(info : TaskItem, arrayIdx : number){
+    this.clientTaskService.postCreateTask(info).subscribe(ret => {
+      console.log("Saved: " + ret.name);
+    }, err => {
+      console.log(err);
+      this.taskItems[arrayIdx].isEditing = true;
+      this.openSnackBar("Falsche Dateneingabe\n"+err.error.message)
+      }
+
+    );
+  }
+
+  openSnackBar(message: string, action?: string) {
+    this.snackBar.open(message, action);
   }
 
 
 
-  constructor( private clientTaskService : TaskService) {
+  constructor( private clientTaskService : TaskService, public snackBar: MatSnackBar) {
 
   }
 
   ngOnInit() {
     console.log("Hi");
-    this.clientTaskService.postCreateTask(this.taskItems[1]).subscribe(ret => {
-      console.log("qwert" + ret.name);
-    });
+
   }
 
 }

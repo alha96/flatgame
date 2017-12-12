@@ -12,9 +12,10 @@ export class TaskItem {
   public lastDoneDate: Date; // may be null if never done
   public lastDoneUserName: string; // may be null if never done
   public lastDoneUserId: string; // may be null if never done
+  public isEditing: boolean = false;
 
 
-  constructor (id: string, name: string, description: string, points: number, done: boolean, icon: string, frequency?: number, frequencyType?: number,  graceDays?: number, dueDate?: string, lastDoneDate?: string, lastDoneUserName?: string, lastDoneUserId?: string ) {
+  constructor (id: string, name: string, description: string, points: number, done: boolean, icon: string, frequency?: number, frequencyType?: number,  graceDays?: number, dueDate?: string, lastDoneDate?: string, lastDoneUserName?: string, lastDoneUserId?: string, isEditing?: boolean ) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -28,6 +29,7 @@ export class TaskItem {
     this.lastDoneDate = new Date(lastDoneDate);
     this.lastDoneUserName = lastDoneUserName;
     this.lastDoneUserId = lastDoneUserId;
+    this.isEditing = isEditing;
   }
 
   public getRegularityString() : string {

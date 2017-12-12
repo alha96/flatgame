@@ -9,7 +9,7 @@
            height="25px" width="auto">
 
       <div class="this-task-info"
-           *ngIf="!isEditing">
+           *ngIf="!taskInfo.isEditing">
         <h3>{{taskInfo.name}}</h3>
         <p>Beschreibung: {{taskInfo.description}}</p>
         <p>Punkte: {{taskInfo.points}}
@@ -18,7 +18,7 @@
         <p [style.display]="taskInfo.lastDoneUserName != null ? 'block' : 'gone'">Zuletzt erledigt von Jens am 10.07.2017TOOOODOOOO</p>
       </div>
       <div class="this-task-info"
-           *ngIf="isEditing">
+           *ngIf="taskInfo.isEditing">
         <!-- EDITING PANE -->
         <form class="example-form this-task-info">
           <mat-form-field class="full-width">

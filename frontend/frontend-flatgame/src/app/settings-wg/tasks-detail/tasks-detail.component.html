@@ -1,9 +1,9 @@
 <mat-card>
   <app-task-detail-item
-    *ngFor="let taskItem of taskItems; let last = last"
+    *ngFor="let taskItem of taskItems; let last = last, let i = index"
     [taskInfo]="taskItem"
     [isLast]="last"
-    (onTaskCreatedOrChanged)="onTaskAddedOrChanged($event)"
+    (onTaskCreatedOrChanged)="onTaskAddedOrChanged($event, i)"
   ></app-task-detail-item>
 
   <button mat-fab class="pull-right" (click)="onAddFabClicked()">

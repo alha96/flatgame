@@ -18,14 +18,13 @@ export class TaskDetailItemComponent implements OnInit {
 
   //using a copy of taskInfo so non-comitted changes do not immediatly change the internal data. Saving an Edit (if successful) changes taskInfo to the new state
   editingTaskInfo : TaskItem;
-  isEditing : boolean = false;
   editingFrequencyTypeStr : string;
 
   //overlayVisible : boolean = false;
 
   onIconClicked(){
     //icon can only be changed if user has editing priviliges (is in editing pane)
-    if (!this.isEditing) return null;
+    if (!this.taskInfo.isEditing) return null;
     let dialog = this.dialog.open(DialogIconPickerComponent);
     dialog.afterClosed().subscribe(selection => {
       if (selection){
@@ -40,12 +39,12 @@ export class TaskDetailItemComponent implements OnInit {
   }
 
   onMenuEditClicked(){
-    if (this.isEditing){
+    if (this.taskInfo.isEditing){
       //clicked verwerfen, reset values of temp editing Data holder
       this.editingTaskInfo = Object.assign({}, this.taskInfo);
       this.editingFrequencyTypeStr = this.editingTaskInfo.frequencyType.toString();
     }
-    this.isEditing = !this.isEditing;
+    this.taskInfo.isEditing = !this.taskInfo.isEditing;
 
   }
   onMenuDeleteClicked(){
@@ -72,7 +71,7 @@ export class TaskDetailItemComponent implements OnInit {
     this.taskInfo.graceDays = this.editingTaskInfo.graceDays;
     //other attrinutes keep old value (dueDate, lastDone*)
 
-    this.isEditing = false;
+    this.taskInfo.isEditing = false;
 
     this.onTaskCreatedOrChanged.emit(this.taskInfo);
   }
@@ -83,10 +82,6 @@ export class TaskDetailItemComponent implements OnInit {
     //clone data object into temp editing object
     this.editingTaskInfo = Object.assign({}, this.taskInfo);
     this.editingFrequencyTypeStr = this.editingTaskInfo.frequencyType != null ? this.editingTaskInfo.frequencyType.toString() : '23456';
-    if (this.taskInfo.id == null){
-      //new Task being added
-      this.isEditing = true;
-    }
   }
 
 }

@@ -21,5 +21,6 @@ export class TaskService {
       "/api/task/",
       flatItem);
   }
+  //getAllTasks() : Observable<TaskItem[]>
 }
 

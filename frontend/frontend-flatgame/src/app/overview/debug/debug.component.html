@@ -1,0 +1,6 @@
+<mat-card>
+  <mat-card-title>Debug</mat-card-title>
+  <div *ngFor="let taskItem of (tasks | async)">
+    {{taskItem.name}}
+  </div>
+</mat-card>

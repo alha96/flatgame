@@ -1,0 +1,37 @@
+.this-task-action {
+  float:right;
+  margin-top: 5px;
+}
+
+mat-checkbox {
+  padding: 10px;
+}
+.task-points {
+  font-weight: bold;
+}
+
+.icon-sm {
+  padding-right: 10px;
+  padding-top: 5px;
+}
+.img-circle.icon-sm {
+  overflow: hidden;
+  padding-top: 5px;
+}
+
+.this-task-info {
+  display: inline;
+  flex-grow: 1;
+  margin-top:7px;
+}
+
+.text_small {
+  font-size: 10pt;
+}
+
+.invisible_link {
+  text-decoration: none;
+  text-decoration-color: black;
+}
+
+

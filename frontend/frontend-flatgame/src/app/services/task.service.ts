@@ -12,15 +12,17 @@ import {Router} from "@angular/router";
 @Injectable()
 export class TaskService {
 
-  constructor(private router: Router, private http: HttpClient){
-  }
+  constructor(private router: Router,
+              private http: HttpClient){}
+
 
   postCreateTask(flatItem : TaskItem): Observable<TaskItem> {
     console.log("CreateFlat: " + flatItem.name);
-    return this.http.post<TaskItem>(
-      "/api/task/",
-      flatItem);
+    return this.http.post<TaskItem>("/api/task/", flatItem);
   }
-  //getAllTasks() : Observable<TaskItem[]>
+
+  getAllTasks() : Observable<TaskItem[]> {
+    return this.http.get<TaskItem[]>("/api/task");
+  }
 }
 

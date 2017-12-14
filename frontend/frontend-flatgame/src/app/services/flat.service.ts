@@ -12,6 +12,8 @@ import {UserItem} from "../models/user-item.module";
 import {forkJoin} from "rxjs/observable/forkJoin";
 import {User} from "../models/user";
 import {MessageService} from "./message.service";
+import {TaskService} from "./task.service";
+import {TaskItem} from "../models/task-item.module";
 
 
 @Injectable()
@@ -20,7 +22,8 @@ export class FlatService {
   constructor(private router: Router,
               private http: HttpClient,
               private userService: UserService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private taskService: TaskService) {
 
     if(Settings.defaultData){
       this._currFlat = {
@@ -38,6 +41,27 @@ export class FlatService {
     name: "Meine Demo WG",
     image: "https://purplepzzzzdbt.weebly.com/uploads/5/3/2/4/53240413/7069678_orig.png",
     description: "Die beste WG der Welt!"
+  }
+
+  private demoTask1 = {
+    name: "Bad putzen",
+    description: "Waschbecken, Toilete und Dusche putzen",
+    icon: "shower",
+    points: 2,
+    done: false,
+    frequency: 1, // -1 is irregular task
+    frequencyType: 1, //0 = days, 1 = weeks, 2 = months
+    graceDays: 7
+  }
+
+  private demoTask2 = {
+    name: "Toiletenpapier kaufen",
+    description: "Bitte mindestens 4 Lagen",
+    icon: "toilet_paper",
+    points: 2,
+    done: false,
+    frequency: -1, // -1 is irregular task
+    graceDays: 7
   }
 
   //TODO Remove the default flat object
@@ -88,7 +112,14 @@ export class FlatService {
     this.demoFlat.name = flatname;
     this.http.post("/api/flat", this.demoFlat, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe(data => {
       console.log(data);
-      this.router.navigate(['overview']);
+      let req1 = this.http.post("/api/task", this.demoTask1);
+      let req2 = this.http.post("/api/task", this.demoTask2);
+      forkJoin([req1, req2]).subscribe(res =>{
+        this.router.navigate(['overview']);
+      }, err => {
+        console.log(err);
+        this.messageService.displayMessage("Fehler beim generieren der Beispiel Tasks!");
+      });
     }, err => {
       console.log(err);
       this.messageService.displayMessage("Es konnte leider keine WG erstellt werden!");

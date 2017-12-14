@@ -1,13 +1,16 @@
 #loginContainer {
   height: 100%;
-  background-image: url("https://tatica.fedorapeople.org/Themes/F12/wallpaper-mosaico6.svg");
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(-45deg, #000ec5, #4285f4);
+  background-size: 100% 100%;
+}
+
+#inlay {
+  max-width: 600px;
 }
 
 #title {
   font-size: 63px;
-  line-height: 68px;
+  line-height: 120%;
   color: #FFFFFF;
   text-align: center;
 }

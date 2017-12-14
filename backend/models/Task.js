@@ -13,7 +13,7 @@ let taskSchema = new Schema({
     lastdoneUser: {type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null},
     duedate: {type: Date, default: Date.now},
     frequency: {type: Number, required: true},
-    frequencyType: {type: Number, required: true},
+    frequencyType: {type: Number, default: 1},
     graceDays: {type: Number, default: -1},
     flat: {type: mongoose.Schema.Types.ObjectId, ref: 'Flat', required: true},
     //TODO Set default icon

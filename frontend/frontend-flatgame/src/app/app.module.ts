@@ -63,6 +63,7 @@ import {TaskService} from "./services/task.service";
 import {MessageService} from "./services/message.service";
 import {LoaderComponent} from "./loader/loader.component";
 import {InterceptorService} from "./services/interceptor.service";
+import { DebugComponent } from './overview/debug/debug.component';
 
 const appRoutes: Routes = [
   {
@@ -162,7 +163,8 @@ const appRoutes: Routes = [
     JoinComponent,
     InviteComponent,
     HeadComponent,
-    LoaderComponent
+    LoaderComponent,
+    DebugComponent
   ],
   imports: [
     BrowserModule,
